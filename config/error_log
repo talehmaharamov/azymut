@@ -1,0 +1,88 @@
+[12-Oct-2023 22:55:40 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/zuhurgro/demo.azymut.az/config/app.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/zuhurgro/demo.azymut.az/config/app.php on line 6
+[12-Oct-2023 22:55:40 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/zuhurgro/demo.azymut.az/config/broadcasting.php:4
+Stack trace:
+#0 {main}
+  thrown in /home/zuhurgro/demo.azymut.az/config/broadcasting.php on line 4
+[12-Oct-2023 22:55:40 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/zuhurgro/demo.azymut.az/config/activitylog.php:4
+Stack trace:
+#0 {main}
+  thrown in /home/zuhurgro/demo.azymut.az/config/activitylog.php on line 4
+[12-Oct-2023 22:55:40 UTC] PHP Fatal error:  Uncaught Error: Class "App\Providers\RouteServiceProvider" not found in /home/zuhurgro/demo.azymut.az/config/fortify.php:11
+Stack trace:
+#0 {main}
+  thrown in /home/zuhurgro/demo.azymut.az/config/fortify.php on line 11
+[12-Oct-2023 22:55:40 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/zuhurgro/demo.azymut.az/config/services.php:5
+Stack trace:
+#0 {main}
+  thrown in /home/zuhurgro/demo.azymut.az/config/services.php on line 5
+[12-Oct-2023 22:55:40 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function base_path() in /home/zuhurgro/demo.azymut.az/config/dotenveditor.php:10
+Stack trace:
+#0 {main}
+  thrown in /home/zuhurgro/demo.azymut.az/config/dotenveditor.php on line 10
+[12-Oct-2023 22:55:40 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function app_path() in /home/zuhurgro/demo.azymut.az/config/translation.php:9
+Stack trace:
+#0 {main}
+  thrown in /home/zuhurgro/demo.azymut.az/config/translation.php on line 9
+[12-Oct-2023 22:55:40 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/zuhurgro/demo.azymut.az/config/mail.php:4
+Stack trace:
+#0 {main}
+  thrown in /home/zuhurgro/demo.azymut.az/config/mail.php on line 4
+[12-Oct-2023 22:55:40 UTC] PHP Fatal error:  Uncaught Error: Class "Laravel\Jetstream\Features" not found in /home/zuhurgro/demo.azymut.az/config/jetstream.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/zuhurgro/demo.azymut.az/config/jetstream.php on line 16
+[12-Oct-2023 22:55:40 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/zuhurgro/demo.azymut.az/config/queue.php:4
+Stack trace:
+#0 {main}
+  thrown in /home/zuhurgro/demo.azymut.az/config/queue.php on line 4
+[12-Oct-2023 22:55:40 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function resource_path() in /home/zuhurgro/demo.azymut.az/config/livewire.php:5
+Stack trace:
+#0 {main}
+  thrown in /home/zuhurgro/demo.azymut.az/config/livewire.php on line 5
+[12-Oct-2023 22:55:40 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/zuhurgro/demo.azymut.az/config/cache.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/zuhurgro/demo.azymut.az/config/cache.php on line 6
+[12-Oct-2023 22:55:40 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/zuhurgro/demo.azymut.az/config/hashing.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/zuhurgro/demo.azymut.az/config/hashing.php on line 6
+[12-Oct-2023 22:55:40 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function resource_path() in /home/zuhurgro/demo.azymut.az/config/view.php:5
+Stack trace:
+#0 {main}
+  thrown in /home/zuhurgro/demo.azymut.az/config/view.php on line 5
+[12-Oct-2023 22:55:40 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/zuhurgro/demo.azymut.az/config/filesystems.php:4
+Stack trace:
+#0 {main}
+  thrown in /home/zuhurgro/demo.azymut.az/config/filesystems.php on line 4
+[12-Oct-2023 22:55:40 UTC] PHP Fatal error:  Uncaught Error: Class "GuzzleHttp\RequestOptions" not found in /home/zuhurgro/demo.azymut.az/config/sitemap.php:19
+Stack trace:
+#0 {main}
+  thrown in /home/zuhurgro/demo.azymut.az/config/sitemap.php on line 19
+[12-Oct-2023 22:55:40 UTC] PHP Fatal error:  Uncaught Error: Class "Astrotomic\Translatable\Validation\RuleFactory" not found in /home/zuhurgro/demo.azymut.az/config/translatable.php:19
+Stack trace:
+#0 {main}
+  thrown in /home/zuhurgro/demo.azymut.az/config/translatable.php on line 19
+[12-Oct-2023 22:55:40 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/zuhurgro/demo.azymut.az/config/logging.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/zuhurgro/demo.azymut.az/config/logging.php on line 8
+[12-Oct-2023 22:55:40 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/zuhurgro/demo.azymut.az/config/sanctum.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/zuhurgro/demo.azymut.az/config/sanctum.php on line 6
+[12-Oct-2023 22:55:40 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/zuhurgro/demo.azymut.az/config/session.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/zuhurgro/demo.azymut.az/config/session.php on line 6
+[12-Oct-2023 22:55:41 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/zuhurgro/demo.azymut.az/config/database.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/zuhurgro/demo.azymut.az/config/database.php on line 7
+[12-Oct-2023 22:55:41 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/zuhurgro/demo.azymut.az/config/sweetalert.php:4
+Stack trace:
+#0 {main}
+  thrown in /home/zuhurgro/demo.azymut.az/config/sweetalert.php on line 4
