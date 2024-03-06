@@ -40,7 +40,7 @@ class CategoryController extends Controller
                 $category->slug = $request->slug;
                 $category->save();
             }
-            $category->is_home = $request->has('is_home') ? 1 : 0;
+            $category->photo = upload('category',$request->file('photo'));
             foreach (active_langs() as $lang) {
                 $translation = new CategoryTranslation();
                 $translation->locale = $lang->code;
@@ -75,6 +75,12 @@ class CategoryController extends Controller
         try {
             $category = Category::find($id);
             DB::transaction(function () use ($request, $category) {
+                if ($request->hasFile('photo')) {
+                    if (file_exists($category->photo)) {
+                        unlink(public_path($category->photo));
+                    }
+                    $category->photo = upload('category', $request->file('photo'));
+                }
                 foreach (active_langs() as $lang) {
                     $category->translate($lang->code)->name = $request->name[$lang->code];
                     $category->translate($lang->code)->description = $request->description[$lang->code];

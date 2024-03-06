@@ -15,12 +15,6 @@ class Team extends Model implements TranslatableContract
 
     public $translatedAttributes = ['name'];
     protected $guarded = [];
-
-    public function photos()
-    {
-        return $this->hasMany(TeamPhotos::class);
-    }
-
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()->logAll();

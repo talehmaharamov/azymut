@@ -3,7 +3,8 @@
 @section('front')
     <section class="page-masthead">
         <div data-parallax="0.6" class="page-masthead__bg">
-            <div data-parallax-target class="bg-image js-lazy" data-bg="{{asset('frontend/img/backgrounds/6.jpg')}}"></div>
+            <div data-parallax-target class="bg-image js-lazy"
+                 data-originalbg="{{asset('frontend/img/1 (4).jpg')}}"></div>
         </div>
 
         <div class="container">
@@ -11,17 +12,24 @@
                 <div class="row justify-content-between md:justify-content-center align-items-center">
                     <div class="col-lg-9 col-md-10">
                         <div data-anim="slide-up delay-1">
-                            <div class="page-masthead__subtitle">explore the features</div>
-                            <div class="page-masthead__back_title">About Us</div>
-                            <h1 class="page-masthead__title text-white">About Us</h1>
+                            <div class="page-masthead__back_title">
+                                @lang('backend.about')
+                            </div>
+                            <h1 class="page-masthead__title text-white">
+                                @lang('backend.about')
+                            </h1>
                         </div>
                     </div>
 
                     <div class="col-auto">
                         <div data-anim="slide-up delay-1" class="page-masthead-bread text-white md:mt-24">
-                            <a data-barba href="index.html" class="page-masthead-bread__item">Home</a>
+                            <a data-barba href="{{ route('frontend.index') }}" class="page-masthead-bread__item">
+                                @lang('backend.home-page')
+                            </a>
                             /
-                            <a data-barba href="#" class="page-masthead-bread__item ">About Us</a>
+                            <a data-barba href="#" class="page-masthead-bread__item ">
+                                @lang('backend.about')
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -31,7 +39,7 @@
     @foreach($abouts as $about)
         <section class="relative layout-pt-lg layout-pb-lg">
             <div class="section-bg-image col-lg-6 px-0">
-                <div class="bg-image js-lazy" data-bg="{{ asset($about->photo) }}"></div>
+                <div class="bg-image js-lazy" data-originalbg="{{ asset($about->photo) }}"></div>
             </div>
             <div class="container">
                 <div class="row align-items-center">

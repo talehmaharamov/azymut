@@ -5,7 +5,7 @@
         <div class="page-content">
             <div class="container-fluid">
                 <div class="row justify-content-center">
-                    <div class="col-xl-9">
+                    <div class="col-xl-12">
                         <div class="card">
                             <form action="{{ route('backend.categories.update',$category->id) }}"
                                   class="needs-validation" novalidate method="post" enctype="multipart/form-data">
@@ -69,6 +69,14 @@
                                             <input name="slug" id="slug" type="text" class="form-control" required=""
                                                    value="{{ $category->slug }}">
                                         </div>
+                                            <div class="mb-3">
+                                                <label>@lang('backend.photo')</label>
+                                                <input type="file" name="photo" class="form-control">
+                                                @if(file_exists($category->photo))
+                                                    <img class="form-control mt-2" width="100%"
+                                                         src="{{ asset($category->photo) }}">
+                                                @endif
+                                            </div>
                                         <div class="mb-3">
                                             <label>@lang('backend.parent')</label>
                                             <select name="parent" type="text" class="form-control">
@@ -81,31 +89,9 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <div class="mb-5 text-center">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="1"
-                                                       @if($category->is_home == 1) checked @endif
-                                                       id="invalidCheck" name="is_home">
-                                                <label class="form-check-label" for="invalidCheck">
-                                                    @lang('backend.home-page')
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="mb-5 text-center">
-                                            <div>
-                                                <button type="submit"
-                                                        class="btn btn-primary waves-effect waves-light me-1">
-                                                    @lang('backend.submit')
-                                                </button>
-                                                <a href="{{ url()->previous() }}" type="button"
-                                                   class="btn btn-secondary waves-effect">
-                                                    @lang('backend.cancel')
-                                                </a>
-                                            </div>
-                                        </div>
+                                        @include('backend.templates.components.buttons')
                                     </div>
                                 </div>
-
                             </form>
                         </div>
                     </div>

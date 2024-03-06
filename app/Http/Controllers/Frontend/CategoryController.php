@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Content;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
@@ -17,16 +18,18 @@ class CategoryController extends Controller
             return abort(404);
         }
 
+        $relatedCategories = Category::where('parent_id',$category->id)->pluck('id')->toArray();
+
         $projects = [];
-        $subcategories = $category->subcategories;
+//        $subcategories = $category->subcategories;
+//
+//        foreach ($subcategories as $subcategory) {
+//            foreach ($subcategory->content as $content) {
+//                $projects[] = $content;
+//            }
+//        }
 
-        foreach ($subcategories as $subcategory) {
-            foreach ($subcategory->content as $content) {
-                $projects[] = $content;
-            }
-        }
-
-        $contents = $category->content()->paginate(9);
+        $contents = Content::whereIn('category_id',$relatedCategories)->paginate(15);
         return view('frontend.content.index', compact('contents', 'category','projects'));
     }
 }
