@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Helpers\CRUDHelper;
-use App\Models\TeamPhotos;
 use App\Models\TeamTranslation;
 use Exception;
 use Illuminate\Http\Request;
@@ -59,7 +58,7 @@ class TeamController extends Controller
     public function edit(string $id)
     {
         check_permission('team edit');
-        $team = Team::where('id', $id)->with('photos')->first();
+        $team = Team::find($id);
         return view('backend.team.edit', get_defined_vars());
     }
 
@@ -67,7 +66,7 @@ class TeamController extends Controller
     {
         check_permission('team edit');
         try {
-            $team = Team::where('id', $id)->with('photos')->first();
+            $team = Team::find($id);
             DB::transaction(function () use ($request, $team) {
                 if ($request->hasFile('photo')) {
                     if (file_exists($team->photo)) {
@@ -75,16 +74,16 @@ class TeamController extends Controller
                     }
                     $team->photo = upload('team', $request->file('photo'));
                 }
-                if ($request->hasFile('photos')) {
-                    foreach (multi_upload('team', $request->file('photos')) as $photo) {
-                        $teamPhoto = new TeamPhotos();
-                        $teamPhoto->photo = $photo;
-                        $team->photos()->save($teamPhoto);
-                    }
-                }
+                
+                $team->email = $request->email;
+                $team->phone = $request->phone;
+                $team->alt = $request->alt;
+                $team->facebook = $request->facebook;
+                $team->instagram = $request->instagram;
+
                 foreach (active_langs() as $lang) {
                     $team->translate($lang->code)->name = $request->name[$lang->code];
-                    $team->translate($lang->code)->description = $request->description[$lang->code];
+                    $team->translate($lang->code)->position = $request->position[$lang->code];
                 }
                 $team->save();
             });

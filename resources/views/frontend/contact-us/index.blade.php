@@ -3,7 +3,7 @@
 @section('front')
     <section class="page-masthead">
         <div data-parallax="0.6" class="page-masthead__bg">
-            <div data-parallax-target class="bg-image js-lazy" data-bg="{{('frontend/img/backgrounds/6.jpg')}}"></div>
+            <div data-parallax-target class="bg-image js-lazy" data-originalbg="{{asset('frontend/img/1 (1).jpg')}}"></div>
         </div>
 
         <div class="container">
@@ -19,9 +19,7 @@
 
                     <div class="col-auto">
                         <div data-anim="slide-up delay-1" class="page-masthead-bread text-white md:mt-24">
-                            <a data-barba href="{{ route('frontend.index') }}" class="page-masthead-bread__item">
-                                @lang('backend.home-page')
-                            </a>
+                            <a data-barba href="" class="page-masthead-bread__item">Home</a>
                             /
                             <a data-barba href="#" class="page-masthead-bread__item ">Contact Us</a>
                         </div>

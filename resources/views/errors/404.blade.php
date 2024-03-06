@@ -3,7 +3,7 @@
 @section('front')
     <section class="no-page">
         <div data-parallax="0.6" class="no-page__bg">
-            <div data-parallax-target class="bg-image js-lazy" data-bg=""></div>
+            <div data-parallax-target class="bg-image js-lazy" data-originalbg=""></div>
         </div>
 
         <div class="container">

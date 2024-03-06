@@ -1,9 +1,135 @@
-/* ------------------------------------------------------------------
+.whats-float, .whats-float1, .whats-float2 {
+    z-index: 100000 !important;
+}
 
-  01. Variables
-  02. Reveal animations
 
--------------------------------------------------------------------- */
+.whats-float {
+    position: fixed;
+    transform: translate(135px, 0px);
+    top: 34%;
+    right: 0;
+    width: 180px;
+    border-radius: 8px 0 0 8px;
+    overflow: hidden;
+    background-color: #25d366;
+    color: #FFF;
+    border-radius: 4px 0 0 4px;
+    z-index: 10;
+    transition: all 0.5s ease-in-out;
+    vertical-align: middle
+}
+
+.whats-float a span {
+    color: white;
+    font-size: 15px;
+    padding-top: 8px;
+    padding-bottom: 10px;
+    position: absolute;
+    line-height: 16px;
+    font-weight: bolder;
+}
+
+.whats-float i {
+    font-size: 30px;
+    color: white;
+    line-height: 30px;
+    padding: 10px;
+    transform: rotate(0deg);
+    transition: all 0.5s ease-in-out;
+    text-align: center;
+
+}
+
+.whats-float:hover {
+    color: #FFFFFF;
+    transform: translate(0px, 0px);
+}
+
+.whats-float:hover i {
+    transform: rotate(360deg);
+}
+
+
+.whats-float1 {
+    position: fixed;
+    transform: translate(135px, 0px);
+    top: 25%;
+    right: 0;
+    width: 180px;
+    border-radius: 8px 0 0 8px;
+    overflow: hidden;
+    background-color: #1c1b22;
+    color: #FFF;
+    /*border-radius: 4px 0 0 4px;*/
+    z-index: 10;
+    transition: all 0.5s ease-in-out;
+    vertical-align: middle
+}
+
+.whats-float2 {
+    position: fixed;
+    transform: translate(135px, 0px);
+    top: 43%;
+    right: 0;
+    width: 180px;
+    border-radius: 8px 0 0 8px;
+    overflow: hidden;
+    background-color: #c68763;
+    color: #FFF;
+    /*border-radius: 4px 0 0 4px;*/
+    z-index: 10;
+    transition: all 0.5s ease-in-out;
+    vertical-align: middle
+}
+
+.whats-float1 a span {
+    color: white;
+    font-size: 15px;
+    padding-top: 8px;
+    padding-bottom: 10px;
+    position: absolute;
+    line-height: 16px;
+    font-weight: bolder;
+}
+
+.whats-float2 a span {
+    color: white;
+    font-size: 15px;
+    padding-top: 8px;
+    padding-bottom: 10px;
+    position: absolute;
+    line-height: 16px;
+    font-weight: bolder;
+}
+
+.whats-float1 i {
+    font-size: 30px;
+    color: white;
+    line-height: 30px;
+    padding: 10px;
+    transform: rotate(0deg);
+    transition: all 0.5s ease-in-out;
+    text-align: center;
+}
+.whats-float2 i {
+    font-size: 30px;
+    color: white;
+    line-height: 30px;
+    padding: 10px;
+    transform: rotate(0deg);
+    transition: all 0.5s ease-in-out;
+    text-align: center;
+}
+.whats-float1:hover,
+.whats-float2:hover {
+    color: #FFFFFF;
+    transform: translate(0px, 0px);
+}
+
+.whats-float1:hover i,
+.whats-float2:hover i {
+    transform: rotate(360deg);
+}
 .ratio {
   position: relative;
   display: block;
@@ -105,7 +231,7 @@
 }
 
 :root {
-  --preloader-image: url('../img/general/logo-light.svg');
+  /*--preloader-image: url('../img/general/logo-light.svg');*/
 }
 
 :root {
@@ -2822,7 +2948,7 @@ h6 {
     width: 100vw;
     height: 100vh;
     background-color: #18130C;
-    background-image: url("../img/patterns/2.png");
+    /*background-image: url("../img/patterns/2.png");*/
     transform: scaleY(0);
     transform-origin: bottom;
   }
@@ -9596,11 +9722,11 @@ body.preloader-visible .preloader__progress {
 }
 
 .pattern_bg_1 {
-  background-image: url("../img/patterns/1.png");
+  /*background-image: url("../img/patterns/1.png");*/
 }
 
 .pattern_bg_2 {
-  background-image: url("../img/patterns/2.png");
+  /*background-image: url("../img/patterns/2.png");*/
 }
 
 .video-background {

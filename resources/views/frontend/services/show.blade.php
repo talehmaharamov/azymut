@@ -6,7 +6,7 @@
 @section('front')
     <section class="page-masthead">
         <div data-parallax="0.6" class="page-masthead__bg">
-            <div data-parallax-target class="bg-image js-lazy" data-bg="{{asset($service->photo)}}"></div>
+            <div data-parallax-target class="bg-image js-lazy" data-originalbg="{{asset($service->photo)}}"></div>
         </div>
 
         <div class="container">
@@ -14,24 +14,30 @@
                 <div class="row justify-content-between md:justify-content-center align-items-center">
                     <div class="col-lg-9 col-md-10">
                         <div data-anim="slide-up delay-1">
-                            <div class="page-masthead__subtitle">OUR WORKS</div>
-                            <div class="page-masthead__back_title">Portfolio Single</div>
-                            <h1 class="page-masthead__title text-white">Portfolio Single</h1>
+                            <div class="page-masthead__back_title">
+                                {{ $service->translate(app()->getLocale())->name ?? __('backend.translation-not-found') }}
+                            </div>
+                            <h1 class="page-masthead__title text-white">
+                                {{ $service->translate(app()->getLocale())->name ?? __('backend.translation-not-found') }}
+                            </h1>
                         </div>
                     </div>
 
                     <div class="col-auto">
                         <div data-anim="slide-up delay-1" class="page-masthead-bread text-white md:mt-24">
-                            <a data-barba href="index.html" class="page-masthead-bread__item">Home</a>
+                            <a data-barba href="{{ route('frontend.index') }}" class="page-masthead-bread__item">
+                                @lang('backend.home-page')
+                            </a>
                             /
-                            <a data-barba href="#" class="page-masthead-bread__item ">Portfolio Single</a>
+                            <a data-barba class="page-masthead-bread__item ">
+                                {{ $service->translate(app()->getLocale())->name ?? __('backend.translation-not-found') }}
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
 
     <div class="layout-pt-md layout-pb-md">
         <div class="container">
@@ -43,13 +49,13 @@
                                 {{ $service->translate(app()->getLocale())->name ?? __('backend.translation-not-found')  }}
                             </h3>
                             <p class="text-sm leading-2xl mt-12">
-                                {!! $service->translate(app()->getLocale())->short_description ?? __('backend.translation-not-found') !!}
+                                {!! $service->translate(app()->getLocale())->description ?? __('backend.translation-not-found') !!}
                             </p>
-                            <div class="row y-gap-32 pt-32">
-                                <p class="text-sm leading-2xl mt-12">
-                                    {!! $service->translate(app()->getLocale())->content ?? __('backend.translation-not-found') !!}
-                                </p>
-                            </div>
+                            {{--                            <div class="row y-gap-32 pt-32">--}}
+                            {{--                                <p class="text-sm leading-2xl mt-12">--}}
+                            {{--                                    {!! $service->translate(app()->getLocale())->content ?? __('backend.translation-not-found') !!}--}}
+                            {{--                                </p>--}}
+                            {{--                            </div>--}}
                         </div>
                     </div>
 
@@ -127,61 +133,6 @@
                     </div>
                 @endif
 
-            </div>
-        </div>
-    </section>
-
-
-    <section class="layout-pt-md layout-pb-md bg-beige-light">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-auto">
-                    <div class="sectionHeading -top-line text-center">
-                        <h2 class="sectionHeading__title">
-                            @lang('backend.sample')
-                        </h2>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row layout-pt-sm">
-                <div class="sectionSlider overflow-hidden sm:px-16 js-sectionSlider" data-gap="30"
-                     data-slider-col="base-3 lg-3 md-2 sm-1" data-pagination>
-
-                    <div class="swiper-wrapper">
-                        @foreach($relatedContents as $rProject)
-                            <div class="swiper-slide">
-                                <a data-barba href="#" class="portfolioCard -type-1 ratio">
-                                    <div class="portfolioCard__image ratio ratio-3:4">
-                                        <img class="ratio-img js-lazy" src="{{ asset($rProject->photo) }}"
-                                             data-src="{{ asset($rProject->photo) }}"
-                                             alt="{{ $rProject->translate(app()->getLocale())->alt ?? __('backend.translation-not-found') }}">
-                                    </div>
-                                    <div class="portfolioCard__content px-30 py-30">
-                                        <span class="portfolioCard__category text-sm uppercase text-beige-dark">
-                                            {{ $service->translate(app()->getLocale())->name ?? __('backend.translation-not-found') }}
-                                        </span>
-                                        <h3 class="portfolioCard__title text-lg fw-600 mt-8">
-                                            {{ $service->category->translate(app()->getLocale())->name ?? __('backend.translation-not-found') }}
-                                        </h3>
-                                    </div>
-                                </a>
-                            </div>
-                        @endforeach
-                    </div>
-
-                    <div class="nav -slider lg:d-none">
-                        <div class="nav__item -left js-prev">
-                            <i class="icon icon-left-arrow"></i>
-                        </div>
-
-                        <div class="nav__item -right js-next">
-                            <i class="icon icon-right-arrow"></i>
-                        </div>
-                    </div>
-
-                    <div class="pagination -slider mt-48 js-pagination"></div>
-                </div>
             </div>
         </div>
     </section>

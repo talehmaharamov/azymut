@@ -8,6 +8,7 @@ use App\Models\Contact;
 use App\Models\Content;
 use App\Models\Packages;
 use App\Models\Partner;
+use App\Models\Service;
 use App\Models\Slider;
 use App\Models\Style;
 use App\Models\Team;
@@ -29,9 +30,9 @@ class HomeController extends Controller
             ->has('content', '>=', 3)
             ->get();
         $clients = Partner::all();
-        $mainPageProjects = Content::where('status',1)->orderBy('created_at','asc')->paginate(10);
-        $mainPageServices = Content::where('status',1)->orderBy('created_at','asc')->paginate(10);
-        $mainPageTeams = Team::where('status',1)->orderBy('created_at','desc')->get();
+        $mainPageProjects = Content::where('status', 1)->orderBy('created_at', 'asc')->paginate(10);
+        $mainPageServices = Service::where('status', 1)->orderBy('created_at', 'asc')->paginate(10);
+        $mainPageTeams = Team::where('status', 1)->orderBy('created_at', 'desc')->get();
         return view('frontend.index', get_defined_vars());
 
     }
@@ -44,20 +45,21 @@ class HomeController extends Controller
 
     public function search(Request $request)
     {
-        $categoryID = $request->category;
-        $keyword = $request->keyword;
-        $category = Category::where('id', $categoryID)->with('content')->first();
+        $keyword = $request->input('s');
         $contents = Content::when($keyword, function ($query) use ($keyword) {
-            return $query->orWhere('slug', 'LIKE', '%' . $keyword . '%')
-                ->orWhereTranslation('name', 'LIKE', '%' . $keyword . '%')
-                ->orWhereTranslation('content', 'LIKE', '%' . $keyword . '%')
-                ->orWhereTranslation('meta_description', 'LIKE', '%' . $keyword . '%')
-                ->orWhereTranslation('meta_title', 'LIKE', '%' . $keyword . '%')
-                ->orWhereTranslation('alt', 'LIKE', '%' . $keyword . '%');
+            $query->where('slug', 'LIKE', '%' . $keyword . '%')
+                ->orWhereTranslationLike('name', '%' . $keyword . '%')
+                ->orWhereTranslationLike('short_description', '%' . $keyword . '%')
+                ->orWhereTranslationLike('content', '%' . $keyword . '%')
+                ->orWhereTranslationLike('meta_description', '%' . $keyword . '%')
+                ->orWhereTranslationLike('meta_title', '%' . $keyword . '%')
+                ->orWhereTranslationLike('alt', '%' . $keyword . '%');
         })
-            ->where('category_id', $categoryID)
+            ->select('contents.*')
+            ->distinct()
             ->paginate(9);
-        return view('frontend.content.index', get_defined_vars());
+
+        return view('frontend.content.search', get_defined_vars());
     }
 
     public function searchByKeyword(Request $request)

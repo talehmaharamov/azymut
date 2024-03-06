@@ -1,86 +1,108 @@
 @extends('master.frontend')
+@section('title',$keyword)
 @section('front')
-    <div class="breadcrumb-section section bg-image pt-75 pb-75 pt-sm-55 pb-sm-55 pt-xs-45 pb-xs-45"
-         data-bg="{{asset('frontend/images/bg/bt-bg.png')}}">
+
+    <section class="page-masthead">
+        <div data-parallax="0.6" class="page-masthead__bg">
+            <div data-parallax-target class="bg-image js-lazy"
+                 data-originalbg="{{asset('frontend/logos/Azymut loqo2.jpg')}}"></div>
+        </div>
+
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col-md-6">
-                    <div class="breadcrumb-title">
-                        <h2>{{ $keyword }}</h2>
+            <div class="page-masthead__content">
+                <div class="row justify-content-between md:justify-content-center align-items-center">
+                    <div class="col-lg-9 col-md-10">
+                        <div data-anim="slide-up delay-1">
+                            <div class="page-masthead__subtitle">
+                                @lang('backend.search-result')
+                            </div>
+                            <div class="page-masthead__back_title">
+                                {{ $keyword }}
+                            </div>
+                            <h1 class="page-masthead__title text-white">
+                                {{ $keyword }}
+                            </h1>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <ul class="page-breadcrumb">
-                        <li><a href="{{ route('frontend.index') }}">@lang('backend.home-page')</a></li>
-                        <li>@lang('backend.search')</li>
-                    </ul>
+
+                    <div class="col-auto">
+                        <div data-anim="slide-up delay-1" class="page-masthead-bread text-white md:mt-24">
+                            <a data-barba href="{{ route('frontend.index') }}" class="page-masthead-bread__item">
+                                @lang('backend.home-page')
+                            </a>
+                            /
+                            <a data-barba class="page-masthead-bread__item ">
+                                {{ $keyword }}
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div
-        class="blog-grid-section section bg-gray pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-60 pb-lg-40 pb-md-30 pb-sm-20 pb-xs-10">
+    </section>
+    <section class="layout-pt-md layout-pb-md">
         <div class="container">
-            <div class="row align-items-center mb-45">
-                <div class="col-md-6">
-                    <div class="result-count">
-                        @if(!empty($keyword))
-                            <p>@lang('backend.search-result'): {{$keyword}}</p>
-                        @else
-                            <p>{{ __('pagination.showing_results', ['firstItem' => $contents->firstItem(), 'lastItem' => $contents->lastItem(), 'total' => $contents->total() ]) }}</p>
-                        @endif
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                @if($contents->isEmpty())
-                    <div class="result-count">
-                        <p>@lang('messages.info-not-found')</p>
-                    </div>
-                @else
+            <div class="section-filter px-16">
+                <div class="masonry -gap-32 -col-3 layout-pt-sm js-masonry js-masonry-no-filter">
+                    <div class="masonry__sizer"></div>
                     @foreach($contents as $content)
-                        <div class="col-lg-4 col-md-6">
-                            <div class="single-blog">
-                                <div class="blog-image">
-                                    <a href="{{ route('frontend.selectedContent',$content->slug) }}"><img
-                                            src="{{ asset($content->photo) }}"
-                                            alt="{{ $content->translate(app()->getLocale())->alt ?? '' }}"></a>
+                        <div class="masonry__item -r-120  {{ $content->category->slug }}">
+                            <a data-barba href="{{ route('frontend.selectedContent',$content->slug) }}"
+                               class="portfolioCard -type-1 ratio">
+                                <div class="portfolioCard__image">
+                                    <img class="ratio-img js-lazy" src="" data-src="{{ asset($content->photo) }}"
+                                         alt="{{ $content->translate(app()->getLocale())->alt ?? 'FOZ' }}">
                                 </div>
-                                <div class="blog-content">
-                                    <h2>
-                                        <a href="{{ route('frontend.selectedContent',$content->slug) }}">{{ $content->translate(app()->getLocale())->name ?? '' }}</a>
-                                    </h2>
-                                    <ul class="meta">
-                                        <li>
-                                            <i class="fa fa-clock-o"></i>{{ $content->created_at->format('d.m.Y')  }}
-                                        </li>
-                                        <li>
-                                            <i class="fa fa-folder-open"></i>
-                                            <a href="#">{{ $content->category()->first()->translate(app()->getLocale())->name ?? '' }}</a>
-                                        </li>
-                                    </ul>
-                                    <p>{!! $content->translate(app()->getLocale())->short_description ?? '' !!}</p>
-                                    <a class="read-more-btn"
-                                       href="{{ route('frontend.selectedContent',$content->slug) }}">@lang('backend.read-more')
-                                        <i
-                                            class="fa fa-chevron-right"></i></a>
+                                <div class="portfolioCard__content px-30 py-30">
+                                    {{--                                    <span class="portfolioCard__category text-sm uppercase text-beige-dark">LIVING</span>--}}
+                                    <h3 class="portfolioCard__title text-lg fw-600 mt-8">
+                                        {{ $content->translate(app()->getLocale())->name ?? __('backend.translation-not-found') }}
+                                    </h3>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                     @endforeach
-                @endif
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="page-pagination">
-                        <ul>
-                            {{ $contents->links() }}
-                        </ul>
-                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-@endsection
+            @if(!$contents->isEmpty())
+                <div class="row justify-content-center mt-80 md:mt-32">
+                    <div class="col-auto">
+                        <div class="pagination -section">
+                            <div class="pagination__nav">
+                                @if ($contents->previousPageUrl())
+                                    <a href="{{ $contents->previousPageUrl() }}" class="nav-icon -left" data-barba>
+                                        <div class="nav-icon__circle">
+                                            <i class="icon icon-left-arrow"></i>
+                                        </div>
+                                    </a>
+                                @endif
+                            </div>
 
+                            <div class="pagination__content">
+                                @for ($i = 1; $i <= $contents->lastPage(); $i++)
+                                    <a href="{{ $contents->url($i) }}"
+                                       @if ($contents->currentPage() === $i) class="is-active"
+                                       @endif data-barba>{{ $i }}</a>
+                                @endfor
+                            </div>
+
+                            <div class="pagination__nav">
+                                @if ($contents->nextPageUrl())
+                                    <a href="{{ $contents->nextPageUrl() }}" class="nav-icon -right" data-barba>
+                                        <div class="nav-icon__circle">
+                                            <i class="icon icon-right-arrow"></i>
+                                        </div>
+                                    </a>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @else
+                <h1 class="text-4xl leading-2xl md:mt-48">
+                    @lang('backend.data-not-found')!
+                </h1>
+            @endif
+        </div>
+    </section>
+@endsection

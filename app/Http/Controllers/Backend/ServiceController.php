@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Http\Helpers\CRUDHelper;
 use App\Models\ServicePhotos;
+use App\Models\ServicePhotoss;
 use App\Models\ServiceTranslation;
 use Exception;
 use Illuminate\Http\Request;
@@ -31,7 +32,10 @@ class ServiceController extends Controller
         check_permission('service create');
         try {
             $service = new Service();
-            $service->photo = upload('service', $request->file('photo'));
+            if ($request->hasFile('photo')) {
+                $service->photo = upload('content', $request->file('photo'));
+            }
+            $service->slug = $request->slug;
             $service->save();
             foreach (active_langs() as $lang) {
                 $translation = new ServiceTranslation();
@@ -39,18 +43,20 @@ class ServiceController extends Controller
                 $translation->service_id = $service->id;
                 $translation->name = $request->name[$lang->code];
                 $translation->description = $request->description[$lang->code];
+                $translation->meta_title = $request->meta_title[$lang->code];
+                $translation->meta_description = $request->meta_description[$lang->code];
+                $translation->alt = $request->alt[$lang->code];
                 $translation->save();
             }
-            foreach (multi_upload('service',$request->file('photos')) as $photo)
-            {
+            foreach (multi_upload('service', $request->file('photos')) as $photo) {
                 $servicePhoto = new ServicePhotos();
                 $servicePhoto->photo = $photo;
-                $service->photos()->save(servicePhoto);
+                $service->photos()->save($servicePhoto);
             };
             alert()->success(__('messages.success'));
             return redirect(route('backend.service.index'));
         } catch (Exception $e) {
-            alert()->error(__('backend.error'));
+            alert()->error($e->getMessage());
             return redirect(route('backend.service.index'));
         }
     }
@@ -68,29 +74,32 @@ class ServiceController extends Controller
         try {
             $service = Service::where('id', $id)->with('photos')->first();
             DB::transaction(function () use ($request, $service) {
-                if($request->hasFile('photo')){
-                    if(file_exists($service->photo)){
+                if ($request->hasFile('photo')) {
+                    if (file_exists($service->photo)) {
                         unlink(public_path($service->photo));
                     }
-                $service->photo = upload('service',$request->file('photo'));
+                    $service->photo = upload('service', $request->file('photo'));
                 }
                 if ($request->hasFile('photos')) {
-                   foreach (multi_upload('service', $request->file('photos')) as $photo) {
-                   $servicePhoto = new ServicePhotos();
-                   $servicePhoto->photo = $photo;
-                   $service->photos()->save($servicePhoto);
-                   }
+                    foreach (multi_upload('service', $request->file('photos')) as $photo) {
+                        $servicePhoto = new ServicePhotos();
+                        $servicePhoto->photo = $photo;
+                        $service->photos()->save($servicePhoto);
+                    }
                 }
                 foreach (active_langs() as $lang) {
-                   $service->translate($lang->code)->name = $request->name[$lang->code];
-                   $service->translate($lang->code)->description = $request->description[$lang->code];
+                    $service->translate($lang->code)->name = $request->name[$lang->code];
+                    $service->translate($lang->code)->description = $request->description[$lang->code];
+                    $service->translate($lang->code)->meta_title = $request->meta_title[$lang->code];
+                    $service->translate($lang->code)->meta_description = $request->meta_description[$lang->code];
+                    $service->translate($lang->code)->alt = $request->alt[$lang->code];
                 }
                 $service->save();
             });
             alert()->success(__('messages.success'));
             return redirect()->back();
         } catch (Exception $e) {
-            alert()->error(__('backend.error'));
+            alert()->error($e->getMessage());
             return redirect()->back();
         }
     }

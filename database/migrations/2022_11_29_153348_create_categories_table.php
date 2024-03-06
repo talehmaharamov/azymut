@@ -9,6 +9,7 @@ return new class extends Migration {
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
+            $table->string('photo')->nullable();
             $table->string('slug', 30);
             $table->boolean('is_home')->default(0);
             $table->unsignedBigInteger('parent_id')->nullable();

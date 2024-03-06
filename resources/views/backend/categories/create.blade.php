@@ -5,7 +5,7 @@
         <div class="page-content">
             <div class="container-fluid">
                 <div class="row justify-content-center">
-                    <div class="col-xl-9">
+                    <div class="col-xl-12">
                         <div class="card">
                             <form action="{{ route('backend.categories.store') }}" class="needs-validation" novalidate
                                   method="post" enctype="multipart/form-data">
@@ -71,8 +71,11 @@
                                                    placeholder="/news">
                                             {!! validation_response('backend.slug') !!}
                                         </div>
+                                        @include('backend.templates.items.create.validations.photo')
                                         <div class="mb-3">
-                                            <label>@lang('backend.parent') @lang('backend.category')</label>
+                                            <label>
+                                                @lang('backend.parent') @lang('backend.category')
+                                            </label>
                                             <select name="parent" type="text" class="form-control">
                                                 <option value="">-</option>
                                                 @foreach($categories as $category)
@@ -83,17 +86,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="mb-5 text-center">
-                                    <div>
-                                        <button type="submit" class="btn btn-primary waves-effect waves-light me-1">
-                                            @lang('backend.submit')
-                                        </button>
-                                        <a href="{{ url()->previous() }}" type="button"
-                                           class="btn btn-secondary waves-effect">
-                                            @lang('backend.cancel')
-                                        </a>
-                                    </div>
-                                </div>
+                                @include('backend.templates.components.buttons')
                             </form>
                         </div>
                     </div>
@@ -111,6 +104,7 @@
                 const slug = nameInputValue.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-');
                 slugInput.val(slug);
             }
+
             $('#nameen').on('input', generateSlugFromName);
         });
     </script>

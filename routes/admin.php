@@ -22,10 +22,8 @@ Route::group(['middleware' => 'auth:admin', 'as' => 'backend.'], function () {
     });
     Route::get('delete/photo/{model}/{id}', [App\Http\Controllers\Backend\HomeController::class, 'deletePhoto'])->name('deletePhoto');
     Route::group(['name' => 'status'], function () {
-Route::get('service/{id}/change-status',[App\Http\Controllers\Backend\ServiceController::class,'status'])->name('serviceStatus');
-
-Route::get('team/{id}/change-status',[App\Http\Controllers\Backend\TeamController::class,'status'])->name('teamStatus');
-
+        Route::get('service/{id}/change-status', [App\Http\Controllers\Backend\ServiceController::class, 'status'])->name('serviceStatus');
+        Route::get('team/{id}/change-status', [App\Http\Controllers\Backend\TeamController::class, 'status'])->name('teamStatus');
         Route::get('video/{id}/change-status', [App\Http\Controllers\Backend\VideoController::class, 'status'])->name('videoStatus');
         Route::get('style/{id}/change-status', [App\Http\Controllers\Backend\StyleController::class, 'status'])->name('styleStatus');
         Route::get('packages/{id}/change-status', [App\Http\Controllers\Backend\PackagesController::class, 'status'])->name('packagesStatus');
@@ -33,7 +31,7 @@ Route::get('team/{id}/change-status',[App\Http\Controllers\Backend\TeamControlle
         Route::get('faq/{id}/change-status', [App\Http\Controllers\Backend\FaqController::class, 'status'])->name('faqStatus');
         Route::get('partner/{id}/change-status', [App\Http\Controllers\Backend\PartnerController::class, 'status'])->name('partnerStatus');
         Route::get('blog/{id}/change-status', [App\Http\Controllers\Backend\BlogController::class, 'status'])->name('blogStatus');
-        Route::get('service/{id}/change-status', [App\Http\Controllers\Backend\CategoryController::class, 'status'])->name('categoryStatus');
+        Route::get('category/{id}/change-status', [App\Http\Controllers\Backend\CategoryController::class, 'status'])->name('categoryStatus');
         Route::get('mail/{id}/change-status', [App\Http\Controllers\Backend\MailController::class, 'status'])->name('mailStatus');
         Route::get('about/{id}/change-status', [App\Http\Controllers\Backend\AboutController::class, 'status'])->name('aboutStatus');
         Route::get('content/{id}/change-status', [App\Http\Controllers\Backend\ContentController::class, 'status'])->name('contentStatus');
@@ -46,10 +44,8 @@ Route::get('team/{id}/change-status',[App\Http\Controllers\Backend\TeamControlle
         })->name('permissionsStatus');
     });
     Route::group(['name' => 'delete'], function () {
-Route::get('service/{id}/delete',[App\Http\Controllers\Backend\ServiceController::class,'delete'])->name('serviceDelete');
-
-Route::get('team/{id}/delete',[App\Http\Controllers\Backend\TeamController::class,'delete'])->name('teamDelete');
-
+        Route::get('service/{id}/delete', [App\Http\Controllers\Backend\ServiceController::class, 'delete'])->name('serviceDelete');
+        Route::get('team/{id}/delete', [App\Http\Controllers\Backend\TeamController::class, 'delete'])->name('teamDelete');
         Route::get('video/{id}/delete', [App\Http\Controllers\Backend\VideoController::class, 'delete'])->name('videoDelete');
         Route::get('style/{id}/delete', [App\Http\Controllers\Backend\StyleController::class, 'delete'])->name('styleDelete');
         Route::get('packages/{id}/delete', [App\Http\Controllers\Backend\PackagesController::class, 'delete'])->name('packagesDelete');
@@ -75,10 +71,8 @@ Route::get('team/{id}/delete',[App\Http\Controllers\Backend\TeamController::clas
         Route::get('/newsletter/{id}/delete', [App\Http\Controllers\Backend\NewsletterController::class, 'delNewsletter'])->name('delNewsletter');
     });
     Route::group(['name' => 'resource'], function () {
-Route::resource('/service',App\Http\Controllers\Backend\ServiceController::class);
-
-Route::resource('/team',App\Http\Controllers\Backend\TeamController::class);
-
+        Route::resource('/service', App\Http\Controllers\Backend\ServiceController::class);
+        Route::resource('/team', App\Http\Controllers\Backend\TeamController::class);
         Route::resource('/video', App\Http\Controllers\Backend\VideoController::class);
         Route::resource('/style', App\Http\Controllers\Backend\StyleController::class);
         Route::resource('/packages', App\Http\Controllers\Backend\PackagesController::class);

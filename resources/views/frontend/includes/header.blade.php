@@ -1,30 +1,30 @@
-{{--<div class="whats-float">--}}
-{{--    <a href="https://wa.me/{{ settings('phone') }}"--}}
-{{--       target="_blank">--}}
-{{--        <i class="fab fa-whatsapp"></i>--}}
-{{--        <span>--}}
-{{--            @lang('Whatsapp')<br>--}}
-{{--            <small>{{ settings('phone') }}</small>--}}
-{{--        </span>--}}
-{{--    </a>--}}
-{{--</div>--}}
-{{--<div class="whats-float1">--}}
-{{--    <a href="{{ settings('instagram') }}"--}}
-{{--       target="_blank">--}}
-{{--        <i class="fab fa-instagram"></i>--}}
-{{--        <span>@lang('Instagram')<br>--}}
-{{--            <small>{{ str_replace('https://www.instagram.com/','@',settings('instagram')) }}</small>--}}
-{{--        </span>--}}
-{{--    </a>--}}
-{{--</div>--}}
-{{--<div class="whats-float2">--}}
-{{--    <a href="tel:{{ settings('phone') }}">--}}
-{{--        <i class="fas fa-phone"></i>--}}
-{{--        <span>@lang('backend.phone')<br>--}}
-{{--            <small>{{ settings('phone') }}</small>--}}
-{{--        </span>--}}
-{{--    </a>--}}
-{{--</div>--}}
+<div class="whats-float">
+    <a href="https://wa.me/{{ settings('phone') }}"
+       target="_blank">
+        <i class="fab fa-whatsapp"></i>
+        <span>
+            @lang('Whatsapp')<br>
+            <small>{{ settings('phone') }}</small>
+        </span>
+    </a>
+</div>
+<div class="whats-float1">
+    <a href="{{ settings('instagram') }}"
+       target="_blank">
+        <i class="fab fa-instagram"></i>
+        <span>@lang('Instagram')<br>
+            <small>{{ str_replace('https://www.instagram.com/','@',settings('instagram')) }}</small>
+        </span>
+    </a>
+</div>
+<div class="whats-float2">
+    <a href="tel:{{ settings('phone') }}">
+        <i class="fas fa-phone"></i>
+        <span>@lang('backend.phone')<br>
+            <small>{{ settings('phone') }}</small>
+        </span>
+    </a>
+</div>
 
 <header class="header  js-header">
     <div class="header__bar  js-header-bar">
@@ -105,11 +105,6 @@
                         <a data-barba href="#">
                             <i class="fa fa-linkedin" aria-hidden="true"></i>
                         </a>
-                    </div>
-
-                    <div class="mobile__copyright">
-                        <img src="img/general/logo-light.svg" alt="logo" class="icon">
-                        <p>© 2021 Hellix. All rights reserved.</p>
                     </div>
                 </div>
             </div>

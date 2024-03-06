@@ -8,7 +8,7 @@
     <section class="page-masthead">
         <div data-parallax="0.6" class="page-masthead__bg">
             <div data-parallax-target class="bg-image js-lazy"
-                 data-bg="{{asset('frontend/img/backgrounds/12.jpg')}}"></div>
+                 data-originalbg="{{asset($category->photo)}}"></div>
         </div>
 
         <div class="container">
@@ -49,9 +49,11 @@
                 <div class="row justify-content-center">
                     <div class="col-auto">
                         <div class="filter-button-group text-dark fw-500 mt-32">
-                            <button class="button mr-20 btn-active" data-filter="*">@lang('backend.all')</button>
+                            <button class="button mr-20 btn-active" data-filter="*">
+                                @lang('backend.all')
+                            </button>
                             @foreach($category->subcategories as $subCat)
-                                <button class="button mr-20" data-filter=".{{ $subCat->id }}">
+                                <button class="button mr-20" data-filter=".{{ $subCat->slug }}">
                                     {{ $subCat->translate(app()->getLocale())->name ?? __('backend.translation-not-found') }}
                                 </button>
                             @endforeach
@@ -61,18 +63,16 @@
 
                 <div class="masonry -gap-32 -col-3 layout-pt-sm js-masonry js-masonry-no-filter">
                     <div class="masonry__sizer"></div>
-                    @foreach($projects as $content)
-                        <div class="masonry__item -r-120  {{ $content->category_id }}">
+                    @foreach($contents as $content)
+                        <div class="masonry__item -r-120  {{ $content->category->slug }}">
                             <a data-barba href="{{ route('frontend.selectedContent',$content->slug) }}"
                                class="portfolioCard -type-1 ratio">
                                 <div class="portfolioCard__image">
                                     <img class="ratio-img js-lazy" src="" data-src="{{ asset($content->photo) }}"
-                                         alt="project image">
+                                         alt="{{ $content->translate(app()->getLocale())->alt ?? 'FOZ' }}">
                                 </div>
-
                                 <div class="portfolioCard__content px-30 py-30">
-                                    <span
-                                        class="portfolioCard__category text-sm uppercase text-beige-dark">LIVING</span>
+{{--                                    <span class="portfolioCard__category text-sm uppercase text-beige-dark">LIVING</span>--}}
                                     <h3 class="portfolioCard__title text-lg fw-600 mt-8">
                                         {{ $content->translate(app()->getLocale())->name ?? __('backend.translation-not-found') }}
                                     </h3>

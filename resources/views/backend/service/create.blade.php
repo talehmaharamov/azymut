@@ -29,24 +29,14 @@
                                                         {!! validation_response('backend.name') !!}
                                                     </div>
                                                     <div class="mb-3">
-                                                        <label>@lang('backend.content') <span
+                                                        <label>@lang('backend.description') <span
                                                                 class="text-danger">*</span></label>
-                                                        <textarea name="content1[{{ $lan->code }}]"
+                                                        <textarea name="description[{{ $lan->code }}]"
                                                                   id="elm{{$lan->code}}1"
                                                                   class="form-control"
                                                                   required=""
-                                                                  placeholder="@lang('backend.content')"></textarea>
-                                                        {!! validation_response('backend.content') !!}
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label>@lang('backend.short-description') <span
-                                                                class="text-danger">*</span></label>
-                                                        <textarea name="short_description[{{ $lan->code }}]"
-                                                                  id="elm{{$lan->code}}2"
-                                                                  class="form-control"
-                                                                  required=""
-                                                                  placeholder="@lang('backend.short-description')"></textarea>
-                                                        {!! validation_response('backend.short-description') !!}
+                                                                  placeholder="@lang('backend.description')"></textarea>
+                                                        {!! validation_response('backend.description') !!}
                                                     </div>
                                                     <div class="mb-3">
                                                         <label>@lang('backend.title')(Meta)</label>
@@ -72,29 +62,10 @@
                                             </div>
                                         @endforeach
                                         <div class="mb-3">
-                                            <label>@lang('backend.categories')</label>
-                                            <select class="form-control" name="category">
-                                                @foreach($mainCategories as $ctgry)
-                                                    <optgroup
-                                                        label="{{ $ctgry->translate(app()->getLocale())->name ?? __('backend.translation-not-found') }}">
-                                                        @foreach($ctgry->subcategories as $subCat)
-                                                            <option
-                                                                value="{{ $subCat->id }}">{{ $subCat->translate(app()->getLocale())->name ?? __('backend.translation-not-found') }}</option>
-                                                        @endforeach
-                                                    </optgroup>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="mb-3">
                                             <label>@lang('backend.slug') <span class="text-danger">*</span></label>
                                             <input name="slug" type="text" id="slug" class="form-control" required
                                                    placeholder="/news">
                                             {!! validation_response('backend.slug') !!}
-                                        </div>
-                                        <div class="mb-3">
-                                            <label>PDF</label>
-                                            <input name="pdf" type="file" class="form-control"
-                                                   accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf">
                                         </div>
                                         <div class="mb-3">
                                             <label>@lang('backend.photo') <span

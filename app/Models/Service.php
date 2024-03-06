@@ -20,7 +20,6 @@ class Service extends Model implements TranslatableContract
     {
         return $this->hasMany(ServicePhotos::class);
     }
-
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()->logAll();

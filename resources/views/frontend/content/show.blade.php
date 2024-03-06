@@ -6,7 +6,7 @@
 @section('front')
     <section class="page-masthead">
         <div data-parallax="0.6" class="page-masthead__bg">
-            <div data-parallax-target class="bg-image js-lazy" data-bg="{{ asset($content->photo) }}"></div>
+            <div data-parallax-target class="bg-image js-lazy" data-originalbg="{{ asset($content->photo) }}"></div>
         </div>
         <div class="container">
             <div class="page-masthead__content">
@@ -148,7 +148,7 @@
                     <div class="swiper-wrapper">
                         @foreach($relatedContents as $rProject)
                             <div class="swiper-slide">
-                                <a data-barba href="#" class="portfolioCard -type-1 ratio">
+                                <a data-barba href="{{ route('frontend.selectedContent',$rProject->slug) }}" class="portfolioCard -type-1 ratio">
                                     <div class="portfolioCard__image ratio ratio-3:4">
                                         <img class="ratio-img js-lazy" src="{{ asset($rProject->photo) }}"
                                              data-src="{{ asset($rProject->photo) }}"

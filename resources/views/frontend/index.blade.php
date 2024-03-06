@@ -10,5 +10,5 @@
         @include('frontend.layouts.faq')
         @include('frontend.layouts.team')
         @include('frontend.layouts.partners')
-    </div>
+
 @endsection

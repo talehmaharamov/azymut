@@ -16,7 +16,7 @@
             @foreach($mainPageServices as $mPS)
                 <div class="col-lg-4 col-md-6">
                     <div data-anim-wrap class="blog -hover">
-                        <a data-barba href="#">
+                        <a data-barba href="{{ route('frontend.selectedProject',$mPS->slug) }}">
                             <div class="blog__image">
                                 <div data-anim-child="img-right">
                                     <div>
