@@ -57,7 +57,6 @@
     }), Waves.init()
 }(jQuery);
 
-$('#check-all').click(function()
-{
+$('#check-all').click(function () {
     $('input[type=checkbox]').prop('checked', $(this).prop('checked'));
 });

@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Contact;
 use App\Models\Content;
-use App\Models\Packages;
 use App\Models\Partner;
 use App\Models\Service;
 use App\Models\Slider;
@@ -35,12 +34,6 @@ class HomeController extends Controller
         $mainPageTeams = Team::where('status', 1)->orderBy('created_at', 'desc')->get();
         return view('frontend.index', get_defined_vars());
 
-    }
-
-    public function packages(): View
-    {
-        $packages = Packages::where('status', 1)->orderBy('id', 'desc')->get();
-        return view('frontend.packages.index', get_defined_vars());
     }
 
     public function search(Request $request)
@@ -104,5 +97,16 @@ class HomeController extends Controller
             alert()->error(__('backend.error'));
             return redirect(route('frontend.contact-us-page'));
         }
+    }
+
+    public function faqs()
+    {
+        return view('frontend.faqs.index');
+    }
+
+    public function team()
+    {
+        $mainPageTeams = Team::where('status', 1)->orderBy('created_at', 'desc')->get();
+        return view('frontend.team.index', get_defined_vars());
     }
 }

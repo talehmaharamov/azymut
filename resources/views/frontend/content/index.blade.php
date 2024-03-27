@@ -4,13 +4,11 @@
     <meta name="description" content="{{ $category->translate(app()->getLocale())->meta_description ?? '' }}">
 @endsection
 @section('front')
-
     <section class="page-masthead">
         <div data-parallax="0.6" class="page-masthead__bg">
             <div data-parallax-target class="bg-image js-lazy"
-                 data-originalbg="{{asset($category->photo)}}"></div>
+                 data-originalbg="{{ asset($category->photo) }}"></div>
         </div>
-
         <div class="container">
             <div class="page-masthead__content">
                 <div class="row justify-content-between md:justify-content-center align-items-center">
@@ -46,25 +44,25 @@
     <section class="layout-pt-md layout-pb-md">
         <div class="container">
             <div class="section-filter px-16">
-                <div class="row justify-content-center">
-                    <div class="col-auto">
-                        <div class="filter-button-group text-dark fw-500 mt-32">
-                            <button class="button mr-20 btn-active" data-filter="*">
-                                @lang('backend.all')
-                            </button>
-                            @foreach($category->subcategories as $subCat)
-                                <button class="button mr-20" data-filter=".{{ $subCat->slug }}">
-                                    {{ $subCat->translate(app()->getLocale())->name ?? __('backend.translation-not-found') }}
-                                </button>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
+{{--                <div class="row justify-content-center">--}}
+{{--                    <div class="col-auto">--}}
+{{--                        <div class="filter-button-group text-dark fw-500 mt-32">--}}
+{{--                            <button class="button mr-20 btn-active" data-filter="*">--}}
+{{--                                @lang('backend.all')--}}
+{{--                            </button>--}}
+{{--                            @foreach($category->subcategories as $subCat)--}}
+{{--                                <button class="button mr-20" data-filter=".{{ $subCat->slug }}">--}}
+{{--                                    {{ $subCat->translate(app()->getLocale())->name ?? __('backend.translation-not-found') }}--}}
+{{--                                </button>--}}
+{{--                            @endforeach--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
 
                 <div class="masonry -gap-32 -col-3 layout-pt-sm js-masonry js-masonry-no-filter">
                     <div class="masonry__sizer"></div>
                     @foreach($contents as $content)
-                        <div class="masonry__item -r-120  {{ $content->category->slug }}">
+                        <div class="masonry__item -r-120">
                             <a data-barba href="{{ route('frontend.selectedContent',$content->slug) }}"
                                class="portfolioCard -type-1 ratio">
                                 <div class="portfolioCard__image">
@@ -73,9 +71,9 @@
                                 </div>
                                 <div class="portfolioCard__content px-30 py-30">
 {{--                                    <span class="portfolioCard__category text-sm uppercase text-beige-dark">LIVING</span>--}}
-                                    <h3 class="portfolioCard__title text-lg fw-600 mt-8">
+                                    <h1 class="portfolioCard__title fw-600" style="font-size: 25px;">
                                         {{ $content->translate(app()->getLocale())->name ?? __('backend.translation-not-found') }}
-                                    </h3>
+                                    </h1>
                                 </div>
                             </a>
                         </div>

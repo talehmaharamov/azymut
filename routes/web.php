@@ -27,6 +27,9 @@ Route::group(['prefix' => '/', 'as' => 'frontend.', 'middleware' => 'frontLangua
     Route::get('project/{slug}', [FService::class, 'show'])->name('selectedProject');
     Route::get('projects', [FService::class, 'index'])->name('project');
 
+    Route::get('faqs', [FHome::class, 'faqs'])->name('faqs');
+    Route::get('our-team', [FHome::class, 'team'])->name('ourTeam');
+
     Route::get('mail/test', function () {
         return view('backend.mail.send');
     });
