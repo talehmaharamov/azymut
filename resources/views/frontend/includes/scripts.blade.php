@@ -34,4 +34,30 @@
             window.location = langCode;
         })
     });
+    const ssllddElements = document.querySelectorAll('.sslldd');
+
+    // Add margin-top to the first sslldd element when it becomes sticky
+    function handleSticky() {
+        const firstSslldd = ssllddElements[0];
+        if (firstSslldd.classList.contains('is-sticky')) {
+            firstSslldd.style.marginTop = '10px';
+        } else {
+            firstSslldd.style.marginTop = '0';
+        }
+    }
+
+    // Call the function initially
+    handleSticky();
+
+    // Assuming you have some logic to toggle the 'is-sticky' class, you can listen for that change
+    // For example, you might have some code that adds/removes the 'is-sticky' class based on scroll behavior
+    // You would attach an event listener to whatever triggers that change
+    // Here's a simplified example with a button toggle
+    const toggleButton = document.getElementById('toggle-button');
+    toggleButton.addEventListener('click', () => {
+        // Toggling the 'is-sticky' class on the first sslldd element
+        ssllddElements[0].classList.toggle('is-sticky');
+        // Call handleSticky after the class toggle to update margin-top
+        handleSticky();
+    });
 </script>

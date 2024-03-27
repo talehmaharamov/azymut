@@ -39,19 +39,15 @@
 
     <section class="layout-pt-md md:pb-64">
         <div class="container">
-            <div class="row no-gutters">
-                <div class="col-xl-5 col-lg-4 offset-lg-1">
-                    <div class="md:pt-40 md:pb-40">
-                        <div class="sectionHeading -left-line">
-                            <span class="sectionHeading__subtitle">
-                                @lang('backend.contact-information')
-                            </span>
-                            <h2 class="sectionHeading__title">
-                                @lang('backend.azymut')
-                            </h2>
-                        </div>
-
-                        <div class="text-sm text-black leading-4xl mt-48 md:mt-16">
+            <div class="row d-flex">
+                <div class="col-12 contactLogo ssllds">
+                    <img style="width: 170px;height: 50px;" src="{{ asset('frontend/logos/Azymut loqo7.png')}}"
+                         alt="Azymut">
+                </div>
+                <hr>
+                <div class="col-md">
+                    <div class=" md:pb-40">
+                        <div class="text-sm text-black">
                             <h4>
                                 @lang('backend.phone'):
                                 {{ settings('phone') }}
@@ -78,12 +74,11 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="col-xl-7 col-lg-7 offset-lg-5 z-5">
-                    <div class="mt-minus-xl md:mt-0">
+                <div class="col-md">
+                    <div class="">
                         <div class="sectionHeading -left-line bg-dark py-48 px-48 md:py-20 md:px-20">
                             <span class="sectionHeading__subtitle text-white">
-                                @lang('backend.contact-us')
+                                @lang('backend.contact-with-us')
                             </span>
                             <h2 class="sectionHeading__title text-white">
                                 @lang('backend.send-message')
@@ -137,7 +132,8 @@
             </div>
         </div>
         <div class="mb-4">
-            <iframe src="{{ settings('map') }}" width="100%" height="600px" style="border:0; margin-top: 50px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe src="{{ settings('map') }}" width="100%" height="600px" style="border:0; margin-top: 50px;"
+                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
 
     </section>

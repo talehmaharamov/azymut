@@ -1,6 +1,4 @@
-<?php
-
-return array (
+<?php return array (
   'about' => 'О нас',
   'actions' => 'Действия',
   'active' => 'Активный',
@@ -215,4 +213,5 @@ return array (
   'your-item-number' => 'Номер вашего объявления',
   'zuhur' => 'Зухур Групп',
   'zuhur-single' => 'Зухур',
+  'contact-with-us' => 'Связаться с нами',
 );

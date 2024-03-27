@@ -251,13 +251,11 @@
 }
 
 :root {
-    --font-primary: "Work Sans", sans-serif;
-    --font-secondary: "Work Sans", sans-serif;
+    /*--font-primary: "Work Sans", sans-serif;*/
+    --font-primary: 'Ebrima';
+    --font-secondary: "Ebrima", sans-serif;
 }
 
-/*--------------------------------------------------
-	02. Reveal animations
----------------------------------------------------*/
 [data-anim-wrap] {
     pointer-events: none;
 }
@@ -944,6 +942,9 @@ body {
 @media (max-width: 991px) {
     .content-wrapper.-left {
         padding-left: 0;
+    }
+    .sslldd::after {
+        margin-top: 10px;
     }
 }
 
@@ -3008,7 +3009,7 @@ h6 {
 
     .menu .nav li.menu-item-has-children > a::after {
         content: "\e901";
-        font-family: 'icomoon' !important;
+        font-family: 'Ebrima' !important;
         speak: never;
         font-style: normal;
         font-weight: normal;
@@ -3070,7 +3071,7 @@ h6 {
     .menu .mobile__back a::before {
         content: "\e900";
         margin-right: 1.25rem;
-        font-family: 'icomoon' !important;
+        font-family: 'Ebrima' !important;
         speak: never;
         font-style: normal;
         font-weight: normal;
@@ -3434,6 +3435,9 @@ h6 {
     .background-border.-left::before {
         bottom: -1.25rem;
         left: -1.25rem;
+    }
+    .header.is-sticky.sslldd {
+        margin-top: 10px; /* Adjust margin as needed */
     }
 }
 
@@ -3979,7 +3983,7 @@ h6 {
 .masthead__title {
     font-size: 70px;
     font-weight: 400;
-    line-height: 82px;
+    line-height: 100px;
 }
 
 .masthead__title span {
@@ -20593,7 +20597,24 @@ ul.list li {
     justify-content: center;
     align-items: flex-start;
 }
-
+.contactLogo{
+    padding-bottom: 20px;
+}
+.sslldd::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: white;
+}
+.ssllds::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 2px;
+    margin-top: 5px;
+    background-color: black;
+}
 .input-counter__down .icon {
     stroke-width: 1;
     width: 1.25rem;
