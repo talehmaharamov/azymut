@@ -17,14 +17,14 @@
         </span>
     </a>
 </div>
-<div class="whats-float2">
-    <a href="tel:{{ settings('phone') }}">
-        <i class="fas fa-phone"></i>
-        <span>@lang('backend.phone')<br>
-            <small>{{ settings('phone') }}</small>
-        </span>
-    </a>
-</div>
+{{--<div class="whats-float2">--}}
+{{--    <a href="tel:{{ settings('phone') }}">--}}
+{{--        <i class="fas fa-phone"></i>--}}
+{{--        <span>@lang('backend.phone')<br>--}}
+{{--            <small>{{ settings('phone') }}</small>--}}
+{{--        </span>--}}
+{{--    </a>--}}
+{{--</div>--}}
 
 <header class="header  js-header">
     <div class="header__bar  js-header-bar">
@@ -33,14 +33,12 @@
                 <div class="header__item -margin-sm">
                     <div class="header__logo text-white js-header-logo">
                         <a data-barba href="{{ route('frontend.index') }}">
-
                             <img style="width: 50px;height: 50px;" src="{{ asset('frontend/logos/Azymut 13.png')}}"
                                  alt="Azymut">
                         </a>
                     </div>
                 </div>
             </div>
-
 
             <div class="menu js-menu ">
                 <div class="mobile__background js-mobile-bg"></div>
@@ -52,37 +50,62 @@
                         </a>
                     </div>
 
-                    <ul class="nav js-navList ">
-                        <li class="text-white menu-item-has-children">
+                    <ul class="nav js-navList">
+                        <li class="text-white">
                             <a data-barba href="{{ route('frontend.index') }}">
                                 @lang('backend.home-page')
                             </a>
                         </li>
-                        <li class="text-white menu-item-has-children">
-                            <a data-barba href="#">
-                                @lang('backend.service')
-                            </a>
-                            <ul class="nav__submenu">
-                                @foreach($mainCategories as $mCat)
-                                    <li class="nav__submenu_item">
-                                        <a data-barba href="{{ route('frontend.selectedCategory',$mCat->slug) }}">
-                                            {{ $mCat->translate(app()->getLocale())->name ?? __('backend.translation-not-found') }}
-                                        </a>
-                                    </li>
-                                @endforeach
-                            </ul>
-                        </li>
-                        <li class="text-white -has-mega-menu menu-item-has-children">
-                            <a data-barba href="{{ route('frontend.project') }}">
-                                @lang('backend.projects')
-                            </a>
-                        </li>
-
                         <li class="text-white">
                             <a data-barba href="{{ route('frontend.about') }}">
                                 @lang('backend.about')
                             </a>
                         </li>
+                        @foreach($mainCategories as $mCat)
+                            @if($mCat->subcategories()->exists())
+                                <li class="text-white menu-item-has-children">
+                                    <a data-barba href="">
+                                        {{ $mCat->translate(app()->getLocale())->name ?? __('backend.translation-not-found') }}
+                                    </a>
+                                    <ul class="nav__submenu">
+                                        @foreach($mCat->subcategories as $mSubCat)
+                                            <li class="nav__submenu_item">
+                                                <a data-barba
+                                                   href="{{ route('frontend.selectedCategory',$mSubCat->slug) }}">
+                                                    {{ $mSubCat->translate(app()->getLocale())->name ?? __('backend.translation-not-found') }}
+                                                </a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </li>
+                            @else
+                                <li class="text-white">
+                                    <a data-barba href="{{ route('frontend.selectedCategory',$mCat->slug) }}">
+                                        {{ $mCat->translate(app()->getLocale())->name ?? __('backend.translation-not-found') }}
+                                    </a>
+                                </li>
+                            @endif
+                        @endforeach
+                        {{--                        <li class="text-white menu-item-has-children">--}}
+                        {{--                            <a data-barba href="">--}}
+                        {{--                                @lang('backend.service')--}}
+                        {{--                            </a>--}}
+                        {{--                            <ul class="nav__submenu">--}}
+                        {{--                                @foreach($mainCategories as $mCat)--}}
+                        {{--                                    <li class="nav__submenu_item">--}}
+                        {{--                                        <a data-barba href="{{ route('frontend.selectedCategory',$mCat->slug) }}">--}}
+                        {{--                                            {{ $mCat->translate(app()->getLocale())->name ?? __('backend.translation-not-found') }}--}}
+                        {{--                                        </a>--}}
+                        {{--                                    </li>--}}
+                        {{--                                @endforeach--}}
+                        {{--                            </ul>--}}
+                        {{--                        </li>--}}
+                        {{--                        <li class="text-white">--}}
+                        {{--                            <a data-barba href="{{ route('frontend.project') }}">--}}
+                        {{--                                @lang('backend.projects')--}}
+                        {{--                            </a>--}}
+                        {{--                        </li>--}}
+
                         <li class="text-white">
                             <a data-barba href="{{ route('frontend.contact-us-page') }}">
                                 @lang('backend.contact-us')
@@ -116,12 +139,11 @@
                         <a data-barba href="#">
                             <i class="fas fa-globe-europe"></i>
                         </a>
-
                         <div class="headerCart js-headerCart">
                             <div class="headerCart__content">
                                 @foreach(active_langs() as $lang)
-
-                                    <div class="headerCart__item" onclick="alert('salam')">
+                                    <div class="headerCart__item autoChange"
+                                         data-lan="{{ route('frontend.frontLanguage',$lang->code) }}">
                                         <div class="headerCart__img">
                                             <img style="height: 24px !important;width: 36px !important;"
                                                  src="{{ asset($lang->icon) }}" alt="image">
@@ -161,7 +183,6 @@
                 </div>
             </div>
         </div>
-
 
         <div class="headerSearch js-headerSearch">
             <div class="headerSearch__line"></div>

@@ -28,8 +28,7 @@ class CategoryController extends Controller
 //                $projects[] = $content;
 //            }
 //        }
-
-        $contents = Content::whereIn('category_id',$relatedCategories)->paginate(15);
+        $contents = Content::where('category_id',$category->id)->paginate(15);
         return view('frontend.content.index', compact('contents', 'category','projects'));
     }
 }

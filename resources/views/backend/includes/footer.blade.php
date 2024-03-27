@@ -4,7 +4,7 @@
             <div class="col-sm-12">
                 <div class="text-sm-end d-sm-block">
                     <script>document.write(new Date().getFullYear())</script>
-                    © <a target="_blank" href="https://wa.me/+994505100171">TechFOZ</a>
+                    © <a target="_blank" href="https://foz.az">TechFOZ</a>
                 </div>
             </div>
         </div>

@@ -3,7 +3,8 @@
 @section('front')
     <section class="page-masthead">
         <div data-parallax="0.6" class="page-masthead__bg">
-            <div data-parallax-target class="bg-image js-lazy" data-originalbg="{{asset('frontend/img/1 (1).jpg')}}"></div>
+            <div data-parallax-target class="bg-image js-lazy"
+                 data-originalbg="{{asset('frontend/img/1 (1).jpg')}}"></div>
         </div>
 
         <div class="container">
@@ -11,17 +12,24 @@
                 <div class="row justify-content-between md:justify-content-center align-items-center">
                     <div class="col-lg-9 col-md-10">
                         <div data-anim="slide-up delay-1">
-                            <div class="page-masthead__subtitle">Explore the features</div>
-                            <div class="page-masthead__back_title">Contact Us</div>
-                            <h1 class="page-masthead__title text-white">Contact Us</h1>
+                            <div class="page-masthead__back_title">
+                                @lang('backend.contact-us')
+                            </div>
+                            <h1 class="page-masthead__title text-white">
+                                @lang('backend.contact-us')
+                            </h1>
                         </div>
                     </div>
 
                     <div class="col-auto">
                         <div data-anim="slide-up delay-1" class="page-masthead-bread text-white md:mt-24">
-                            <a data-barba href="" class="page-masthead-bread__item">Home</a>
+                            <a data-barba href="" class="page-masthead-bread__item">
+                                @lang('backend.home-page')
+                            </a>
                             /
-                            <a data-barba href="#" class="page-masthead-bread__item ">Contact Us</a>
+                            <a data-barba class="page-masthead-bread__item ">
+                                @lang('backend.contact-us')
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -29,16 +37,10 @@
         </div>
     </section>
 
-    <section class="layout-pt-lg layout-pb-xl md:pb-64">
+    <section class="layout-pt-md md:pb-64">
         <div class="container">
             <div class="row no-gutters">
-                <div class="col-xl-7 col-lg-7 z-1">
-                    <div id="map" class="map ratio ratio-1:1">
-                        {{--                        <iframe id="map2" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d194472.76853003306!2d49.69014890705255!3d40.394737007992184!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40307d6bd6211cf9%3A0x343f6b5e7ae56c6b!2sBaku!5e0!3m2!1sen!2saz!4v1707629377113!5m2!1sen!2saz" width="600px" height="400px" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>--}}
-                    </div>
-                </div>
-
-                <div class="col-xl-4 col-lg-4 offset-lg-1">
+                <div class="col-xl-5 col-lg-4 offset-lg-1">
                     <div class="md:pt-40 md:pb-40">
                         <div class="sectionHeading -left-line">
                             <span class="sectionHeading__subtitle">
@@ -50,36 +52,28 @@
                         </div>
 
                         <div class="text-sm text-black leading-4xl mt-48 md:mt-16">
-                            <p>
+                            <h4>
                                 @lang('backend.phone'):
                                 {{ settings('phone') }}
-                            </p>
-                            <p>
+                            </h4><br>
+                            <h4>
                                 @lang('backend.email'):
                                 {{ settings('email') }}
-                            </p>
-                            <p>
+                            </h4><br>
+                            <h4 style="word-wrap: break-word;">
                                 @lang('backend.address'):
                                 {{ settings('address_'.app()->getLocale()) }}
-                            </p>
+                            </h4>
                         </div>
-
-                        <div class="sectionHeading__button mt-24 md:mt-20">
-                            <a data-barba href="#" class="button -simple text-black">GET DIRECTIONS</a>
-                        </div>
-
                         <div class="socialsSection mt-24">
-                            <a data-barba href="#" class="text-accent">
+                            <a data-barba href="{{ settings('facebook') }}" class="text-accent">
                                 <i class="fa fa-facebook" aria-hidden="true"></i>
                             </a>
-                            <a data-barba href="#" class="text-accent">
-                                <i class="fa fa-twitter" aria-hidden="true"></i>
+                            <a data-barba href="{{ settings('whatsapp') }}" class="text-accent">
+                                <i class="fa fa-whatsapp" aria-hidden="true"></i>
                             </a>
-                            <a data-barba href="#" class="text-accent">
+                            <a data-barba href="{{ settings('instagram') }}" class="text-accent">
                                 <i class="fa fa-instagram" aria-hidden="true"></i>
-                            </a>
-                            <a data-barba href="#" class="text-accent">
-                                <i class="fa fa-linkedin" aria-hidden="true"></i>
                             </a>
                         </div>
                     </div>
@@ -133,7 +127,7 @@
 
                                 <div class="col-12 mt-32">
                                     <button type="submit" name="submit" class="button -md -accent text-white">
-                                       @lang('backend.send-message')
+                                        @lang('backend.send-message')
                                     </button>
                                 </div>
                             </form>
@@ -142,6 +136,10 @@
                 </div>
             </div>
         </div>
+        <div class="mb-4">
+            <iframe src="{{ settings('map') }}" width="100%" height="600px" style="border:0; margin-top: 50px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+
     </section>
 
 @endsection

@@ -1,58 +1,49 @@
-<section class="layout-pb-lg" style="margin-top: 90px !important;">
-    <div class="container">
-        <div class="row justify-content-between">
-            <div class="col-auto">
-                <div class="sectionHeading -left-line">
-                    <span class="sectionHeading__subtitle">@lang('backend.projects')</span>
-                    <h2 class="sectionHeading__title">@lang('backend.featured-works')</h2>
+{{--<section class="layout-pb-lg" style="margin-top: 90px !important;">--}}
+@foreach($mainCategories as $kKey => $main)
+    <section class="layout-pt-md">
+        <div class="container">
+            <div class="row justify-content-between">
+                <div class="col-auto">
+                    <div class="sectionHeading -left-line">
+                        <h2 class="sectionHeading__title text-black">
+                            {{ $main->translate(app()->getLocale())->name ?? '' }}
+                        </h2>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <div class="row justify-content-center layout-pt-sm">
-            <div class="col-lg-8">
-                <div class="sectionSlider js-sectionSlider" data-gap="30" data-slider-col="base-1 lg-1 md-1 sm-1"
-                     data-center data-loop data-pagination data-cursor data-cursor-label="@lang('backend.click')">
-
-                    <div class="sliderNav -portfolio-slider js-nav">
-                        <button class="sliderNav__item -prev js-prev">
-                            @lang('pagination.previous')
-                        </button>
-                        <button class="sliderNav__item -next js-next">
-                            @lang('pagination.next')
-                        </button>
-                    </div>
-
+            <div class="row layout-pt-sm">
+                <div class="sectionSlider overflow-hidden sm:px-16 js-sectionSlider" data-gap="30"
+                     data-slider-col="base-3 lg-3 md-2 sm-1" data-pagination>
                     <div class="swiper-wrapper">
-                        @foreach($mainPageProjects as $mPP)
+                        @foreach(\App\Models\Content::whereIn('category_id',\App\Models\Category::where('parent_id',$main->id)->pluck('id')->toArray())->get() as $mPS)
                             <div class="swiper-slide">
-                                <a data-barba data-cursor data-cursor-label="@lang('backend.click')"
-                                   href="{{ route('frontend.selectedContent',$mPP->slug) }}" class="portfolio">
-                                    <div class="portfolio__image">
-                                        <div class="ratio ratio-16:9">
-                                            <img class="ratio-img swiper-lazy" src="{{ asset($mPP->photo) }}"
-                                                 data-src="{{ asset($mPP->photo) }}"
-                                                 alt="{{ $mPP->translate(app()->getLocale())->alt ?? __('backend.translation-not-found') }}">
-                                            <div class="swiper-lazy-preloader"></div>
-                                        </div>
+                                <a data-barba href="{{ route('frontend.selectedContent',$mPS->slug) }}" class="portfolioCard -type-1 ratio">
+                                    <div class="portfolioCard__image ratio ratio-3:4">
+                                        <img class="ratio-img js-lazy" src="{{ route('frontend.selectedContent',$mPS->slug) }}" data-src="{{ asset($mPS->photo) }}"
+                                             alt="{{ $mPS->translate(app()->getLocale())->alt ?? '' }}">
                                     </div>
-
-                                    <div class="portfolio__content text-center">
-                                        <span class="portfolio__category">
-                                            {{ $mPP->category->translate(app()->getLocale())->name ?? __('backend.translation-not-found') }}
-                                        </span>
-                                        <h3 class="portfolio__title">
-                                            {{ $mPP->translate(app()->getLocale())->name ?? __('backend.translation-not-found') }}
-                                        </h3>
+                                    <div class="portfolioCard__content px-30 py-30">
+{{--                                        <span class="portfolioCard__category text-sm uppercase text-beige-dark">LIVING</span>--}}
+                                        <h1 class="portfolioCard__title projectTitle fw-600 mt-8">
+                                            {{ $mPS->translate(app()->getLocale())->name ?? '' }}
+                                        </h1>
                                     </div>
-
                                 </a>
                             </div>
                         @endforeach
+                    </div>
+                    <div class="nav -slider lg:d-none">
+                        <div class="nav__item -left js-prev">
+                            <i class="icon icon-left-arrow"></i>
+                        </div>
+                        <div class="nav__item -right js-next">
+                            <i class="icon icon-right-arrow"></i>
+                        </div>
                     </div>
                     <div class="pagination -slider mt-48 js-pagination"></div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+@endforeach
+{{--</section>--}}

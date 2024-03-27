@@ -238,7 +238,7 @@
         const target = document.querySelector("#map");
         if (!target) return;
 
-        const map = L.map(target).setView([51.505, -0.09], 13);
+        const map = L.map(target).setView([40.38540, 49.82793], 19);
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -1652,8 +1652,7 @@
 
                 loop: loop,
                 loopAdditionalSlides: 1,
-                preloadImages: false,
-                lazy: true,
+                preloadImages: false, // lazy: true,
 
                 lazy: {
                     loadPrevNext: true,
@@ -2560,42 +2559,6 @@
             } else {
                 target.classList.add('is-in-view');
             }
-
-        }
-
-        function pieChart(target, animDelay = 0) {
-
-            const counterVal = target.getAttribute('data-percent');
-            const chartBar = target.querySelector('.js-chart-bar');
-
-            if (counterVal < 0) {
-                counterVal = 0;
-            }
-            if (counterVal > 100) {
-                counterVal = 100;
-            }
-
-            gsap.fromTo(chartBar, {
-                drawSVG: `0%`,
-            }, {
-                delay: 0.3 + animDelay, duration: 1.4, ease: 'power3.inOut', drawSVG: `${counterVal}%`,
-
-                onStart: () => {
-                    chartBar.classList.remove('bar-stroke-hidden');
-                }
-            });
-
-
-            let object = {count: 0};
-            const barPercent = target.querySelector('.js-chart-percent');
-
-            gsap.to(object, {
-                count: counterVal, delay: 0.45 + animDelay, duration: 1, ease: 'power3.inOut',
-
-                onUpdate: function () {
-                    barPercent.innerHTML = Math.round(object.count) + '%';
-                },
-            });
 
         }
 

@@ -1,4 +1,4 @@
-<section class="layout-pt-xs layout-pb-lg">
+<section class="layout-pt-xs" style="padding-bottom: 1.75rem !important;">
     <div class="container">
         <div class="row justify-content-center md:justify-content-start">
             <div class="col-auto">

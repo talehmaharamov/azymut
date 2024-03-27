@@ -10,7 +10,7 @@ class ServiceController extends Controller
 {
     public function index()
     {
-        $services = Service::where('status', 1)->get();
+        $projects = Service::where('status', 1)->paginate(15);
         return view('frontend.services.index', get_defined_vars());
     }
 

@@ -1,6 +1,9 @@
 <?php
 return array(
-    'index' => 'Home Page',
-    'about' => 'About Us',
-    'contact' => 'Contact Us',
+
+    'index' => 'Home | Azymut',
+    'about' => 'About Us | Azymut',
+    'contact' => 'Contact Us | Azymut',
+    'faq' => 'Frequently Asked Questions | Azymut',
+    'team' => 'Our Team | Azymut',
 );
