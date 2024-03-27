@@ -28,12 +28,12 @@
 
 <header class="header  js-header">
     <div class="header__bar  js-header-bar">
-        <div class="row justify-content-between align-items-center">
+        <div class="row justify-content-between align-items-center sslldd">
             <div class="col-auto z-5 js-header-item">
                 <div class="header__item -margin-sm">
                     <div class="header__logo text-white js-header-logo">
                         <a data-barba href="{{ route('frontend.index') }}">
-                            <img style="width: 50px;height: 50px;" src="{{ asset('frontend/logos/Azymut 13.png')}}"
+                            <img style="width: 120px;height: 50px;" src="{{ asset('frontend/logos/Azymut loqo5.png')}}"
                                  alt="Azymut">
                         </a>
                     </div>

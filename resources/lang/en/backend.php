@@ -1,6 +1,4 @@
-<?php
-
-return array (
+<?php return array (
   'about' => 'About',
   'actions' => 'Actions',
   'active' => 'Active',
@@ -267,6 +265,5 @@ return array (
   'you-have-new-order' => 'You have a new order',
   'your-item-message' => 'Your item is awaiting review. Please save the item number to edit or delete the listing.',
   'your-item-number' => 'Your item number',
-  'zuhur' => 'Zuhur Group',
-  'zuhur-single' => 'Zuhur',
+  'contact-with-us' => 'Contact Us',
 );

@@ -113,7 +113,7 @@
                 </div>
                 <div class="col-auto sm:order-1">
                     <div class="footer__logo">
-                        <img style="height: 30px;width: 30px;" src="{{ asset('frontend/logos/Azymut 13.png') }}"
+                        <img style="height: 40px;width: 120px;" src="{{ asset('frontend/logos/Azymut loqo5.png') }}"
                              alt="logo">
                     </div>
                 </div>

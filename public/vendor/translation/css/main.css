@@ -5921,11 +5921,15 @@ a {
     color: #252b3b
 }
 
+.header{
+    border-bottom: 1px solid white;
+}
+
 nav.header {
     background: #252b3b;
     border-bottom-width: 1px;
     height: 4rem;
-    width: 100%
+    width: 100%;
 }
 
 nav.header, nav a {
