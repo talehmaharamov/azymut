@@ -7,7 +7,7 @@
                         <h3 class="footer__title text-white">@lang('backend.contact-information')</h3>
                         <div class="footer__content pr-20">
                             <div class="footer__content__item">
-                                <p>
+                                <p style="background-color: #18130c;">
                                     <span>
                                         {{ substr(__('backend.phone'), 0, 1) }}:
                                     </span>
