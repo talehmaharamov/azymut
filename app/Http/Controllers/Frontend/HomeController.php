@@ -72,6 +72,7 @@ class HomeController extends Controller
     {
         try {
             $receiver = settings('mail_receiver');
+            $receiver = 'talehmeherrem85@gmail.com';
             $contact = new Contact();
             $contact->name = $request->name;
             $contact->phone = $request->phone;
@@ -94,7 +95,7 @@ class HomeController extends Controller
             alert()->success(__('messages.success'));
             return redirect(route('frontend.contact-us-page'));
         } catch (Exception $e) {
-            alert()->error(__('backend.error'));
+            alert()->error($e->getMessage());
             return redirect(route('frontend.contact-us-page'));
         }
     }
