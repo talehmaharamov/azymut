@@ -84,10 +84,8 @@
                                 @lang('backend.send-message')
                             </h2>
 
-                            <form class="-light row js-ajax-form" method="POST"
-                                  action="{{ route('frontend.sendMessage') }}"
-                                  data-message-success="Your message has been sent! We will reply you as soon as possible."
-                                  data-message-error="Something went wrong. Please contact me directly at <a href='hellix@example.com'>hellix@example.com</a>.">
+                            <form class="-light row" method="POST"
+                                  action="{{ route('frontend.sendMessage') }}">
                                 @csrf
                                 <div class="col-12">
                                     <div class="js-input-group">
