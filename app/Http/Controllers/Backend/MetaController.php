@@ -15,12 +15,9 @@ class MetaController extends Controller
     protected array $pages = [
         'all' => 'all',
         'index' => 'home-page',
-        'selectedContent' => 'content',
+        'selectedContent' => 'categories',
         'about' => 'about',
         'contact-us-page' => 'contact-us',
-        'selectedStyle' => 'selectedStyle',
-        'styles' => 'style',
-        'videos' => 'video'
     ];
 
     public function index()
