@@ -44,21 +44,6 @@
     <section class="layout-pt-md layout-pb-md">
         <div class="container">
             <div class="section-filter px-16">
-{{--                <div class="row justify-content-center">--}}
-{{--                    <div class="col-auto">--}}
-{{--                        <div class="filter-button-group text-dark fw-500 mt-32">--}}
-{{--                            <button class="button mr-20 btn-active" data-filter="*">--}}
-{{--                                @lang('backend.all')--}}
-{{--                            </button>--}}
-{{--                            @foreach($category->subcategories as $subCat)--}}
-{{--                                <button class="button mr-20" data-filter=".{{ $subCat->slug }}">--}}
-{{--                                    {{ $subCat->translate(app()->getLocale())->name ?? __('backend.translation-not-found') }}--}}
-{{--                                </button>--}}
-{{--                            @endforeach--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-
                 <div class="masonry -gap-32 -col-3 layout-pt-sm js-masonry js-masonry-no-filter">
                     <div class="masonry__sizer"></div>
                     @foreach($contents as $content)
@@ -70,7 +55,6 @@
                                          alt="{{ $content->translate(app()->getLocale())->alt ?? 'FOZ' }}">
                                 </div>
                                 <div class="portfolioCard__content px-30 py-30">
-{{--                                    <span class="portfolioCard__category text-sm uppercase text-beige-dark">LIVING</span>--}}
                                     <h1 class="portfolioCard__title fw-600" style="font-size: 25px;">
                                         {{ $content->translate(app()->getLocale())->name ?? __('backend.translation-not-found') }}
                                     </h1>
@@ -113,7 +97,9 @@
                     </div>
                 </div>
             </div>
-
+            <p class="mt-20">
+                {!! $category->translate(app()->getLocale())->description ?? '' !!}
+            </p>
         </div>
     </section>
 @endsection
