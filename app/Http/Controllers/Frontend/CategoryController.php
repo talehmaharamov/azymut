@@ -21,13 +21,7 @@ class CategoryController extends Controller
         $relatedCategories = Category::where('parent_id',$category->id)->pluck('id')->toArray();
 
         $projects = [];
-//        $subcategories = $category->subcategories;
-//
-//        foreach ($subcategories as $subcategory) {
-//            foreach ($subcategory->content as $content) {
-//                $projects[] = $content;
-//            }
-//        }
+
         $contents = Content::where('category_id',$category->id)->paginate(15);
         return view('frontend.content.index', compact('contents', 'category','projects'));
     }
