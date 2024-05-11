@@ -47,19 +47,19 @@
                                                         <label>@lang('backend.description')</label>
                                                         <textarea name="description[{{ $lan->code }}]"
                                                                   id="elm{{$lan->code}}1"
-                                                                  class="form-control">{!! $category->translate(app()->getLocale())->description ?? '' !!}</textarea>
+                                                                  class="form-control">{!! $category->translate($lan->code)->description ?? '' !!}</textarea>
                                                     </div>
                                                     <div class="mb-3">
                                                         <label>@lang('backend.title')(Meta)</label>
                                                         <textarea name="meta_title[{{ $lan->code }}]"
                                                                   rows="2"
-                                                                  class="form-control">{{ $category->translate(app()->getLocale())->meta_title ?? '' }}</textarea>
+                                                                  class="form-control">{{ $category->translate($lan->code)->meta_title ?? '' }}</textarea>
                                                     </div>
                                                     <div class="mb-3">
                                                         <label>@lang('backend.description')(Meta)</label>
                                                         <textarea name="meta_description[{{ $lan->code }}]"
                                                                   rows="6"
-                                                                  class="form-control">{{ $category->translate(app()->getLocale())->meta_description ?? '' }}</textarea>
+                                                                  class="form-control">{{ $category->translate($lan->code)->meta_description ?? '' }}</textarea>
                                                     </div>
                                                 </div>
                                             </div>
