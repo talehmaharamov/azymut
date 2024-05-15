@@ -62,49 +62,67 @@
                             </a>
                         </li>
                         @foreach($mainCategories as $mCat)
-                            @if($mCat->subcategories()->exists())
-                                <li class="text-white menu-item-has-children">
-                                    <a data-barba href="">
-                                        {{ $mCat->translate(app()->getLocale())->name ?? __('backend.translation-not-found') }}
-                                    </a>
-                                    <ul class="nav__submenu">
-                                        @foreach($mCat->subcategories as $mSubCat)
-                                            <li class="nav__submenu_item">
-                                                <a data-barba
-                                                   href="{{ route('frontend.selectedCategory',$mSubCat->slug) }}">
-                                                    {{ $mSubCat->translate(app()->getLocale())->name ?? __('backend.translation-not-found') }}
-                                                </a>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </li>
-                            @else
-                                <li class="text-white">
-                                    <a data-barba href="{{ route('frontend.selectedCategory',$mCat->slug) }}">
-                                        {{ $mCat->translate(app()->getLocale())->name ?? __('backend.translation-not-found') }}
-                                    </a>
-                                </li>
-                            @endif
+                            <li class="text-white -has-mega-menu menu-item-has-children">
+                                <a data-barba href="#">
+                                    {{ $mCat->translate(app()->getLocale())->name ?? '' }}
+                                </a>
+                                <div class="mega">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <ul class="mega__menu">
+                                                    @foreach($mCat->subcategories as $mSubCat)
+                                                        <li class="mega__column">
+                                                            <div class="mega__item">
+                                                                <a class="mega__title"
+                                                                   href="{{ route('frontend.selectedCategory',$mSubCat->slug) }}">
+                                                                    {{ $mSubCat->translate(app()->getLocale())->name ?? '' }}
+                                                                </a>
+                                                                @if($mSubCat->subcategories()->exists())
+                                                                    <ul class="mega__list">
+                                                                        @foreach($mSubCat->subcategories as $mAltSubCat)
+                                                                            <li>
+                                                                                <a data-barba
+                                                                                   href="{{ route('frontend.selectedCategory',$mAltSubCat->slug) }}">
+                                                                                    {{ $mAltSubCat->translate(app()->getLocale())->name ?? '' }}
+                                                                                </a>
+                                                                            </li>
+                                                                        @endforeach
+                                                                    </ul>
+                                                                @endif
+                                                            </div>
+                                                        </li>
+                                                    @endforeach
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <ul class="nav__submenu md:d-block d-none">
+                                    @foreach($mCat->subcategories as $subSub)
+                                        <li class="nav__submenu_item menu-item-has-children">
+                                            <a data-barba href="{{ route('frontend.selectedCategory',$subSub->slug) }}">
+                                                {{ $subSub->translate(app()->getLocale())->name ?? '' }}
+                                            </a>
+                                            @if($subSub->subcategories()->exists())
+                                                <ul class="nav__submenu md:d-block d-none">
+                                                    @foreach($subSub->subcategories as $subAlt)
+                                                        <li class="nav__submenu_item">
+                                                            <a data-barba
+                                                               href="{{ route('frontend.selectedCategory',$subAlt->slug) }}">
+                                                                {{ $subAlt->translate(app()->getLocale())->name ?? '' }}
+                                                            </a>
+                                                        </li>
+                                                    @endforeach
+                                                </ul>
+                                            @endif
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </li>
                         @endforeach
-                        {{--                        <li class="text-white menu-item-has-children">--}}
-                        {{--                            <a data-barba href="">--}}
-                        {{--                                @lang('backend.service')--}}
-                        {{--                            </a>--}}
-                        {{--                            <ul class="nav__submenu">--}}
-                        {{--                                @foreach($mainCategories as $mCat)--}}
-                        {{--                                    <li class="nav__submenu_item">--}}
-                        {{--                                        <a data-barba href="{{ route('frontend.selectedCategory',$mCat->slug) }}">--}}
-                        {{--                                            {{ $mCat->translate(app()->getLocale())->name ?? __('backend.translation-not-found') }}--}}
-                        {{--                                        </a>--}}
-                        {{--                                    </li>--}}
-                        {{--                                @endforeach--}}
-                        {{--                            </ul>--}}
-                        {{--                        </li>--}}
-                        {{--                        <li class="text-white">--}}
-                        {{--                            <a data-barba href="{{ route('frontend.project') }}">--}}
-                        {{--                                @lang('backend.projects')--}}
-                        {{--                            </a>--}}
-                        {{--                        </li>--}}
 
                         <li class="text-white">
                             <a data-barba href="{{ route('frontend.contact-us-page') }}">
