@@ -1,3371 +1,1557 @@
-(function() {
-    "use strict";
 
-    /*------------------------------------------------------------------
+(function ($) {
+  'use strict';
 
-      01. Custom easings
+  var rtsJs = {
+    m: function (e) {
+      rtsJs.d();
+      rtsJs.methods();
+    },
+    d: function (e) {
+      this._window = $(window),
+        this._document = $(document),
+        this._body = $('body'),
+        this._html = $('html')
+    },
+    methods: function (e) {
+      rtsJs.counterUp();
+      rtsJs.stickyHeader();
+      rtsJs.wowActive();
+      rtsJs.swiperJs();
+      rtsJs.salActive();
+      rtsJs.textChanger();
+      rtsJs.timeLine();
+      rtsJs.datePicker();
+      rtsJs.timePicker();
+      rtsJs.timeLineStory();
+      rtsJs.vedioActivation();
+      rtsJs.searchOption();
+      rtsJs.cartBarshow();
+      rtsJs.metismenu();
+      rtsJs.sideMenu();
+      rtsJs.backToTopInit();
+      rtsJs.filterPrice();
+      rtsJs.preloader();
+      rtsJs.slideNav();
+      rtsJs.onePageNav();
+      rtsJs.serviceHover();
+    },
+    // counter up
+    counterUp: function (e) {
+      $('.counter').counterUp({
+        delay: 10,
+        time: 1000
+      });
+      $('.counter').addClass('animated fadeInDownBig');
+      $('h3').addClass('animated fadeIn');
+    },
+    // sticky header activation
+    stickyHeader: function (e) {
+      $(window).scroll(function () {
+        if ($(this).scrollTop() > 150) {
+          $('.header--sticky').addClass('sticky')
+        } else {
+          $('.header--sticky').removeClass('sticky')
+        }
+      })
+    },
+    // waw js activation
+    wowActive: function () {
+      new WOW().init();
+    },
+    // All swiper js
+    swiperJs: function () {
+      $(document).ready(function () {
+        // var menu = ['Design and Build', 'Roof Remodeling', 'Bridge Remodeling']
+        var mySwiper = new Swiper('.swiper-container', {
+          // If we need pagination
+          effect: 'slide',
+          loop: true,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+            renderBullet: function (index, className) {
+              return '<span class="' + className + '">' + (menu[index]) + '</span>';
+            },
+          },
+          autoplay: {
+            delay: 7000,
+          },
+          // Navigation arrows
+          navigation: false,
+        })
+      });
+      $(document).ready(function () {
+        var mySwiper = new Swiper('.swiper-container-h2', {
+          // If we need pagination
+          effect: 'slide',
+          loop: true,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          autoplay: {
+            delay: 7000,
+          },
+          // Navigation arrows
+          navigation: false,
+        })
+      });
 
-    -------------------------------------------------------------------*/
+      $(document).ready(function () {
+        var swiper = new Swiper(".case-three", {
+          slidesPerView: 2.1,
+          spaceBetween: 30,
+          slidesPerGroup: 1,
+          centeredSlides: true,
+          loop: true,
+          autoplay: {
+            delay: 3000,
+          },
+          loopFillGroupWithBlank: true,
+          pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+          },
+          navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+          },
+          breakpoints: {
+            1500: {
+              slidesPerView: 3,
+            },
+            1199: {
+              slidesPerView: 3,
+            },
+            991: {
+              slidesPerView: 2,
+            },
+            767: {
+              slidesPerView: 1,
+            },
+            575: {
+              slidesPerView: 1,
+            },
+            0: {
+              slidesPerView: 1,
+            }
+          },
+        });
 
-// GSAP: turn off console warnings
-    gsap.config({
-        nullTargetWarn: false
-    });
+      });
 
-    window.App = {};
 
-    App.config = {
-        headroom: {
+      $(document).ready(function () {
+
+        var sliderThumbnail = new Swiper(".slider-thumbnail", {
+          spaceBetween: 30,
+          slidesPerView: 3,
+          freeMode: true,
+          watchSlidesVisibility: true,
+          watchSlidesProgress: true,
+          breakpoints: {
+            991: {
+              spaceBetween: 30,
+            },
+            320: {
+              spaceBetween: 15,
+            }
+          },
+        });
+
+        var swiper = new Swiper(".swiper-container-h12", {
+          thumbs: {
+            swiper: sliderThumbnail,
+          },
+        });
+
+      });
+
+      $(document).ready(function () {
+        var swiper = new Swiper(".case-two", {
+          slidesPerView: 2.1,
+          spaceBetween: 30,
+          slidesPerGroup: 1,
+          centeredSlides: true,
+          loop: true,
+          autoplay: {
+            delay: 3000,
+          },
+          loopFillGroupWithBlank: true,
+          pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+          },
+          navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+          },
+          breakpoints: {
+            1500: {
+              slidesPerView: 3,
+            },
+            1199: {
+              slidesPerView: 3,
+            },
+            991: {
+              slidesPerView: 2,
+            },
+            767: {
+              slidesPerView: 1,
+            },
+            575: {
+              slidesPerView: 1,
+            },
+            0: {
+              slidesPerView: 1,
+            }
+          },
+        });
+      });
+
+      $(document).ready(function () {
+        var swiper = new Swiper(".project-home-nine", {
+          slidesPerView: 3,
+          spaceBetween: 30,
+          slidesPerGroup: 1,
+          centeredSlides: true,
+          loop: true,
+          autoplay: {
+            delay: 3000,
+          },
+          loopFillGroupWithBlank: true,
+          pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+          },
+          navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+          },
+          breakpoints: {
+            1500: {
+              slidesPerView: 3,
+            },
+            1199: {
+              slidesPerView: 3,
+            },
+            991: {
+              slidesPerView: 2,
+            },
+            767: {
+              slidesPerView: 1,
+            },
+            575: {
+              slidesPerView: 1,
+            },
+            0: {
+              slidesPerView: 1,
+            }
+          },
+        });
+      });
+
+      $(document).ready(function () {
+        var swiper = new Swiper(".mySwiper-technical", {
+          slidesPerView: 3,
+          spaceBetween: 30,
+          loop: true,
+          autoplay: {
+            delay: 3000,
+          },
+          pagination: false,
+          navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+          },
+          breakpoints: {
+            1500: {
+              slidesPerView: 3,
+            },
+            1199: {
+              slidesPerView: 2,
+            },
+            991: {
+              slidesPerView: 2,
+            },
+            767: {
+              slidesPerView: 1,
+            },
+            575: {
+              slidesPerView: 1,
+            },
+            0: {
+              slidesPerView: 1,
+            }
+          },
+        });
+      });
+
+      $(document).ready(function () {
+        var swiper = new Swiper(".service-six", {
+          slidesPerView: 3,
+          spaceBetween: 30,
+          loop: true,
+          // autoplay: {
+          //   delay: 3000,
+          // },
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+          },
+          breakpoints: {
+            1500: {
+              slidesPerView: 3,
+            },
+            1199: {
+              slidesPerView: 2,
+            },
+            991: {
+              slidesPerView: 2,
+            },
+            767: {
+              slidesPerView: 1,
+            },
+            575: {
+              slidesPerView: 1,
+            },
+            0: {
+              slidesPerView: 1,
+            }
+          },
+        });
+      });
+
+      $(document).ready(function () {
+        var swiper = new Swiper(".testimonials-ten-wrapper-main", {
+          slidesPerView: 2,
+          spaceBetween: 24,
+          loop: true,
+          autoplay: {
+            delay: 3000,
+          },
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+          },
+          breakpoints: {
+            1500: {
+              slidesPerView: 2,
+            },
+            1199: {
+              slidesPerView: 2,
+            },
+            991: {
+              slidesPerView: 2,
+            },
+            767: {
+              slidesPerView: 1,
+            },
+            575: {
+              slidesPerView: 1,
+            },
+            0: {
+              slidesPerView: 1,
+            }
+          },
+        });
+      });
+
+      $(document).ready(function () {
+        var swiper = new Swiper(".case-tab-swipers", {
+          slidesPerView: 2.4,
+          spaceBetween: 30,
+          slidesPerGroup: 1,
+          centeredSlides: true,
+          loop: true,
+          autoplay: {
+            delay: 3000,
+          },
+          loopFillGroupWithBlank: true,
+          pagination: {
+            el: ".swiper-paginations",
+            clickable: true,
+          },
+          navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+          },
+          breakpoints: {
+            1500: {
+              slidesPerView: 3,
+            },
+            1199: {
+              slidesPerView: 3,
+            },
+            991: {
+              slidesPerView: 2,
+            },
+            767: {
+              slidesPerView: 1,
+            },
+            575: {
+              slidesPerView: 1,
+            },
+            0: {
+              slidesPerView: 1,
+            }
+          },
+        });
+      });
+      $(document).ready(function () {
+        var swiper = new Swiper(".case-tab-swipers-11", {
+          slidesPerView: 2.4,
+          spaceBetween: 30,
+          slidesPerGroup: 1,
+          centeredSlides: true,
+          loop: true,
+          autoplay: {
+            delay: 3000,
+          },
+          loopFillGroupWithBlank: true,
+          navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+          },
+          breakpoints: {
+            1500: {
+              slidesPerView: 3,
+            },
+            1199: {
+              slidesPerView: 3,
+            },
+            991: {
+              slidesPerView: 2,
+            },
+            767: {
+              slidesPerView: 1,
+            },
+            575: {
+              slidesPerView: 1,
+            },
+            0: {
+              slidesPerView: 1,
+            }
+          },
+        });
+      });
+
+      $(document).ready(function () {
+        var swiper = new Swiper(".swiper-vision", {
+          direction: "horizontal",
+          effect: "slide",
+          parallax: true,
+          speed: 1600,
+          slidesPerView: 1,
+          spaceBetween: 0,
+          slidesPerGroup: 1,
+          centeredSlides: true,
+          loop: true,
+          autoplay: false,
+          keyboard: {
             enabled: true,
-            options: {
-                classes : {
-                    initial : "headroom",
-                    pinned : "is-pinned",
-                    unpinned : "is-unpinned",
-                    top : "is-top",
-                    notTop : "is-not-top",
-                    bottom : "is-bottom",
-                    notBottom : "is-not-bottom",
-                    frozen: "is-frozen",
-                },
-            }
-        },
-        ajax: {
-            enabled: true,
-        },
-        cursorFollower: {
-            enabled: true,
-            disableBreakpoint: '992', // cursor will be disabled on this device width
-        },
-    }
-
-    App.html = document.querySelector('html');
-    App.body = document.querySelector('body');
-    App.SMcontroller = new ScrollMagic.Controller();
-
-    window.onload = function () {
-        customEasingsInit();
-        pageRevealEffects();
-
-        document.fonts.ready.then(function () {
-            initComponents();
-
-            initialReveal(() => {
-                MainSliderReveal.animate();
-                MainSliderReveal2.animate();
-                MainSliderReveal3.animate();
-                MainSliderReveal4.animate();
-                MainSliderReveal5.animate();
-                MainSliderReveal9.animate();
-                MainSliderRevealAll.animate();
-            });
+            onlyInViewport: true
+          },
+          loopFillGroupWithBlank: true,
+          pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+            autoplay: false,
+          },
         });
-    }
+      });
 
+      $(document).ready(function () {
+        var swiper = new Swiper(".swiper-testimonials-1", {
+          slidesPerView: 1,
+          spaceBetween: 0,
+          slidesPerGroup: 1,
+          centeredSlides: true,
+          loop: true,
+          autoplay: {
+            delay: 3000,
+          },
+          loopFillGroupWithBlank: true,
+          pagination: {
+            el: ".swiper-paginations",
+            clickable: true,
+          },
+          navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+          },
+        });
+      });
 
-// Reloads all scripts when navigating through pages
-    function initComponents() {
-        lazyLoading();
-        SectionSlider();
-        Header.init();
+      $(document).ready(function () {
+        var swiper = new Swiper(".swiper-banner-eight", {
+          slidesPerView: 1,
+          spaceBetween: 0,
+          slidesPerGroup: 1,
+          centeredSlides: true,
+          loop: true,
+          autoplay: {
+            delay: 6000,
+          },
+          loopFillGroupWithBlank: true,
+          pagination: {
+            el: ".swiper-paginations",
+            clickable: true,
+          },
+          navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+          },
+        });
+      });
 
-        MainSlider.init();
-        MainSlider2.init();
-        MainSlider3.init();
-        MainSlider4.init();
-        MainSlider5.init();
-        MainSlider9.init();
-        MainSliderAll.init();
-
-        Cursor.init();
-        splitTextIntoLines();
-        parallaxInit();
-        sidebar();
-        searchbar();
-        mobileMenu();
-        Accordion.init();
-        Tabs.init();
-        feather.replace();
-
-        masonryFilterInit();
-        masonryGridInit();
-
-        mapInit();
-        backButton();
-        comingSoon();
-        pinOnScroll();
-        galleryInit();
-        inputCounter();
-
-        Header.headerSticky();
-        PJAX.init();
-        customSelect();
-        someSlider();
-        contactForm();
-
-        //
-        // your custom plugins init here
-        //
-    }
-
-
-    function someSlider() {
-        const slider = document.querySelector('.js-shop-slider .js-slider-slider');
-
-        const sliderInstance = new Swiper(slider, {
-            spaceBetween: 0,
-            speed: 1000,
-            parallax: true,
-            lazy: {
-                loadPrevNext: true,
+      $(document).ready(function () {
+        var swiper = new Swiper(".swiper-banner-nine", {
+          slidesPerView: 1,
+          spaceBetween: 0,
+          slidesPerGroup: 1,
+          centeredSlides: true,
+          loop: true,
+          autoplay: {
+            delay: 7000,
+          },
+          loopFillGroupWithBlank: true,
+          pagination: {
+            el: ".swiper-paginations",
+            clickable: true,
+          },
+          navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+          },
+        });
+      });
+      $(document).ready(function(){
+        var swiper = new Swiper(".mySwiper-bannner-12", {
+          loop:true,
+          speed: 1500,
+          effect: "fade",
+          navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+          },
+        });
+      });
+      $(document).ready(function () {
+        var swiper = new Swiper(".mySwiper-project-13", {
+          slidesPerView: 2.2,
+          spaceBetween: 30,
+          slidesPerGroup: 1,
+          centeredSlides: true,
+          loop: true,
+          speed: 1000,
+          autoplay: {
+            delay: 3000,
+          },
+          loopFillGroupWithBlank: true,
+          navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+          },
+          breakpoints: {
+            1500: {
+              slidesPerView: 2.2,
             },
-            breakpoints: {
-                575: {
-                    parallax: false,
-                },
+            1199: {
+              slidesPerView: 2.2,
             },
-        });
-
-        const sliderPaginationItems = document.querySelectorAll('.js-shop-slider .js-slider-pagination > *');
-
-        sliderInstance.on('slideChangeTransitionStart', function () {
-            sliderPaginationItems[sliderInstance.activeIndex].classList.add('is-active');
-        });
-
-        for (let i = 0; i < sliderPaginationItems.length; i++) {
-            const el = sliderPaginationItems[i];
-
-            el.addEventListener('click', (e) => {
-                sliderInstance.slideTo(i)
-            })
-        }
-    }
-
-    function customSelect() {
-        const target = document.querySelectorAll(".js-selectize");
-        if (!target) return;
-        target.forEach(function(select) {
-            NiceSelect.bind(select);
-        });
-
-        const target2 = document.querySelectorAll(".js-selectize-seachable");
-        if (!target2) return;
-        target2.forEach(function(select) {
-            NiceSelect.bind(select, { searchable: true });
-        });
-    }
-
-    function inputCounter() {
-        const target = document.querySelector('.js-input-counter');
-        if (!target) return;
-
-        const input = target.querySelector('input')
-        var value = input.value;
-
-        target.querySelector('.js-up').addEventListener('click', () => {
-            input.focus();
-            value = parseInt(value) + 1;
-            input.value = value;
-        })
-
-        target.querySelector('.js-down').addEventListener('click', () => {
-            input.focus();
-            value = parseInt(value) - 1;
-            value = value < 0 ? 0 : value;
-            input.value = value;
-        })
-    }
-
-    function galleryInit() {
-        GLightbox({
-            selector: '.js-gallery',
-            touchNavigation: true,
-            loop: false,
-            autoplayVideos: true,
-        });
-    }
-
-    function pinOnScroll() {
-        const target = document.querySelectorAll('.js-pin-container');
-        if (!target) return;
-
-        target.forEach(el => {
-            const sceneDuration = el.offsetHeight;
-            const sceneOffset = el.querySelector('.js-pin-content').offsetHeight + 20;
-
-            const scene = new ScrollMagic.Scene({
-                duration: sceneDuration - sceneOffset,
-                offset: sceneOffset,
-                triggerElement: el,
-                triggerHook: "onEnter",
-            })
-                .setPin(".js-pin-content")
-                .addTo(App.SMcontroller)
-
-            let width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-
-            if (width < 992) {
-                scene.duration('1px');
-                scene.refresh();
-            } else {
-                scene.duration(sceneDuration - sceneOffset);
-                scene.refresh();
-            }
-
-            window.addEventListener('resize', () => {
-                let width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-
-                if (width < 992) {
-                    scene.duration('1px');
-                    scene.refresh();
-                } else {
-                    scene.duration(sceneDuration - sceneOffset);
-                    scene.refresh();
-                }
-            })
-        });
-    }
-
-    function comingSoon() {
-        const target = document.querySelector('.js-soon-timer');
-        if (!target) return;
-
-        var countDownDate = new Date("Jan 5, 2022 15:37:25").getTime();
-
-        var x = setInterval(function() {
-            var now = new Date().getTime();
-
-            var distance = countDownDate - now;
-
-            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            document.querySelector('.js-soon-days').innerHTML = days;
-            document.querySelector('.js-soon-hours').innerHTML = hours;
-            document.querySelector('.js-soon-minutes').innerHTML = minutes;
-            document.querySelector('.js-soon-seconds').innerHTML = seconds;
-
-            if (distance < 0) {
-                clearInterval(x);
-                document.getElementById("demo").innerHTML = "EXPIRED";
-            }
-        }, 1000);
-    }
-
-    function mapInit() {
-        const target = document.querySelector("#map");
-        if (!target) return;
-
-        const map = L.map(target).setView([51.505, -0.09], 13);
-
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
-
-        L.marker([51.5, -0.09]).addTo(map)
-            .openPopup();
-    }
-
-    const MainSlider = (function() {
-        // const slider = document.querySelector('.js-slider');
-        let sliderInstance;
-        let currentIndex = 0;
-
-        function sliderInit() {
-            sliderInstance = new Swiper(document.querySelector('.js-slider'), {
-                spaceBetween: 0,
-                speed: 1000,
-                parallax: true,
-                lazy: {
-                    loadPrevNext: true,
-                },
-                breakpoints: {
-                    575: {
-                        parallax: false,
-                    },
-                },
-            });
-        }
-
-        function numberPagination() {
-            const pagination = document.querySelector('.js-slider .js-pag-numbers');
-            const current = pagination.querySelector('.js-current');
-            const all = pagination.querySelector('.js-all');
-
-            current.innerHTML = '01';
-            all.innerHTML = '0' + sliderInstance.slides.length;
-
-            sliderInstance.on('slideChangeTransitionStart', function () {
-                current.innerHTML = `0${sliderInstance.activeIndex + 1}`;
-            });
-        }
-
-        function pagination() {
-            const pagination = document.querySelector('.js-slider .js-pag');
-            const items = pagination.querySelectorAll('.js-pag-item');
-
-            sliderInstance.on('slideChangeTransitionStart', function () {
-                pagination.querySelector('.is-active').classList.remove('is-active');
-                items[sliderInstance.activeIndex].classList.add('is-active');
-            });
-
-            for (let i = 0; i < items.length; i++) {
-                const el = items[i];
-
-                el.addEventListener('click', (e) => {
-                    sliderInstance.slideTo(i)
-                })
-            }
-        }
-
-        function sliderEvents() {
-            sliderInstance.on('slideChangeTransitionEnd', function () {
-                hideContent(sliderInstance.slides[currentIndex]);
-                showContent(sliderInstance.slides[sliderInstance.activeIndex]);
-                currentIndex = sliderInstance.activeIndex;
-            });
-        }
-
-        function hideContent(slide) {
-            const lines = slide.querySelectorAll('.js-title .split__line')
-            const button = slide.querySelector('.js-button')
-
-            gsap.timeline()
-                .set(lines, {
-                    y: '100%',
-                })
-                .set(button, {
-                    opacity: 0,
-                });
-        }
-
-        function showContent(slide) {
-            const lines = slide.querySelectorAll('.js-title .split__line')
-            const button = slide.querySelector('.js-button')
-
-            gsap.timeline()
-                .to(lines, {
-                    stagger: 0.1,
-                    duration: 0.9,
-                    ease: 'power3.out',
-                    y: '0%',
-                })
-                .to(button, {
-                    opacity: 1,
-                    duration: 0.6,
-                    ease: 'power3.out',
-                }, ">-0.3");
-        }
-
-        function init() {
-            if (!document.querySelector('.js-slider')) return;
-            sliderInit();
-            sliderEvents();
-            pagination();
-            numberPagination();
-        }
-
-        return {
-            init: init,
-        }
-    })();
-
-    const MainSliderReveal = (function() {
-        let slider;
-        let content;
-        let title;
-        let titleLines;
-        let button;
-        let paginationNumbers;
-        let socials;
-        let pagination;
-        let scroll;
-        let header;
-        let headerBar;
-        let headerItems;
-
-        function initVars() {
-            slider = document.querySelector('.js-slider');
-            content = slider.querySelector('.js-content');
-            title = content.querySelector('.js-title');
-            titleLines = content.querySelectorAll('.js-title-wrap .split__line');
-            button = content.querySelector('.js-button');
-            paginationNumbers = document.querySelector('.js-pag-numbers');
-            socials = document.querySelector('.js-socials');
-            pagination = document.querySelector('.js-pag');
-            scroll = document.querySelector('.js-scroll');
-            header = document.querySelector('.js-header');
-            headerBar = document.querySelector('.js-header-bar');
-            headerItems = document.querySelectorAll('.js-header .js-header-item');
-        }
-
-        function prepareAnimation() {
-            if (!document.querySelector('.js-slider')) {
-                return;
-            }
-
-            initVars();
-
-            gsap.set(headerBar, {
-                opacity: 0,
-                y: '34px',
-            })
-
-            gsap.set([button, paginationNumbers, socials, pagination, scroll], {
-                opacity: 0,
-                y: '34px',
-            })
-        }
-
-        function animate() {
-            if (!document.querySelector('.js-slider')) {
-                return;
-            }
-
-            gsap.timeline()
-                .to(headerBar, {
-                    duration: 0.7,
-                    ease: 'power2.out',
-                    y: '0%',
-                    opacity: 1,
-                })
-                .to(titleLines, {
-                    stagger: 0.08,
-                    duration: 0.85,
-                    ease: 'power2.out',
-                    y: '0%',
-                }, '>-0.5')
-                .to(button, {
-                    delay: 0.4,
-                    duration: 1,
-                    ease: 'power3.out',
-                    opacity: 1,
-                    y: '0%',
-                }, '>-0.8')
-                .to([paginationNumbers, socials, pagination, scroll], {
-                    stagger: 0.1,
-                    delay: 0.4,
-                    duration: 1,
-                    ease: 'power3.out',
-                    opacity: 1,
-                    y: '0px',
-                }, '>-1.0');
-        }
-
-        return {
-            prepareAnimation: prepareAnimation,
-            animate: animate,
-        }
-    })();
-
-    const MainSlider2 = (function() {
-        let sliderInstance;
-        let currentIndex = 0;
-
-        function sliderInit() {
-            const slider = document.querySelector('.js-mainSlider-type-2');
-            if (!slider) return;
-
-            sliderInstance = new Swiper(slider, {
-                spaceBetween: 0,
-                speed: 1000,
-                parallax: true,
-                lazy: {
-                    loadPrevNext: true,
-                },
-                breakpoints: {
-                    575: {
-                        parallax: false,
-                    },
-                },
-                navigation: {
-                    prevEl: slider.querySelector('.js-nav-prev'),
-                    nextEl: slider.querySelector('.js-nav-next'),
-                },
-                pagination: {
-                    el: slider.querySelector('.js-pagination'),
-                    bulletClass: 'pagination__item',
-                    bulletActiveClass: 'is-active',
-                    bulletElement: 'div',
-                    clickable: true
-                },
-            });
-
-            const pagination = slider.querySelectorAll('.js-pagination > div')
-
-            for (let i = 1; i < pagination.length + 1; i++) {
-                pagination[i - 1].innerHTML = '0' + i;
-            }
-        }
-
-        function sliderEvents() {
-            sliderInstance.on('slideChangeTransitionEnd', function () {
-                hideContent(sliderInstance.slides[currentIndex]);
-                showContent(sliderInstance.slides[sliderInstance.activeIndex]);
-                currentIndex = sliderInstance.activeIndex;
-            });
-        }
-
-        function hideContent(slide) {
-            const lines = slide.querySelectorAll('.js-title .split__line')
-            const text = slide.querySelector('.js-text')
-            const button = slide.querySelector('.js-button')
-
-            gsap.timeline()
-                .set(lines, {
-                    y: '100%',
-                })
-                .set(text, {
-                    opacity: 0,
-                    y: '30px',
-                })
-                .set(button, {
-                    opacity: 0,
-                    y: '30px',
-                });
-        }
-
-        function showContent(slide) {
-            const lines = slide.querySelectorAll('.js-title .split__line')
-            const text = slide.querySelector('.js-text')
-            const button = slide.querySelector('.js-button')
-
-            gsap.timeline()
-                .to(lines, {
-                    stagger: 0.1,
-                    duration: 0.9,
-                    ease: 'power3.out',
-                    y: '0%',
-                })
-                .to(text, {
-                    duration: 0.6,
-                    ease: 'power3.out',
-                    opacity: 1,
-                    y: '0%',
-                }, ">-0.4")
-                .to(button, {
-                    duration: 0.6,
-                    ease: 'power3.out',
-                    opacity: 1,
-                    y: '0%',
-                }, ">-0.4");
-        }
-
-        function hideSlides() {
-            const slider = document.querySelector('.js-mainSlider-type-2');
-            if (!slider) return;
-            const lines = slider.querySelectorAll('.js-title .split__line')
-            const text = slider.querySelectorAll('.js-text')
-            const button = slider.querySelectorAll('.js-button')
-
-            gsap.timeline()
-                .set(lines, {
-                    y: '100%',
-                })
-                .set(text, {
-                    opacity: 0,
-                    y: '30px',
-                })
-                .set(button, {
-                    opacity: 0,
-                    y: '30px',
-                });
-        }
-
-        function init() {
-            const slider = document.querySelector('.js-mainSlider-type-2');
-            if (!slider) return;
-            sliderInit();
-            hideSlides();
-            sliderEvents();
-        }
-
-        return {
-            init: init,
-        }
-    })();
-
-    const MainSliderReveal2 = (function() {
-        let slider;
-        let content;
-        let title;
-        let text;
-        let titleLines;
-        let button;
-        let paginationNumbers;
-        let socials;
-        let pagination;
-        let scroll;
-        let header;
-        let headerBar;
-        let headerItems;
-
-        function initVars() {
-            slider = document.querySelector('.js-mainSlider-type-2');
-            content = slider.querySelector('.js-content');
-            title = content.querySelector('.js-title');
-            titleLines = content.querySelectorAll('.js-title-wrap .split__line');
-            text = content.querySelector('.js-text');
-            button = content.querySelector('.js-button');
-            paginationNumbers = document.querySelector('.js-pag-numbers');
-            socials = document.querySelector('.js-socials');
-            pagination = document.querySelector('.js-pag');
-            scroll = document.querySelector('.js-scroll');
-            header = document.querySelector('.js-header');
-            headerBar = document.querySelector('.js-header-bar');
-            headerItems = document.querySelectorAll('.js-header .js-header-item');
-        }
-
-        function prepareAnimation() {
-            if (!document.querySelector('.js-mainSlider-type-2')) {
-                return;
-            }
-
-            initVars();
-
-            gsap.set(headerBar, {
-                opacity: 0,
-                y: '34px',
-            })
-
-            gsap.set([text, button, paginationNumbers, socials, pagination, scroll], {
-                opacity: 0,
-                y: '34px',
-            })
-        }
-
-        function animate() {
-            if (!document.querySelector('.js-mainSlider-type-2')) {
-                return;
-            }
-
-            gsap.timeline()
-                .to(headerBar, {
-                    duration: 0.7,
-                    ease: 'power2.out',
-                    y: '0%',
-                    opacity: 1,
-                })
-                .to(titleLines, {
-                    stagger: 0.08,
-                    duration: 0.85,
-                    ease: 'power2.out',
-                    y: '0%',
-                }, '>-0.5')
-                .to(text, {
-                    delay: 0.4,
-                    duration: 1,
-                    ease: 'power3.out',
-                    opacity: 1,
-                    y: '0%',
-                }, '>-1.0')
-                .to(button, {
-                    delay: 0.4,
-                    duration: 1,
-                    ease: 'power3.out',
-                    opacity: 1,
-                    y: '0%',
-                }, '>-0.8')
-
-        }
-
-        return {
-            prepareAnimation: prepareAnimation,
-            animate: animate,
-        }
-    })();
-
-    const MainSlider3 = (function() {
-        let sliderInstance;
-        let currentIndex = 0;
-
-        function sliderInit() {
-            const slider = document.querySelector('.js-mainSlider-type-3');
-            if (!slider) return;
-
-            sliderInstance = new Swiper(slider, {
-                spaceBetween: 0,
-                speed: 1000,
-                parallax: true,
-                lazy: {
-                    loadPrevNext: true,
-                },
-                breakpoints: {
-                    575: {
-                        parallax: false,
-                    },
-                },
-                navigation: {
-                    prevEl: slider.querySelector('.js-nav-prev'),
-                    nextEl: slider.querySelector('.js-nav-next'),
-                },
-                pagination: {
-                    el: slider.querySelector('.js-pagination'),
-                    bulletClass: 'pagination__item',
-                    bulletActiveClass: 'is-active',
-                    bulletElement: 'div',
-                    clickable: true
-                },
-            });
-        }
-
-        function sliderEvents() {
-            sliderInstance.on('slideChangeTransitionEnd', function () {
-                hideContent(sliderInstance.slides[currentIndex]);
-                showContent(sliderInstance.slides[sliderInstance.activeIndex]);
-                currentIndex = sliderInstance.activeIndex;
-            });
-        }
-
-        function hideContent(slide) {
-            const lines = slide.querySelectorAll('.js-title .split__line')
-            const text = slide.querySelector('.js-text')
-            const button = slide.querySelector('.js-button')
-
-            gsap.timeline()
-                .set(lines, {
-                    y: '100%',
-                })
-                .set(text, {
-                    opacity: 0,
-                    y: '30px',
-                })
-                .set(button, {
-                    opacity: 0,
-                    y: '30px',
-                });
-        }
-
-        function showContent(slide) {
-            const lines = slide.querySelectorAll('.js-title .split__line')
-            const text = slide.querySelector('.js-text')
-            const button = slide.querySelector('.js-button')
-
-            gsap.timeline()
-                .to(lines, {
-                    stagger: 0.1,
-                    duration: 0.9,
-                    ease: 'power3.out',
-                    y: '0%',
-                })
-                .to(button, {
-                    duration: 0.6,
-                    ease: 'power3.out',
-                    opacity: 1,
-                    y: '0%',
-                }, ">-0.4");
-        }
-
-        function hideSlides() {
-            const slider = document.querySelector('.js-mainSlider-type-3');
-            if (!slider) return;
-            const lines = slider.querySelectorAll('.js-title .split__line')
-            const text = slider.querySelectorAll('.js-text')
-            const button = slider.querySelectorAll('.js-button')
-
-            gsap.timeline()
-                .set(lines, {
-                    y: '100%',
-                })
-                .set(button, {
-                    opacity: 0,
-                    y: '30px',
-                });
-        }
-
-        function init() {
-            const target = document.querySelector('.js-mainSlider-type-3');
-            if (!target) return;
-            sliderInit();
-            hideSlides();
-            sliderEvents();
-        }
-
-        return {
-            init: init,
-        }
-    })();
-
-    const MainSliderReveal3 = (function() {
-        let slider;
-        let content;
-        let title;
-        let titleLines;
-        let button;
-        let header;
-        let headerBar;
-        let headerItems;
-
-        function initVars() {
-            slider = document.querySelector('.js-mainSlider-type-3');
-            content = slider.querySelector('.js-content');
-            title = content.querySelector('.js-title');
-            titleLines = content.querySelectorAll('.js-title-wrap .split__line');
-            button = content.querySelector('.js-button');
-            header = document.querySelector('.js-header');
-            headerBar = document.querySelector('.js-header-bar');
-            headerItems = document.querySelectorAll('.js-header .js-header-item');
-        }
-
-        function prepareAnimation() {
-            if (!document.querySelector('.js-mainSlider-type-3')) {
-                return;
-            }
-
-            initVars();
-
-            gsap.set(headerBar, {
-                opacity: 0,
-                y: '34px',
-            })
-
-            gsap.set(button, {
-                opacity: 0,
-                y: '34px',
-            })
-        }
-
-        function animate() {
-            if (!document.querySelector('.js-mainSlider-type-3')) {
-                return;
-            }
-
-            gsap.timeline()
-                .to(headerBar, {
-                    duration: 0.7,
-                    ease: 'power2.out',
-                    y: '0%',
-                    opacity: 1,
-                })
-                .to(titleLines, {
-                    stagger: 0.08,
-                    duration: 0.85,
-                    ease: 'power2.out',
-                    y: '0%',
-                }, '>-0.5')
-                .to(button, {
-                    delay: 0.4,
-                    duration: 1,
-                    ease: 'power3.out',
-                    opacity: 1,
-                    y: '0%',
-                }, '>-0.8')
-        }
-
-        return {
-            prepareAnimation: prepareAnimation,
-            animate: animate,
-        }
-    })();
-
-    const MainSlider4 = (function() {
-        let sliderInstance;
-        let currentIndex = 0;
-
-        function sliderInit() {
-            sliderInstance = new Swiper(document.querySelector('.js-mainSlider-type-4'), {
-                spaceBetween: 0,
-                speed: 1000,
-                parallax: true,
-                lazy: {
-                    loadPrevNext: true,
-                },
-                breakpoints: {
-                    575: {
-                        parallax: false,
-                    },
-                },
-                navigation: {
-                    prevEl: document.querySelector('.js-mainSlider-type-4 .js-nav-prev'),
-                    nextEl: document.querySelector('.js-mainSlider-type-4 .js-nav-next'),
-                },
-                pagination: {
-                    el: document.querySelector('.js-mainSlider-type-4 .js-pagination'),
-                    bulletClass: 'pagination__item',
-                    bulletActiveClass: 'is-active',
-                    bulletElement: 'div',
-                    clickable: true
-                },
-            });
-        }
-
-        function sliderEvents() {
-            sliderInstance.on('slideChangeTransitionEnd', function () {
-                hideContent(sliderInstance.slides[currentIndex]);
-                showContent(sliderInstance.slides[sliderInstance.activeIndex]);
-                currentIndex = sliderInstance.activeIndex;
-            });
-        }
-
-        function hideContent(slide) {
-            const lines = slide.querySelectorAll('.js-title .split__line')
-            const text = slide.querySelector('.js-text')
-            const button = slide.querySelector('.js-button')
-
-            gsap.timeline()
-                .set(lines, {
-                    y: '100%',
-                })
-                .set(text, {
-                    opacity: 0,
-                    y: '30px',
-                })
-                .set(button, {
-                    opacity: 0,
-                    y: '30px',
-                });
-        }
-
-        function showContent(slide) {
-            const lines = slide.querySelectorAll('.js-title .split__line')
-            const text = slide.querySelector('.js-text')
-            const button = slide.querySelector('.js-button')
-
-            gsap.timeline()
-                .to(lines, {
-                    stagger: 0.1,
-                    duration: 0.9,
-                    ease: 'power3.out',
-                    y: '0%',
-                })
-                .to(text, {
-                    duration: 0.6,
-                    ease: 'power3.out',
-                    opacity: 1,
-                    y: '0%',
-                }, ">-0.4")
-                .to(button, {
-                    duration: 0.6,
-                    ease: 'power3.out',
-                    opacity: 1,
-                    y: '0%',
-                }, ">-0.4");
-        }
-
-        function hideSlides() {
-            const lines = document.querySelectorAll('.js-mainSlider-type-4 .js-title .split__line')
-            const text = document.querySelectorAll('.js-mainSlider-type-4 .js-text')
-            const button = document.querySelectorAll('.js-mainSlider-type-4 .js-button')
-
-            gsap.timeline()
-                .set(lines, {
-                    y: '100%',
-                })
-                .set(text, {
-                    opacity: 0,
-                    y: '30px',
-                })
-                .set(button, {
-                    opacity: 0,
-                    y: '30px',
-                });
-        }
-
-        function pagination() {
-            const pagination = document.querySelector('.js-mainSlider-type-4 .js-navigation');
-            const items = pagination.querySelectorAll('.js-navigation-item');
-
-            sliderInstance.on('slideChangeTransitionStart', function () {
-                pagination.querySelector('.is-active').classList.remove('is-active');
-                items[sliderInstance.activeIndex].classList.add('is-active');
-            });
-
-            for (let i = 0; i < items.length; i++) {
-                const el = items[i];
-
-                el.addEventListener('click', (e) => {
-                    sliderInstance.slideTo(i)
-                })
-            }
-        }
-
-        function init() {
-            if (!document.querySelector('.js-mainSlider-type-4')) return;
-            sliderInit();
-            pagination();
-            hideSlides();
-            sliderEvents();
-        }
-
-        return {
-            init: init,
-        }
-    })();
-
-    const MainSliderReveal4 = (function() {
-        let slider;
-        let content;
-        let title;
-        let titleLines;
-        let text;
-        let button;
-        let header;
-        let headerBar;
-        let headerItems;
-
-        function initVars() {
-            slider = document.querySelector('.js-mainSlider-type-4');
-            content = slider.querySelector('.js-content');
-            title = content.querySelector('.js-title');
-            titleLines = content.querySelectorAll('.js-title-wrap .split__line');
-            text = content.querySelector('.js-text');
-            button = content.querySelector('.js-button');
-            header = document.querySelector('.js-header');
-            headerBar = document.querySelector('.js-header-bar');
-            headerItems = document.querySelectorAll('.js-header .js-header-item');
-        }
-
-        function prepareAnimation() {
-            if (!document.querySelector('.js-mainSlider-type-4')) {
-                return;
-            }
-
-            initVars();
-
-            gsap.set(headerBar, {
-                opacity: 0,
-                y: '34px',
-            })
-
-            gsap.set(text, {
-                opacity: 0,
-                y: '34px',
-            })
-
-            gsap.set(button, {
-                opacity: 0,
-                y: '34px',
-            })
-        }
-
-        function animate() {
-            if (!document.querySelector('.js-mainSlider-type-4')) {
-                return;
-            }
-
-            gsap.timeline()
-                .to(headerBar, {
-                    duration: 0.7,
-                    ease: 'power2.out',
-                    y: '0%',
-                    opacity: 1,
-                })
-                .to(titleLines, {
-                    stagger: 0.08,
-                    duration: 0.85,
-                    ease: 'power2.out',
-                    y: '0%',
-                }, '>-0.5')
-                .to(text, {
-                    delay: 0.4,
-                    duration: 1,
-                    ease: 'power3.out',
-                    opacity: 1,
-                    y: '0%',
-                }, '>-0.9')
-                .to(button, {
-                    duration: 1,
-                    ease: 'power3.out',
-                    opacity: 1,
-                    y: '0%',
-                }, '>-0.8')
-        }
-
-        return {
-            prepareAnimation: prepareAnimation,
-            animate: animate,
-        }
-    })();
-
-    const MainSlider5 = (function() {
-        let sliderInstance;
-        let currentIndex = 0;
-
-        function sliderInit() {
-            sliderInstance = new Swiper(document.querySelector('.js-mainSlider-type-5'), {
-                spaceBetween: 0,
-                speed: 1000,
-                parallax: true,
-                lazy: {
-                    loadPrevNext: true,
-                },
-                breakpoints: {
-                    575: {
-                        parallax: false,
-                    },
-                },
-                navigation: {
-                    prevEl: document.querySelector('.js-mainSlider-type-5 .js-nav-prev'),
-                    nextEl: document.querySelector('.js-mainSlider-type-5 .js-nav-next'),
-                },
-                pagination: {
-                    el: document.querySelector('.js-mainSlider-type-5 .js-pagination'),
-                    bulletClass: 'pagination__item',
-                    bulletActiveClass: 'is-active',
-                    bulletElement: 'div',
-                    clickable: true
-                },
-            });
-        }
-
-        function sliderEvents() {
-            sliderInstance.on('slideChangeTransitionEnd', function () {
-                hideContent(sliderInstance.slides[currentIndex]);
-                showContent(sliderInstance.slides[sliderInstance.activeIndex]);
-                currentIndex = sliderInstance.activeIndex;
-            });
-        }
-
-        function hideContent(slide) {
-            const lines = slide.querySelectorAll('.js-title .split__line')
-            const text = slide.querySelector('.js-text')
-            const button = slide.querySelector('.js-button')
-
-            gsap.timeline()
-                .set(lines, {
-                    y: '100%',
-                })
-                .set(text, {
-                    opacity: 0,
-                    y: '30px',
-                })
-                .set(button, {
-                    opacity: 0,
-                    y: '30px',
-                });
-        }
-
-        function showContent(slide) {
-            const lines = slide.querySelectorAll('.js-title .split__line')
-            const text = slide.querySelector('.js-text')
-            const button = slide.querySelector('.js-button')
-
-            gsap.timeline()
-                .to(lines, {
-                    stagger: 0.1,
-                    duration: 0.9,
-                    ease: 'power3.out',
-                    y: '0%',
-                })
-                .to(text, {
-                    duration: 0.6,
-                    ease: 'power3.out',
-                    opacity: 1,
-                    y: '0%',
-                }, ">-0.4")
-                .to(button, {
-                    duration: 0.6,
-                    ease: 'power3.out',
-                    opacity: 1,
-                    y: '0%',
-                }, ">-0.4");
-        }
-
-        function hideSlides() {
-            const lines = document.querySelectorAll('.js-mainSlider-type-5 .js-title .split__line')
-            const text = document.querySelectorAll('.js-mainSlider-type-5 .js-text')
-            const button = document.querySelectorAll('.js-mainSlider-type-5 .js-button')
-
-            gsap.timeline()
-                .set(lines, {
-                    y: '100%',
-                })
-                .set(text, {
-                    opacity: 0,
-                    y: '30px',
-                })
-                .set(button, {
-                    opacity: 0,
-                    y: '30px',
-                });
-        }
-
-        function init() {
-            if (!document.querySelector('.js-mainSlider-type-5')) return;
-            sliderInit();
-            hideSlides();
-            sliderEvents();
-        }
-
-        return {
-            init: init,
-        }
-    })();
-
-    const MainSliderReveal5 = (function() {
-        let slider;
-        let content;
-        let title;
-        let titleLines;
-        let text;
-        let button;
-        let header;
-        let headerBar;
-        let headerItems;
-
-        function initVars() {
-            slider = document.querySelector('.js-mainSlider-type-5');
-            content = document.querySelector('.js-mainSlider-type-5 .js-content');
-            title = content.querySelector('.js-title');
-            titleLines = content.querySelectorAll('.js-title-wrap .split__line');
-            text = content.querySelector('.js-text');
-            button = content.querySelector('.js-button');
-            header = document.querySelector('.js-header');
-            headerBar = document.querySelector('.js-header-bar');
-            headerItems = document.querySelectorAll('.js-header .js-header-item');
-        }
-
-        function prepareAnimation() {
-            if (!document.querySelector('.js-mainSlider-type-5')) {
-                return;
-            }
-
-            initVars();
-
-            gsap.set(headerBar, {
-                opacity: 0,
-                y: '34px',
-            })
-
-            gsap.set(text, {
-                opacity: 0,
-                y: '34px',
-            })
-
-            gsap.set(button, {
-                opacity: 0,
-                y: '34px',
-            })
-        }
-
-        function animate() {
-            if (!document.querySelector('.js-mainSlider-type-5')) {
-                return;
-            }
-
-            gsap.timeline()
-                .to(headerBar, {
-                    duration: 0.7,
-                    ease: 'power2.out',
-                    y: '0%',
-                    opacity: 1,
-                })
-                .to(titleLines, {
-                    stagger: 0.08,
-                    duration: 0.85,
-                    ease: 'power2.out',
-                    y: '0%',
-                }, '>-0.5')
-                .to(text, {
-                    delay: 0.4,
-                    duration: 1,
-                    ease: 'power3.out',
-                    opacity: 1,
-                    y: '0%',
-                }, '>-0.9')
-                .to(button, {
-                    duration: 1,
-                    ease: 'power3.out',
-                    opacity: 1,
-                    y: '0%',
-                }, '>-0.8')
-        }
-
-        return {
-            prepareAnimation: prepareAnimation,
-            animate: animate,
-        }
-    })();
-
-    const MainSlider9 = (function() {
-        let sliderInstance;
-        let currentIndex = 0;
-
-        function sliderInit() {
-            sliderInstance = new Swiper(document.querySelector('.js-mainSlider-type-9'), {
-                spaceBetween: 0,
-                speed: 1000,
-                parallax: true,
-                direction: 'vertical',
-                mousewheel: true,
-                lazy: {
-                    loadPrevNext: true,
-                },
-                breakpoints: {
-                    575: {
-                        parallax: false,
-                    },
-                },
-                navigation: {
-                    prevEl: document.querySelector('.js-mainSlider-type-9 .js-nav-prev'),
-                    nextEl: document.querySelector('.js-mainSlider-type-9 .js-nav-next'),
-                },
-                pagination: {
-                    el: document.querySelector('.js-mainSlider-type-9 .js-pagination'),
-                    type: 'progressbar',
-                    clickable: true
-                },
-            });
-        }
-
-        function sliderEvents() {
-            sliderInstance.on('slideChangeTransitionEnd', function () {
-                hideContent(sliderInstance.slides[currentIndex]);
-                showContent(sliderInstance.slides[sliderInstance.activeIndex]);
-                currentIndex = sliderInstance.activeIndex;
-            });
-        }
-
-        function hideContent(slide) {
-            const lines = slide.querySelectorAll('.js-title .split__line')
-            const text = slide.querySelector('.js-text')
-            const button = slide.querySelector('.js-button')
-
-            gsap.timeline()
-                .set(lines, {
-                    y: '100%',
-                })
-                .set(text, {
-                    opacity: 0,
-                    y: '30px',
-                })
-                .set(button, {
-                    opacity: 0,
-                    y: '30px',
-                });
-        }
-
-        function showContent(slide) {
-            const lines = slide.querySelectorAll('.js-title .split__line')
-            const text = slide.querySelector('.js-text')
-            const button = slide.querySelector('.js-button')
-
-            gsap.timeline()
-                .to(lines, {
-                    stagger: 0.1,
-                    duration: 0.9,
-                    ease: 'power3.out',
-                    y: '0%',
-                })
-                .to(text, {
-                    duration: 0.6,
-                    ease: 'power3.out',
-                    opacity: 1,
-                    y: '0%',
-                }, ">-0.4")
-                .to(button, {
-                    duration: 0.6,
-                    ease: 'power3.out',
-                    opacity: 1,
-                    y: '0%',
-                }, ">-0.4");
-        }
-
-        function hideSlides() {
-            const lines = document.querySelectorAll('.js-mainSlider-type-9 .js-title .split__line')
-            const text = document.querySelectorAll('.js-mainSlider-type-9 .js-text')
-            const button = document.querySelectorAll('.js-mainSlider-type-9 .js-button')
-
-            gsap.timeline()
-                .set(lines, {
-                    y: '100%',
-                })
-                .set(text, {
-                    opacity: 0,
-                    y: '30px',
-                })
-                .set(button, {
-                    opacity: 0,
-                    y: '30px',
-                });
-        }
-
-        function init() {
-            if (!document.querySelector('.js-mainSlider-type-9')) return;
-            sliderInit();
-            hideSlides();
-            sliderEvents();
-        }
-
-        return {
-            init: init,
-        }
-    })();
-
-    const MainSliderReveal9 = (function() {
-        let slider;
-        let items;
-        let headerBar;
-        let headerItems;
-
-        function initVars() {
-            slider = document.querySelector('.js-mainSlider-type-9');
-            items = document.querySelectorAll('.js-mainSlider-type-9 .js-all-item');
-            headerItems = document.querySelectorAll('.js-header .js-header-item');
-        }
-
-        function prepareAnimation() {
-            if (!document.querySelector('.js-mainSlider-type-9')) {
-                return;
-            }
-
-            initVars();
-
-            gsap.set([headerItems, items], {
-                opacity: 0,
-                y: '34px',
-            })
-        }
-
-        function animate() {
-            if (!document.querySelector('.js-mainSlider-type-9')) {
-                return;
-            }
-
-            gsap.timeline()
-                .to(headerItems, {
-                    duration: 0.8,
-                    ease: 'power3.out',
-                    y: '0%',
-                    opacity: 1,
-                })
-                .to(items, {
-                    duration: 0.8,
-                    stagger: 0.08,
-                    ease: 'power3.out',
-                    y: '0%',
-                    opacity: 1,
-                }, '>-0.2')
-        }
-
-        return {
-            prepareAnimation: prepareAnimation,
-            animate: animate,
-        }
-    })();
-
-    const MainSliderAll = (function() {
-        let sliderInstance;
-        let currentIndex = 0;
-
-        function sliderInit() {
-            sliderInstance = new Swiper(document.querySelector('.js-mainSlider-type-all'), {
-                spaceBetween: 0,
-                speed: 1000,
-                parallax: true,
-                // direction: 'vertical',
-                lazy: {
-                    loadPrevNext: true,
-                },
-                breakpoints: {
-                    575: {
-                        parallax: false,
-                    },
-                },
-                navigation: {
-                    prevEl: document.querySelector('.js-mainSlider-type-all .js-nav-prev'),
-                    nextEl: document.querySelector('.js-mainSlider-type-all .js-nav-next'),
-                },
-                pagination: {
-                    el: document.querySelector('.js-mainSlider-type-all .js-pagination'),
-                    bulletClass: 'pagination__item',
-                    bulletActiveClass: 'is-active',
-                    bulletElement: 'div',
-                    clickable: true
-                },
-            });
-        }
-
-        function sliderEvents() {
-            sliderInstance.on('slideChangeTransitionEnd', function () {
-                hideContent(sliderInstance.slides[currentIndex]);
-                showContent(sliderInstance.slides[sliderInstance.activeIndex]);
-                currentIndex = sliderInstance.activeIndex;
-            });
-        }
-
-        function hideContent(slide) {
-            const lines = slide.querySelectorAll('.js-title .split__line')
-            const text = slide.querySelector('.js-text')
-            const button = slide.querySelector('.js-button')
-
-            gsap.timeline()
-                .set(lines, {
-                    y: '100%',
-                })
-                .set(text, {
-                    opacity: 0,
-                    y: '30px',
-                })
-                .set(button, {
-                    opacity: 0,
-                    y: '30px',
-                });
-        }
-
-        function showContent(slide) {
-            const lines = slide.querySelectorAll('.js-title .split__line')
-            const text = slide.querySelector('.js-text')
-            const button = slide.querySelector('.js-button')
-
-            gsap.timeline()
-                .to(lines, {
-                    stagger: 0.1,
-                    duration: 0.9,
-                    ease: 'power3.out',
-                    y: '0%',
-                })
-                .to(text, {
-                    duration: 0.6,
-                    ease: 'power3.out',
-                    opacity: 1,
-                    y: '0%',
-                }, ">-0.4")
-                .to(button, {
-                    duration: 0.6,
-                    ease: 'power3.out',
-                    opacity: 1,
-                    y: '0%',
-                }, ">-0.4");
-        }
-
-        function hideSlides() {
-            const lines = document.querySelectorAll('.js-mainSlider-type-all .js-title .split__line')
-            const text = document.querySelectorAll('.js-mainSlider-type-all .js-text')
-            const button = document.querySelectorAll('.js-mainSlider-type-all .js-button')
-
-            gsap.timeline()
-                .set(lines, {
-                    y: '100%',
-                })
-                .set(text, {
-                    opacity: 0,
-                    y: '30px',
-                })
-                .set(button, {
-                    opacity: 0,
-                    y: '30px',
-                });
-        }
-
-        function init() {
-            if (!document.querySelector('.js-mainSlider-type-all')) return;
-            sliderInit();
-            hideSlides();
-            sliderEvents();
-        }
-
-        return {
-            init: init,
-        }
-    })();
-
-    const MainSliderRevealAll = (function() {
-        let slider;
-        let items;
-        let headerBar;
-        let headerItems;
-
-        function initVars() {
-            slider = document.querySelector('.js-mainSlider-type-all');
-            items = document.querySelectorAll('.js-mainSlider-type-all .js-all-item');
-            headerItems = document.querySelectorAll('.js-header .js-header-item');
-        }
-
-        function prepareAnimation() {
-            if (!document.querySelector('.js-mainSlider-type-all')) {
-                return;
-            }
-
-            initVars();
-
-            gsap.set([headerItems, items], {
-                opacity: 0,
-                y: '34px',
-            })
-        }
-
-        function animate() {
-            if (!document.querySelector('.js-mainSlider-type-all')) {
-                return;
-            }
-
-            gsap.timeline()
-                .to(headerItems, {
-                    duration: 0.8,
-                    ease: 'power3.out',
-                    y: '0%',
-                    opacity: 1,
-                })
-                .to(items, {
-                    duration: 0.8,
-                    stagger: 0.08,
-                    ease: 'power3.out',
-                    y: '0%',
-                    opacity: 1,
-                }, '>-0.2')
-        }
-
-        return {
-            prepareAnimation: prepareAnimation,
-            animate: animate,
-        }
-    })();
-
-
-    const Accordion = (function() {
-        function init() {
-            const targets = document.querySelectorAll(".js-accordion");
-
-            if (!targets) return;
-
-            for (let i = 0; i < targets.length; i++) {
-                const items = targets[i].querySelectorAll('.accordion__item');
-
-                for (let l = 0; l < items.length; l++) {
-                    items[l].addEventListener("click", (e) => {
-                        items[l].classList.toggle('is-active');
-                        const content = items[l].querySelector('.accordion__content');
-
-                        if (content.style.maxHeight) {
-                            content.style.maxHeight = null;
-                        } else {
-                            content.style.maxHeight = content.scrollHeight + "px";
-                        }
-                    });
-                }
-            }
-        }
-
-        return {
-            init: init,
-        }
-    })();
-    const Tabs = (function() {
-        function init() {
-            const targets = document.querySelectorAll(".js-tabs");
-            if (!targets) return;
-
-            targets.forEach(el => {
-                singleTab(el)
-            })
-        }
-
-        function singleTab(target) {
-            const controls = target.querySelector('.js-tabs-controls');
-            const controlsItems = target.querySelectorAll('.js-tabs-controls .tabs__button');
-            const content = target.querySelector('.js-tabs-content');
-
-            for (let l = 0; l < controlsItems.length; l++) {
-                const el = controlsItems[l];
-
-                el.addEventListener("click", (e) => {
-                    const selector = el.getAttribute('data-tab-target');
-
-                    controls.querySelector('.is-active').classList.remove('is-active')
-                    content.querySelector('.is-active').classList.remove('is-active')
-
-                    el.classList.add('is-active')
-                    content.querySelector(selector).classList.add('is-active')
-                });
-            }
-        }
-
-        return {
-            init: init,
-        }
-    })();
-
-    /*--------------------------------------------------
-        09. Contact form
-    ---------------------------------------------------*/
-
-    function contactForm() {
-
-        const form = document.querySelector(".js-ajax-form");
-
-        if (!form) {
-            return;
-        }
-
-        const formAlert = form.querySelector('.js-ajax-form-alert');
-
-        form.addEventListener("submit", (e) => {
-            e.preventDefault();
-
-            let validForm = true;
-            let formData = {};
-            formAlert.classList.remove('is-active');
-            formAlert.classList.remove('is-success');
-            formAlert.classList.remove('is-error');
-            const inputGroups = form.querySelectorAll('.js-input-group');
-
-
-            form.querySelectorAll('.form__error').forEach(el => {
-                el.innerHTML = '';
-                el.classList.remove('is-active');
-            });
-            form.querySelectorAll('.-error').forEach(el => {
-                el.classList.remove('-error');
-            });
-
-
-            for (let i = 0; i < inputGroups.length; i++) {
-                const el = inputGroups[i];
-
-                let field;
-
-                if (el.querySelector('input')) {
-                    field = el.querySelector('input');
-                } else if (el.querySelector('textarea')) {
-                    field = el.querySelector('textarea');
-                }
-
-                let fieldName = field.getAttribute('name');
-                let fieldValue = field.value;
-                let errorField = el.querySelector('.form__error');
-
-
-                if (field.hasAttribute('data-required') && !fieldValue) {
-                    field.classList.add('-error');
-                    validForm = false;
-                    errorField.classList.add('is-active');
-                    errorField.innerHTML = 'Please fill this field';
-                    continue;
-                }
-
-                if (field.getAttribute('name') === 'email') {
-                    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fieldValue)) {
-                        field.classList.add('-error');
-                        validForm = false;
-                        errorField.classList.add('is-active');
-                        errorField.innerHTML = 'Please enter correct email';
-                        continue;
-                    }
-                }
-
-                formData[fieldName] = fieldValue;
-            }
-
-
-            if (!validForm) return;
-
-            let requestData = '';
-            let request = new XMLHttpRequest();
-            let dataArray = [];
-
-            for (let property in formData) {
-                dataArray.push(`${property}=${formData[property]}`);
-                requestData = dataArray.join('&');
-            }
-
-            setTimeout(() => {
-                request.onreadystatechange = function() {
-                    setTimeout(() => {
-                        if (this.readyState == 4 && this.status == 200) {
-                            formAlert.classList.add('is-active');
-                            formAlert.classList.add('is-success');
-                            formAlert.querySelector('.ajax-form-alert__content').innerHTML = form.getAttribute('data-message-success');
-                        } else {
-                            formAlert.classList.add('is-active');
-                            formAlert.classList.add('is-error');
-                            formAlert.querySelector('.ajax-form-alert__content').innerHTML = form.getAttribute('data-message-error');
-                        }
-                    }, 400);
-                };
-
-                request.open("POST", "contact.php", true);
-                request.setRequestHeader(
-                    "Content-type",
-                    "application/x-www-form-urlencoded",
-                );
-                request.send(requestData);
-            }, 1000);
-        });
-
-    }
-
-    /*--------------------------------------------------
-      03. Sidebar
-    ---------------------------------------------------*/
-
-    function sidebar() {
-        const target = document.querySelector('.js-sidebar')
-        const openButton = document.querySelector('.js-sidebar-open')
-        const closeButton = document.querySelector('.js-sidebar-close')
-        if (!target || !openButton || !closeButton) return;
-
-        openButton.addEventListener('click', () => target.classList.add('is-open'))
-        closeButton.addEventListener('click', () => target.classList.remove('is-open'))
-    }
-
-
-    function searchbar() {
-        const target = document.querySelector('.js-headerSearch')
-        if (!target) return;
-        const field = target.querySelector('input')
-        const openButton = document.querySelector('.js-headerSearch-open')
-        const closeButton = target.querySelector('.js-headerSearch-close')
-
-        openButton.addEventListener('click', () => {
-            target.classList.add('is-open')
-            field.focus()
-        })
-        closeButton.addEventListener('click', () => target.classList.remove('is-open'))
-    }
-
-
-    function mobileMenu() {
-        const target = document.querySelector('.js-mobileMenu')
-        const openButton = document.querySelector('.js-mobileMenu-open')
-        if (!target || !openButton) return;
-
-        openButton.addEventListener('click', () => {
-            target.classList.toggle('is-open')
-            App.html.classList.toggle('overflow-hidden')
-        })
-        // closeButton.addEventListener('click', () => target.classList.remove('is-open'))
-    }
-
-    /*--------------------------------------------------
-      11. Lazy loading
-    ---------------------------------------------------*/
-
-    function lazyLoading() {
-        if (!document.querySelector('.js-lazy')) {
-            return;
-        }
-
-        new LazyLoad({
-            elements_selector: ".js-lazy",
-        });
-    }
-
-    /*--------------------------------------------------
-      08. Section sliders
-    ---------------------------------------------------*/
-
-    function SectionSlider() {
-        const sectionSlider = document.querySelectorAll('.js-sectionSlider');
-
-        if (!sectionSlider.length) return;
-
-        for (let i = 0; i < sectionSlider.length; i++) {
-            const el = sectionSlider[i];
-
-            let gap = 0;
-            let loop = false;
-            let centered = false;
-            let pagination = false;
-
-            if (el.getAttribute('data-gap'))    gap = el.getAttribute('data-gap');
-            if (el.hasAttribute('data-loop'))   loop = true;
-            if (el.hasAttribute('data-center')) centered = true;
-
-            if (el.hasAttribute('data-pagination')) {
-                pagination = {
-                    el: el.querySelector('.js-pagination'),
-                    bulletClass: 'pagination__item',
-                    bulletActiveClass: 'is-active',
-                    bulletElement: 'div',
-                    clickable: true
-                };
-            }
-
-            const colsArray = el.getAttribute('data-slider-col').split(' ');
-
-            let cols_base = 1;
-            let cols_lg = 1;
-            let cols_md = 1;
-            let cols_sm = 1;
-
-            colsArray.forEach(el => {
-                if (el.includes('base')) cols_base = el.slice(-1);
-                if (el.includes('lg')) cols_lg = el.slice(-1);
-                if (el.includes('md')) cols_md = el.slice(-1);
-                if (el.includes('sm')) cols_sm = el.slice(-1);
-            });
-
-            new Swiper(el, {
-                speed: 800,
-                autoHeight: true,
-                spaceBetween: parseInt(gap),
-                centeredSlides: centered,
-                parallax: true,
-                watchSlidesVisibility: true,
-
-                loop: loop,
-                loopAdditionalSlides: 1,
-                preloadImages: false,
-                lazy: true,
-
-                lazy: {
-                    loadPrevNext: true,
-                },
-
-                slidesPerView: parseInt(cols_base),
-
-                breakpoints: {
-                    1199: { slidesPerView: parseInt(cols_lg) },
-                    991:  { slidesPerView: parseInt(cols_md) },
-                    767:  { slidesPerView: parseInt(cols_sm) },
-                },
-
-                navigation: {
-                    prevEl: el.querySelector('.js-prev'),
-                    nextEl: el.querySelector('.js-next'),
-                },
-
-                pagination: pagination,
-            });
-        }
-    }
-
-    /*--------------------------------------------------
-      01. Custom easings
-    ---------------------------------------------------*/
-
-    function customEasingsInit() {
-        CustomEase.create("quart.out", "0.25, 1, 0.5, 1");
-        CustomEase.create("quart.inOut", "0.76, 0, 0.24, 1");
-    }
-
-
-    const Header = (function() {
-
-        let menu;
-        let mobileBg;
-        let navList;
-        let mobileFooter;
-        let navListLinks;
-
-        let navBtnOpen;
-        let navBtnClose;
-        let navBtnListBack;
-
-        let menuDeepLevel;
-        let timeline = gsap.timeline();
-
-        function updateVars() {
-            menu = document.querySelector('.js-menu');
-            mobileBg = menu.querySelector('.js-mobile-bg');
-            mobileFooter = menu.querySelector('.js-mobile-footer');
-            navList = document.querySelector('.js-navList');
-            navListLinks = document.querySelectorAll('.js-navList > li > a');
-
-            navBtnOpen = document.querySelector('.js-nav-open');
-            navBtnClose = document.querySelector('.js-nav-close');
-            navBtnListBack = document.querySelector('.js-nav-list-back');
-            menuDeepLevel = 0;
-        }
-
-
-        function init() {
-            updateVars();
-            menuListBindEvents();
-            menuAnimBindEvents();
-            classicMenuInit();
-            // headerSticky();
-        }
-
-        function deepLevelCheck(level, htmlText = '') {
-            if (level) {
-                gsap.to(navBtnListBack, {
-                    ease: "quart.inOut",
-                    duration: 0.6,
-                    y: '0px',
-                    opacity: 1,
-                    onStart: () => {
-                        navBtnListBack.classList.remove('pointer-events-none');
-                        navBtnListBack.querySelector('a').innerHTML = htmlText;
-                    },
-                })
-
-                gsap.to(mobileFooter, {
-                    ease: "quart.inOut",
-                    duration: 0.6,
-                    opacity: 0,
-                    onStart: () => {
-                        mobileFooter.classList.add('pointer-events-none');
-                    },
-                })
-            } else {
-                gsap.to(navBtnListBack, {
-                    ease: "quart.inOut",
-                    duration: 0.6,
-                    opacity: 0,
-                    onStart: () => {
-                        navBtnListBack.classList.add('pointer-events-none');
-                    },
-                })
-
-                gsap.to(mobileFooter, {
-                    ease: "quart.inOut",
-                    duration: 0.6,
-                    opacity: 1,
-                    onStart: () => {
-                        mobileFooter.classList.remove('pointer-events-none');
-                    },
-                })
-            }
-        }
-
-        function menuListBindEvents() {
-            const listItems = document.querySelectorAll('.js-navList .menu-item-has-children');
-            if (!listItems.length) return;
-
-            navBtnListBack.addEventListener('click', () => {
-                const visibleList = navList.querySelector('ul.is-active');
-                const parentList = visibleList.parentElement.parentElement;
-
-                menuDeepLevel--;
-
-                deepLevelCheck(menuDeepLevel, parentList.parentElement.querySelector('li > a').innerHTML);
-                menuListStepAnimate(visibleList, parentList);
-            });
-
-            listItems.forEach(el => {
-                const parentLink = el.querySelector('li > a');
-                parentLink.removeAttribute('href');
-
-                parentLink.addEventListener('click', () => {
-                    const parent = el.parentElement;
-                    const subnavList = el.lastElementChild;
-
-                    menuDeepLevel++;
-
-                    deepLevelCheck(menuDeepLevel, parentLink.innerHTML);
-                    menuListStepAnimate(parent, subnavList);
-                });
-            });
-        }
-
-        function menuListStepAnimate(hideList, showList) {
-            const navBtnClose = document.querySelector('.js-nav-close');
-
-            let hideListItems = hideList.children;
-            hideListItems = Array.from(hideListItems);
-            const hideListLinks = hideListItems.map(item => item.querySelector('li > a'));
-
-            let showListItems = showList.children;
-            showListItems = Array.from(showListItems);
-            const showListLinks = showListItems.map(item => item.querySelector('li > a'));
-
-            timeline
-                .clear()
-                .to(hideListLinks, {
-                    ease: 'quart.out',
-                    stagger: -0.04,
-                    duration: 1.0,
-                    y: '100%',
-                    onStart: () => {
-                        showList.classList.add('is-active');
-                        hideList.classList.remove('is-active');
-                        navBtnClose.classList.add('pointer-events-none');
-                    },
-                })
-                .to(showListLinks, {
-                    ease: 'quart.out',
-                    stagger: 0.08,
-                    duration: 1.2,
-                    y: '0%',
-                    onComplete: () => {
-                        navBtnClose.classList.remove('pointer-events-none');
-                    },
-                }, '>-0.6')
-        }
-
-        function menuAnimBindEvents() {
-            if (!navBtnOpen) return;
-
-            navBtnOpen.addEventListener('click', () => {
-                App.html.classList.add('html-overflow-hidden');
-                showMenu();
-            });
-
-            navBtnClose.addEventListener('click', () => {
-                App.html.classList.remove('html-overflow-hidden');
-                hideMenu();
-            })
-        }
-
-        function showMenu() {
-
-            menu.classList.add('is-active');
-
-            gsap.timeline()
-                .set(navListLinks, { opacity: 1, })
-                .set(navBtnListBack, { opacity: 0, })
-
-                .fromTo(mobileBg, {
-                    scaleY: 0,
-                }, {
-                    scaleY: 1,
-                    duration: 0.8,
-                    ease: "quart.inOut",
-                    onStart: () => {
-                        navBtnOpen.classList.add('pointer-events-none');
-                    }
-                })
-
-                .fromTo(navBtnOpen, {
-                    y: '0px',
-                    opacity: 1,
-                }, {
-                    ease: "quart.out",
-                    duration: 0.8,
-                    y: '-16px',
-                    opacity: 0,
-                }, '>-0.2')
-                .fromTo(navBtnClose, {
-                    y: '16px',
-                    opacity: 0,
-                }, {
-                    ease: "quart.out",
-                    duration: 0.8,
-                    y: '0px',
-                    opacity: 1,
-                }, '<0.2')
-
-                .fromTo(navListLinks, {
-                    y: '100%',
-                }, {
-                    ease: 'quart.out',
-                    stagger: 0.08,
-                    duration: 1.2,
-                    y: '0%',
-                }, '>-0.7')
-                .fromTo(mobileFooter, {
-                    y: '30px',
-                    opacity: 0,
-                }, {
-                    ease: 'quart.out',
-                    duration: 1.2,
-                    y: '0px',
-                    opacity: 1,
-                    onComplete: () => {
-                        navList.classList.add('is-active');
-                        navBtnClose.classList.remove('pointer-events-none');
-                    }
-                }, '>-0.5')
-
-        }
-
-        function hideMenu() {
-            const navVisibleList = menu.querySelector('.is-active');
-            const navActiveListLinks = menu.querySelectorAll('.is-active > li > a');
-            menuDeepLevel = 0;
-
-            gsap.timeline()
-                .to([navBtnClose, navBtnListBack, mobileFooter], {
-                    ease: "quart.out",
-                    duration: 0.6,
-                    opacity: 0,
-                    y: '-16px',
-                    onStart: () => {
-                        navBtnClose.classList.add('pointer-events-none');
-                        navVisibleList.classList.remove('is-active');
-                        mobileBg.classList.add('origin-top');
-                    },
-                })
-
-                .fromTo(navBtnOpen, {
-                    y: '16px',
-                    opacity: 0,
-                }, {
-                    ease: "quart.out",
-                    duration: 0.7,
-                    y: '0px',
-                    opacity: 1,
-                }, '<0.1')
-
-                .to(navActiveListLinks, {
-                    ease: "quart.out",
-                    duration: 0.8,
-                    y: '-100%',
-                }, '>-0.6')
-
-                .to(mobileBg, {
-                    ease: "quart.inOut",
-                    duration: 0.8,
-                    scaleY: 0,
-                    onComplete: () => {
-                        navBtnOpen.classList.remove('pointer-events-none');
-                        mobileBg.classList.remove('origin-top');
-                        menu.classList.remove('is-active');
-                    },
-                }, '>-0.6')
-
-        }
-
-        function classicMenuInit() {
-
-            const target = document.querySelectorAll('.js-navClassic-list .menu-item-has-children');
-
-            if (!target.length) return;
-
-            const header = document.querySelector('.header');
-            let dropDownTheme;
-
-            if (header.classList.contains('js-header-dark')) {
-                dropDownTheme = 'dark';
-            } else {
-                dropDownTheme = 'light';
-            }
-
-            target.forEach(el => {
-                let subnav = el.children;
-                let where = 'bottom';
-                subnav = subnav[subnav.length - 1];
-
-                if (
-                    el.closest(".menu-item-has-children") &&
-                    el.closest(".subnav-list")
-                ) {
-                    where = 'right';
-                }
-
-                tippy(el, {
-                    interactive: true,
-                    content: subnav,
-                    allowHTML: true,
-                    placement: where,
-                    offset: [40, 0],
-                    delay: [null, 200],
-
-                    theme: dropDownTheme,
-                    animation: 'shift',
-
-                    popperOptions: {
-                        modifiers: [
-                            {
-                                name: 'flip',
-                                options: {
-                                    fallbackPlacements: ['left-start'],
-                                },
-                            },
-                            {
-                                name: 'preventOverflow',
-                                options: {
-                                    altAxis: true,
-                                },
-                            },
-                        ],
-                    },
-                });
-            });
-
-        }
-
-        function headerSticky() {
-            const header = document.querySelector('.js-header');
-            if (!header) return;
-
-            new ScrollMagic.Scene({
-                offset: '6px',
-            })
-                .setClassToggle(header, 'is-sticky')
-                .addTo(App.SMcontroller);
-        }
-
-
-        return {
-            headerSticky: headerSticky,
-            init: init,
-        }
-
-    })();
-
-    /*--------------------------------------------------
-      04. Page reveals
-    ---------------------------------------------------*/
-
-    function pageRevealEffects() {
-
-        // masthead shapes
-        gsap.registerEffect({
-            name: 'mastheadShapes',
-            effect: (target, config) => {
-
-                return gsap.fromTo(target, {
-                    opacity: 0,
-                    y: config.y,
-                }, {
-                    ease: config.easing,
-                    duration: config.duration,
-                    opacity: 1,
-                    y: '0%',
-                })
-
+            991: {
+              slidesPerView: 2.2,
             },
-            extendTimeline: true,
-            defaults: {
-                easing: 'quart.out',
-                duration: 3.0,
-                y: '90%',
+            767: {
+              slidesPerView: 1,
             },
+            575: {
+              slidesPerView: 1,
+            },
+            0: {
+              slidesPerView: 1,
+            }
+          },
         });
-
-        // header, menu and ui elements
-        gsap.registerEffect({
-            name: 'uiElementsAnimate',
-            effect: (target, config) => {
-
-                let headerLogo;
-                let headerMenu;
-                let classicMenu;
-                let uiElements;
-
-                if (document.querySelector('.js-header-logo')) {
-                    headerLogo = document.querySelector('.js-header-logo');
-                }
-                if (document.querySelector('.js-header-menu')) {
-                    headerMenu = document.querySelector('.js-header-menu');
-                }
-                if (document.querySelector('.js-navClassic-list > li > a')) {
-                    classicMenu = document.querySelectorAll('.js-navClassic-list > li > a');
-                }
-                if (document.querySelector('.js-ui')) {
-                    uiElements = document.querySelectorAll('.js-ui');
-                }
-
-                if (!headerLogo && !headerMenu && !uiElements && !classicMenu) return;
-
-                return gsap.fromTo([
-                    headerLogo,
-                    headerMenu,
-                    classicMenu,
-                    uiElements,
-                ], {
-                    y: config.y,
-                    opacity: 0,
-                }, {
-                    ease: config.easing,
-                    duration: config.duration,
-                    y: '0px',
-                    opacity: 1,
-                })
-
-            },
-            extendTimeline: true,
-            defaults: {
-                easing: 'quart.out',
-                duration: 0.8,
-                y: '30px',
-            },
-        });
-
-        // masthead background
-        gsap.registerEffect({
-            name: 'mastheadBackground',
-            effect: (target, config) => {
-
-                return gsap.fromTo(target, {
-                    scale: 1.4,
-                    opacity: 0,
-                }, {
-                    ease: 'quart.inOut',
-                    duration: 1.4,
-                    scale: 1,
-                    opacity: 1,
-                })
-
-            },
-            extendTimeline: true,
-        });
-
-    }
+      });
 
 
-    const PageReveal = (function() {
 
-        function mastheadType_1(tl) {
+    },
+    // sal animatioin activation
+    salActive: function () {
+      sal({
+        threshold: 0.1,
+        once: true,
+      });
+    },
+    // text flip
+    textChanger: function () {
+      var blockLetters = new TimelineMax({
+          paused: true
+        }),
+        albumLetters = new TimelineMax({
+          paused: false
+        }),
+        fullText = $("#fullText"),
+        splitHeadline = new SplitText(fullText, {
+          type: "words,chars"
+        }),
+        chars = splitHeadline.chars,
+        bgController = $("#backgroundController"),
+        letter = $(".letter"),
+        letterTiming = 0.6,
+        spaceTiming = 0.8,
+        stringsArray = ["Function", "Developer", "Rooms", "Intorior", "Design"],
+        currentString = 0;
 
-            if (!document.querySelector('.js-masthead-type-1')) {
-                return tl;
+
+      function revertSplit(targetSplit, newString) {
+
+        if (newString !== undefined) {
+          // go to the nxt string
+          currentString++;
+          // reset the text timeline
+          albumLetters.pause(0).clear();
+          // revert the tet split
+          targetSplit.revert();
+
+          // set the container's opacity to 0 and change the text
+          TweenLite.set(fullText, {
+            autoAlpha: 0,
+            text: {
+              value: newString
             }
+          });
 
-            const masthead = document.querySelector('.js-masthead-type-1');
-            let title = false;
-            let text = masthead.querySelector('.js-text');
-            let button = masthead.querySelector('.js-button');
+          // reset the split text
+          splitHeadline = new SplitText(fullText, {
+            type: "words,chars"
+          });
+          chars = splitHeadline.chars;
 
-            if (masthead.querySelector('.js-title')) {
-                title = masthead.querySelectorAll('.js-title .split__line');
-            }
+          // container's opacity back to 1
+          TweenLite.set(fullText, {
+            autoAlpha: 1
+          });
 
+          albumLetters
+            .staggerFrom(chars, 0.6, {
+              opacity: 0,
+              y: -20
+            }, 0.1)
+            .staggerTo(chars, 0.6, {
+              opacity: 0,
+              y: 20
+            }, 0.05, '+=0', revertSplit, [splitHeadline, stringsArray[currentString]])
+            .play();
 
-            const splitTitle = {
-                stagger: 0.1,
-                duration: 1.2,
-                ease: 'quart.out',
-                y: '0%',
-            };
-
-            const textButton = {
-                stagger: 0.1,
-                duration: 1,
-                ease: 'quart.out',
-                y: '0%',
-                opacity: 1,
-            };
-
-
-            gsap.set([text, button], {
-                y: '35px',
-                opacity: 0,
-            })
-
-
-            if (masthead.classList.contains('js-shapes')) {
-                const shapes = masthead.querySelectorAll('.js-shape');
-
-                tl
-                    .mastheadShapes(shapes, '>-0.7')
-                    .to(title, splitTitle, '>-2.3')
-                    .to([text, button], textButton, '>-0.8')
-                    .uiElementsAnimate(null, '>-0.8')
-            }
-
-            if (masthead.classList.contains('js-bg')) {
-                const bgItem = masthead.querySelector('.js-bg-item');
-
-                tl
-                    .mastheadBackground(bgItem, '>-0.0')
-                    .to(title, splitTitle, '>-0.5')
-                    .to([text, button], textButton, '>-0.8')
-                    .uiElementsAnimate(null, '>-0.8')
-            }
-
+        } else {
+          currentString = 0;
+          revertSplit(splitHeadline, stringsArray[currentString]);
         }
 
-        function base(tl) {
-            if (
-                document.querySelector('.js-page-header') ||
-                document.querySelector('.js-masthead-type-1') ||
-                document.querySelector('.js-masthead-type-2') ||
-                document.querySelector('.js-masthead-type-3') ||
-                document.querySelector('.js-masthead-type-4') ||
-                document.querySelector('.js-masthead-type-work-1') ||
-                document.querySelector('.js-sliderMain-type-1') ||
-                document.querySelector('.js-sliderMain-type-2') ||
-                document.querySelector('.js-sliderMain-type-3') ||
-                document.querySelector('.js-masthead-blog-article')
-            ) {
-                return tl;
-            }
+      }
+      currentString++;
 
-            tl.add(() => {
-                RevealAnim.init();
-            })
-        }
+      albumLetters
+        .staggerFrom(chars, 0.6, {
+          opacity: 0,
+          y: -20
+        }, 0.1)
+        .staggerTo(chars, 0.6, {
+          opacity: 0,
+          y: 20
+        }, 0.05, '+=0', revertSplit, [splitHeadline, stringsArray[currentString]]);
 
-        function init(tl) {
-            MainSliderReveal.prepareAnimation()
-            MainSliderReveal2.prepareAnimation()
-            MainSliderReveal3.prepareAnimation()
-            MainSliderReveal4.prepareAnimation()
-            MainSliderReveal5.prepareAnimation()
-            MainSliderReveal9.prepareAnimation()
-            MainSliderRevealAll.prepareAnimation()
-
-            tl.add(() => {
-                MainSliderReveal.animate()
-                MainSliderReveal2.animate()
-                MainSliderReveal3.animate()
-                MainSliderReveal4.animate()
-                MainSliderReveal5.animate()
-                MainSliderReveal9.animate()
-                MainSliderRevealAll.animate()
-            })
-
-            base(tl);
-
-            return tl;
-        }
-
-        return {
-            init: init,
-        }
-
-    })();
-
-
-    function initialReveal(callback) {
-        let tl = gsap.timeline();
-        tl = PageReveal.init(tl);
-        tl.add(function () { callback(); })
-    }
-
-    /*--------------------------------------------------
-      05. Custom cursor
-    ---------------------------------------------------*/
-
-    const Cursor = (function() {
-
-        const cursor = document.querySelector(".js-cursor");
-        let follower;
-        let label;
-        let icon;
-
-        let clientX;
-        let clientY;
-        let cursorWidth;
-        let cursorHeight;
-        let cursorTriggers;
-        let state;
-
-        function variables() {
-
-            follower = cursor.querySelector(".js-follower");
-            label = cursor.querySelector(".js-label");
-            icon = cursor.querySelector(".js-icon");
-
-            clientX = -100;
-            clientY = -100;
-            cursorWidth = cursor.offsetWidth / 2;
-            cursorHeight = cursor.offsetHeight / 2;
-            cursorTriggers;
-            state = false;
-
-        }
-
-        function init() {
-
-            if (!cursor) return;
-
-            variables();
-            state = true;
-            cursor.classList.add('is-enabled');
-
-            document.addEventListener("mousedown", e => {
-                cursor.classList.add('is-mouse-down');
-            });
-
-            document.addEventListener("mouseup", e => {
-                cursor.classList.remove('is-mouse-down');
-            });
-
-            document.addEventListener("mousemove", (event) => {
-                clientX = event.clientX;
-                clientY = event.clientY;
-            });
-
-            const render = () => {
-                cursor.style.transform = `translate(${clientX - cursorWidth}px, ${clientY - cursorHeight}px)`;
-                requestAnimationFrame(render);
-            };
-
-            requestAnimationFrame(render);
-
-            update();
-            breakpoint();
-
-        }
-
-        function enterHandler({ target }) {
-
-            cursor.classList.add('is-active');
-
-            if (target.getAttribute('data-cursor-label')) {
-                App.body.classList.add('is-cursor-active');
-                cursor.classList.add('has-label');
-                label.innerHTML = target.getAttribute('data-cursor-label');
-            }
-
-            if (target.getAttribute('data-cursor-icon')) {
-                App.body.classList.add('is-cursor-active');
-                cursor.classList.add('has-icon');
-                const iconAttr = target.getAttribute('data-cursor-icon');
-                icon.innerHTML = feather.icons[iconAttr].toSvg();
-            }
-
-        }
-
-        function leaveHandler() {
-
-            App.body.classList.remove('is-cursor-active');
-            cursor.classList.remove('is-active');
-            cursor.classList.remove('has-label');
-            cursor.classList.remove('has-icon');
-            label.innerHTML = '';
-            icon.innerHTML = '';
-
-        }
-
-        function update() {
-
-            if (!cursor) return;
-
-            cursorTriggers = document.querySelectorAll([
-                "button",
-                "a",
-                "input",
-                "[data-cursor]",
-                "[data-cursor-label]",
-                "[data-cursor-icon]",
-                "textarea"
-            ]);
-
-            cursorTriggers.forEach(el => {
-                el.addEventListener("mouseenter", enterHandler);
-                el.addEventListener("mouseleave", leaveHandler);
-            });
-
-        }
-
-        function clear() {
-
-            if (!cursor) return;
-
-            cursorTriggers.forEach(el => {
-                el.removeEventListener("mouseenter", enterHandler);
-                el.removeEventListener("mouseleave", leaveHandler);
-            });
-
-        }
-
-        function hide() {
-
-            if (!cursor) return;
-            cursor.classList.add('is-hidden');
-
-        }
-
-        function show() {
-
-            if (!cursor) return;
-            cursor.classList.remove('is-hidden');
-
-        }
-
-        function breakpoint() {
-
-            if (!state) return;
-            if (!App.config.cursorFollower.disableBreakpoint) return;
-
-            let width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-
-            if (width < App.config.cursorFollower.disableBreakpoint) {
-                state = false;
-                cursor.classList.remove('is-enabled');
-                clear();
-            } else {
-                state = true;
-                cursor.classList.add('is-enabled');
-                update();
-            }
-
-            window.addEventListener('resize', () => {
-                let width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-
-                if (width < App.config.cursorFollower.disableBreakpoint) {
-                    state = false;
-                    cursor.classList.remove('is-enabled');
-                    clear();
-                } else {
-                    state = true;
-                    cursor.classList.add('is-enabled');
-                    update();
-                }
-            })
-
-        }
-
-        return {
-            init: init,
-            leaveHandler: leaveHandler,
-            update: update,
-            clear: clear,
-            hide: hide,
-            show: show,
+    },
+    // time line
+    timeLine: function () {
+      (function () {
+        // Swipe Content Plugin - by CodyHouse.co
+        // https://codyhouse.co/ds/components/info/swipe-content
+        var SwipeContent = function (element) {
+          this.element = element;
+          this.delta = [false, false];
+          this.dragging = false;
+          this.intervalId = false;
+          initSwipeContent(this);
         };
 
-    })();
+        function initSwipeContent(content) {
+          content.element.addEventListener('mousedown', handleEvent.bind(content));
+          content.element.addEventListener('touchstart', handleEvent.bind(content));
+        };
 
-    /*--------------------------------------------------
-      06. Elements reveal
-    ---------------------------------------------------*/
+        function initDragging(content) {
+          //add event listeners
+          content.element.addEventListener('mousemove', handleEvent.bind(content));
+          content.element.addEventListener('touchmove', handleEvent.bind(content));
+          content.element.addEventListener('mouseup', handleEvent.bind(content));
+          content.element.addEventListener('mouseleave', handleEvent.bind(content));
+          content.element.addEventListener('touchend', handleEvent.bind(content));
+        };
 
-    const RevealAnim = (function() {
+        function cancelDragging(content) {
+          //remove event listeners
+          if (content.intervalId) {
+            (!window.requestAnimationFrame) ? clearInterval(content.intervalId): window.cancelAnimationFrame(content.intervalId);
+            content.intervalId = false;
+          }
+          content.element.removeEventListener('mousemove', handleEvent.bind(content));
+          content.element.removeEventListener('touchmove', handleEvent.bind(content));
+          content.element.removeEventListener('mouseup', handleEvent.bind(content));
+          content.element.removeEventListener('mouseleave', handleEvent.bind(content));
+          content.element.removeEventListener('touchend', handleEvent.bind(content));
+        };
 
-        function single() {
-            const animationTarget = document.querySelectorAll('[data-anim]');
-            if (!animationTarget.length) return;
+        function handleEvent(event) {
+          switch (event.type) {
+            case 'mousedown':
+            case 'touchstart':
+              startDrag(this, event);
+              break;
+            case 'mousemove':
+            case 'touchmove':
+              drag(this, event);
+              break;
+            case 'mouseup':
+            case 'mouseleave':
+            case 'touchend':
+              endDrag(this, event);
+              break;
+          }
+        };
 
-            for (let i = 0; i < animationTarget.length; i++) {
-                const el = animationTarget[i];
+        function startDrag(content, event) {
+          content.dragging = true;
+          // listen to drag movements
+          initDragging(content);
+          content.delta = [parseInt(unify(event).clientX), parseInt(unify(event).clientY)];
+          // emit drag start event
+          emitSwipeEvents(content, 'dragStart', content.delta);
+        };
 
-                new ScrollMagic.Scene({
-                    offset: '160px',
-                    triggerElement: el,
-                    triggerHook: "onEnter",
-                    reverse: false,
-                })
-                    .on('enter', function (event) {
-                        animateElement(el);
-                    })
-                    .addTo(App.SMcontroller)
+        function endDrag(content, event) {
+          cancelDragging(content);
+          // credits: https://css-tricks.com/simple-swipe-with-vanilla-javascript/
+          var dx = parseInt(unify(event).clientX),
+            dy = parseInt(unify(event).clientY);
+
+          // check if there was a left/right swipe
+          if (content.delta && (content.delta[0] || content.delta[0] === 0)) {
+            var s = Math.sign(dx - content.delta[0]);
+
+            if (Math.abs(dx - content.delta[0]) > 30) {
+              (s < 0) ? emitSwipeEvents(content, 'swipeLeft', [dx, dy]): emitSwipeEvents(content, 'swipeRight', [dx, dy]);
             }
+
+            content.delta[0] = false;
+          }
+          // check if there was a top/bottom swipe
+          if (content.delta && (content.delta[1] || content.delta[1] === 0)) {
+            var y = Math.sign(dy - content.delta[1]);
+
+            if (Math.abs(dy - content.delta[1]) > 30) {
+              (y < 0) ? emitSwipeEvents(content, 'swipeUp', [dx, dy]): emitSwipeEvents(content, 'swipeDown', [dx, dy]);
+            }
+
+            content.delta[1] = false;
+          }
+          // emit drag end event
+          emitSwipeEvents(content, 'dragEnd', [dx, dy]);
+          content.dragging = false;
+        };
+
+        function drag(content, event) {
+          if (!content.dragging) return;
+          // emit dragging event with coordinates
+          (!window.requestAnimationFrame) ?
+          content.intervalId = setTimeout(function () {
+            emitDrag.bind(content, event);
+          }, 250): content.intervalId = window.requestAnimationFrame(emitDrag.bind(content, event));
+        };
+
+        function emitDrag(event) {
+          emitSwipeEvents(this, 'dragging', [parseInt(unify(event).clientX), parseInt(unify(event).clientY)]);
+        };
+
+        function unify(event) {
+          // unify mouse and touch events
+          return event.changedTouches ? event.changedTouches[0] : event;
+        };
+
+        function emitSwipeEvents(content, eventName, detail) {
+          // emit event with coordinates
+          var event = new CustomEvent(eventName, {
+            detail: {
+              x: detail[0],
+              y: detail[1]
+            }
+          });
+          content.element.dispatchEvent(event);
+        };
+
+        window.SwipeContent = SwipeContent;
+
+        //initialize the SwipeContent objects
+        var swipe = document.getElementsByClassName('js-swipe-content');
+        if (swipe.length > 0) {
+          for (var i = 0; i < swipe.length; i++) {
+            (function (i) {
+              new SwipeContent(swipe[i]);
+            })(i);
+          }
         }
+      }());
 
-        function container() {
+      // Utility function
+      function Util() {};
 
-            const animationContainer = document.querySelectorAll('[data-anim-wrap]');
+      /*
+        class manipulation functions
+      */
+      Util.hasClass = function (el, className) {
+        if (el.classList) return el.classList.contains(className);
+        else return !!el.className.match(new RegExp('(\\s|^)' + className + '(\\s|$)'));
+      };
 
-            if (!animationContainer.length) {
-                return;
-            }
+      Util.addClass = function (el, className) {
+        var classList = className.split(' ');
+        if (el.classList) el.classList.add(classList[0]);
+        else if (!Util.hasClass(el, classList[0])) el.className += " " + classList[0];
+        if (classList.length > 1) Util.addClass(el, classList.slice(1).join(' '));
+      };
 
-            for (let i = 0; i < animationContainer.length; i++) {
-                const el = animationContainer[i];
-
-                new ScrollMagic.Scene({
-                    offset: '160px',
-                    triggerElement: el,
-                    triggerHook: "onEnter",
-                    reverse: false,
-                })
-                    .on('enter', function (event) {
-
-                        const animChilds = el.querySelectorAll('[data-anim-child]');
-                        el.classList.add('animated');
-                        animChilds.forEach(el => animateElement(el));
-
-                    })
-                    .addTo(App.SMcontroller)
-            }
-
+      Util.removeClass = function (el, className) {
+        var classList = className.split(' ');
+        if (el.classList) el.classList.remove(classList[0]);
+        else if (Util.hasClass(el, classList[0])) {
+          var reg = new RegExp('(\\s|^)' + classList[0] + '(\\s|$)');
+          el.className = el.className.replace(reg, ' ');
         }
+        if (classList.length > 1) Util.removeClass(el, classList.slice(1).join(' '));
+      };
 
+      Util.toggleClass = function (el, className, bool) {
+        if (bool) Util.addClass(el, className);
+        else Util.removeClass(el, className);
+      };
 
-        function animateElement(target) {
-
-            let attrVal;
-            let animDelay;
-            let attrDelayPart;
-
-            if (target.getAttribute('data-anim')) {
-                attrVal = target.getAttribute('data-anim');
-            } else {
-                attrVal = target.getAttribute('data-anim-child');
-            }
-
-            if (attrVal.includes('delay-')) {
-                attrDelayPart = attrVal.split(' ').pop();
-                animDelay = attrDelayPart.substr(attrDelayPart.indexOf('-') + 1) / 10;
-            }
-
-            if (attrVal.includes('counter')) {
-                counter(target, animDelay);
-            }
-            else if (attrVal.includes('line-chart')) {
-                lineChart(target, animDelay);
-            }
-            else if (attrVal.includes('pie-chart')) {
-                pieChart(target, animDelay);
-            }
-            else if (attrVal.includes('split-lines')) {
-                splitLines(target, animDelay);
-            }
-            else {
-                target.classList.add('is-in-view');
-            }
-
+      Util.setAttributes = function (el, attrs) {
+        for (var key in attrs) {
+          el.setAttribute(key, attrs[key]);
         }
+      };
 
-        function pieChart(target, animDelay = 0) {
-
-            const counterVal = target.getAttribute('data-percent');
-            const chartBar = target.querySelector('.js-chart-bar');
-
-            if (counterVal < 0) { counterVal = 0;}
-            if (counterVal > 100) { counterVal = 100;}
-
-            gsap.fromTo(chartBar, {
-                drawSVG: `0%`,
-            }, {
-                delay: 0.3 + animDelay,
-                duration: 1.4,
-                ease: 'power3.inOut',
-                drawSVG: `${counterVal}%`,
-
-                onStart: () => {
-                    chartBar.classList.remove('bar-stroke-hidden');
-                }
-            });
-
-
-            let object = { count: 0 };
-            const barPercent = target.querySelector('.js-chart-percent');
-
-            gsap.to(object, {
-                count: counterVal,
-                delay: 0.45 + animDelay,
-                duration: 1,
-                ease: 'power3.inOut',
-
-                onUpdate: function() {
-                    barPercent.innerHTML = Math.round(object.count) + '%';
-                },
-            });
-
+      /*
+        DOM manipulation
+      */
+      Util.getChildrenByClassName = function (el, className) {
+        var children = el.children,
+          childrenByClass = [];
+        for (var i = 0; i < el.children.length; i++) {
+          if (Util.hasClass(el.children[i], className)) childrenByClass.push(el.children[i]);
         }
+        return childrenByClass;
+      };
 
-        function lineChart(target, animDelay = 0) {
+      /*
+        Animate height of an element
+      */
+      Util.setHeight = function (start, to, element, duration, cb) {
+        var change = to - start,
+          currentTime = null;
 
-            const counterVal = target.getAttribute('data-percent');
+        var animateHeight = function (timestamp) {
+          if (!currentTime) currentTime = timestamp;
+          var progress = timestamp - currentTime;
+          var val = parseInt((progress / duration) * change + start);
+          element.setAttribute("style", "height:" + val + "px;");
+          if (progress < duration) {
+            window.requestAnimationFrame(animateHeight);
+          } else {
+            cb();
+          }
+        };
 
-            gsap.fromTo(target.querySelector('.js-bar'), {
-                scaleX: 0,
-            }, {
-                delay: 0.45 + animDelay,
-                duration: 1,
-                ease: 'power3.inOut',
-                scaleX: counterVal / 100,
-            })
+        //set the height of the element before starting animation -> fix bug on Safari
+        element.setAttribute("style", "height:" + start + "px;");
+        window.requestAnimationFrame(animateHeight);
+      };
 
+      /*
+        Smooth Scroll
+      */
 
-            let object = { count: 0 };
-            const barPercent = target.querySelector('.js-number');
+      Util.scrollTo = function (final, duration, cb) {
+        var start = window.scrollY || document.documentElement.scrollTop,
+          currentTime = null;
 
-            gsap.to(object, {
-                count: counterVal,
-                delay: 0.45 + animDelay,
-                duration: 1,
-                ease: 'power3.inOut',
+        var animateScroll = function (timestamp) {
+          if (!currentTime) currentTime = timestamp;
+          var progress = timestamp - currentTime;
+          if (progress > duration) progress = duration;
+          var val = Math.easeInOutQuad(progress, start, final - start, duration);
+          window.scrollTo(0, val);
+          if (progress < duration) {
+            window.requestAnimationFrame(animateScroll);
+          } else {
+            cb && cb();
+          }
+        };
 
-                onUpdate: function() {
-                    barPercent.innerHTML = Math.round(object.count);
-                },
-            });
+        window.requestAnimationFrame(animateScroll);
+      };
 
+      /*
+        Focus utility classes
+      */
+
+      //Move focus to an element
+      Util.moveFocus = function (element) {
+        if (!element) element = document.getElementsByTagName("body")[0];
+        element.focus();
+        if (document.activeElement !== element) {
+          element.setAttribute('tabindex', '-1');
+          element.focus();
         }
+      };
 
-        function counter(target, animDelay = 0) {
+      /*
+        Misc
+      */
 
-            const counterVal = target.getAttribute('data-counter');
-            const counterAdd = target.getAttribute('data-counter-add');
-            const totalDelay = animDelay;
-            let symbols = '';
+      Util.getIndexInArray = function (array, el) {
+        return Array.prototype.indexOf.call(array, el);
+      };
 
-            let object = { count: 0 };
-            const counterNum = target.querySelector('.js-counter-num');
-
-            if (counterAdd) {
-                symbols = counterAdd;
-            }
-
-            gsap.to(object, {
-                count: counterVal,
-                delay: totalDelay,
-                duration: 1.8,
-                ease: 'power3.inOut',
-
-                onUpdate: function() {
-                    counterNum.innerHTML = Math.round(object.count) + symbols;
-                },
-            });
-
-        }
-
-        function splitLines(target, animDelay = 0) {
-
-            const lines = target.querySelectorAll('.split__line');
-
-            gsap.to(lines, {
-                delay: animDelay,
-                stagger: 0.08,
-                duration: 0.85,
-                ease: 'power2.out',
-                y: '0%',
-            });
-
-        }
-
-
-        function init() {
-
-            single();
-            container();
-
-        }
-
-
-        return {
-            init: init,
-        }
-
-    })();
-
-
-    function splitTextIntoLines() {
-
-        let target;
-
-        if (App.body.classList.contains('page-reveal-off')) {
-            target = document.querySelectorAll("[data-split='lines']:not([data-split-page-reveal])");
+      Util.cssSupports = function (property, value) {
+        if ('CSS' in window) {
+          return CSS.supports(property, value);
         } else {
-            target = document.querySelectorAll("[data-split='lines']");
+          var jsProperty = property.replace(/-([a-z])/g, function (g) {
+            return g[1].toUpperCase();
+          });
+          return jsProperty in document.body.style;
+        }
+      };
+
+      /*
+        Polyfills
+      */
+      //Closest() method
+      if (!Element.prototype.matches) {
+        Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
+      }
+
+      if (!Element.prototype.closest) {
+        Element.prototype.closest = function (s) {
+          var el = this;
+          if (!document.documentElement.contains(el)) return null;
+          do {
+            if (el.matches(s)) return el;
+            el = el.parentElement || el.parentNode;
+          } while (el !== null && el.nodeType === 1);
+          return null;
+        };
+      }
+
+      //Custom Event() constructor
+      if (typeof window.CustomEvent !== "function") {
+
+        function CustomEvent(event, params) {
+          params = params || {
+            bubbles: false,
+            cancelable: false,
+            detail: undefined
+          };
+          var evt = document.createEvent('CustomEvent');
+          evt.initCustomEvent(event, params.bubbles, params.cancelable, params.detail);
+          return evt;
         }
 
-        if (!target.length) return;
+        CustomEvent.prototype = window.Event.prototype;
 
-        target.forEach(el => {
-            let content;
-            let test = el.querySelectorAll('* > *:not(br):not(span)');
+        window.CustomEvent = CustomEvent;
+      }
 
-            if (test.length > 0) {
-                content = el.querySelectorAll('* > *:not(br):not(span)');
+      /*
+        Animation curves
+      */
+      Math.easeInOutQuad = function (t, b, c, d) {
+        t /= d / 2;
+        if (t < 1) return c / 2 * t * t + b;
+        t--;
+        return -c / 2 * (t * (t - 2) - 1) + b;
+      };
+
+
+      /* Main js */
+      /* -----------------*/
+      (function () {
+        // Horizontal Timeline - by CodyHouse.co
+        var HorizontalTimeline = function (element) {
+          this.element = element;
+          this.datesContainer = this.element.getElementsByClassName('h--timeline-dates')[0];
+          this.line = this.datesContainer.getElementsByClassName('h--timeline-line')[0]; // grey line in the top timeline section
+          this.fillingLine = this.datesContainer.getElementsByClassName('h--timeline-filling-line')[0]; // green filling line in the top timeline section
+          this.date = this.line.getElementsByClassName('h--timeline-date');
+          this.selectedDate = this.line.getElementsByClassName('h--timeline-date--selected')[0];
+          this.dateValues = parseDate(this);
+          this.minLapse = calcMinLapse(this);
+          this.navigation = this.element.getElementsByClassName('h--timeline-navigation');
+          this.contentWrapper = this.element.getElementsByClassName('h--timeline-events')[0];
+          this.content = this.contentWrapper.getElementsByClassName('h--timeline-event');
+
+          this.eventsMinDistance = 60; // min distance between two consecutive events (in px)
+          this.eventsMaxDistance = 255; // max distance between two consecutive events (in px)
+          this.translate = 0; // this will be used to store the translate value of this.line
+          this.lineLength = 0; //total length of this.line
+
+          // store index of selected and previous selected dates
+          this.oldDateIndex = Util.getIndexInArray(this.date, this.selectedDate);
+          this.newDateIndex = this.oldDateIndex;
+
+          initTimeline(this);
+          initEvents(this);
+        };
+
+        function initTimeline(timeline) {
+          // set dates left position
+          var left = 0;
+          for (var i = 0; i < timeline.dateValues.length; i++) {
+            var j = (i == 0) ? 0 : i - 1;
+            var distance = daydiff(timeline.dateValues[j], timeline.dateValues[i]),
+              distanceNorm = (Math.round(distance / timeline.minLapse) + 2) * timeline.eventsMinDistance,
+              containerWidth = timeline.datesContainer.offsetWidth,
+              distanceCorrecture = 0;
+
+            if (distanceNorm < timeline.eventsMinDistance) {
+              distanceNorm = timeline.eventsMinDistance;
+            } else if (distanceNorm > timeline.eventsMaxDistance) {
+              distanceNorm = timeline.eventsMaxDistance;
             }
+            left = left + distanceNorm;
+            timeline.date[i].setAttribute('style', 'left:' + left + 'px');
+          }
 
-            new SplitText(content, {
-                type: 'lines',
-                linesClass: 'overflow-hidden',
-            });
+          // set line/filling line dimensions
+          timeline.line.style.width = (left + timeline.eventsMinDistance) + distanceCorrecture + 'px';
+          timeline.lineLength = left + timeline.eventsMinDistance + distanceCorrecture;
 
-            content.forEach(el => {
-                const lines = el.querySelectorAll('.overflow-hidden');
+          // add 100px more to line/filling line if container bigger then timeline lineLength
+          if (containerWidth > timeline.lineLength) {
+            timeline.line.style.width = (left + timeline.eventsMinDistance) + distanceCorrecture + 'px';
+            timeline.lineLength = timeline.lineLength + distanceCorrecture;
+          }
 
-                new SplitText(lines, {
-                    type: 'lines',
-                    linesClass: 'split__line',
-                });
-            });
+          // reveal timeline
+          Util.addClass(timeline.element, 'h--timeline--loaded');
+          selectNewDate(timeline, timeline.selectedDate);
+          resetTimelinePosition(timeline, 'next');
+        };
 
-            gsap.set(el.querySelectorAll('.split__line'), {
-                y: '100%',
-            })
-        });
+        function initEvents(timeline) {
+          var self = timeline;
+          // deaktivate the buttons
+          deaktivateNavigationButtons(self);
 
-    }
+          // click on arrow navigation
+          self.navigation[0].addEventListener('click', function (event) {
+            event.preventDefault();
+            translateTimeline(self, 'prev');
+            deaktivateNavigationButtons(self);
+          });
+          self.navigation[1].addEventListener('click', function (event) {
+            event.preventDefault();
+            translateTimeline(self, 'next');
+            deaktivateNavigationButtons(self);
+          });
 
+          //swipe on timeline
+          new SwipeContent(self.datesContainer);
+          self.datesContainer.addEventListener('swipeLeft', function (event) {
+            translateTimeline(self, 'next');
+          });
+          self.datesContainer.addEventListener('swipeRight', function (event) {
+            translateTimeline(self, 'prev');
+          });
 
-    function splitIntoLines(target) {
-        if (!target) return;
+          //select a new event
+          for (var i = 0; i < self.date.length; i++) {
+            (function (i) {
+              self.date[i].addEventListener('click', function (event) {
+                event.preventDefault();
+                selectNewDate(self, event.target);
+              });
 
-        let content;
-        let test = target.querySelectorAll('* > *:not(br):not(span)');
+              self.content[i].addEventListener('animationend', function (event) {
+                if (i == self.newDateIndex && self.newDateIndex != self.oldDateIndex) resetAnimation(self);
+              });
+            })(i);
+          }
+        };
 
-        if (test.length > 0) {
-            content = target.querySelectorAll('* > *:not(br):not(span)');
-        }
+        function updateFilling(timeline) { // update fillingLine scale value
+          var dateStyle = window.getComputedStyle(timeline.selectedDate, null),
+            left = dateStyle.getPropertyValue("left"),
+            width = dateStyle.getPropertyValue("width");
 
-        new SplitText(content, {
-            type: 'lines',
-            linesClass: 'overflow-hidden',
-        });
+          left = Number(left.replace('px', '')) + Number(width.replace('px', '')) / 2;
+          timeline.fillingLine.style.transform = 'scaleX(' + (left / timeline.lineLength) + ')';
+        };
 
-        content.forEach(el => {
-            const lines = el.querySelectorAll('.overflow-hidden');
+        function translateTimeline(timeline, direction) { // translate timeline (and date elements)
+          var containerWidth = timeline.datesContainer.offsetWidth;
+          if (direction) {
+            timeline.translate = (direction == 'next') ? timeline.translate - containerWidth + timeline.eventsMinDistance : timeline.translate + containerWidth - timeline.eventsMinDistance;
+          }
+          if (0 - timeline.translate > timeline.lineLength - containerWidth) timeline.translate = containerWidth - timeline.lineLength;
+          if (timeline.translate > 0) timeline.translate = 0;
 
-            new SplitText(lines, {
-                type: 'lines',
-                linesClass: 'split__line',
-            });
-        });
+          timeline.line.style.transform = 'translateX(' + timeline.translate + 'px)';
+          // update the navigation items status (toggle inactive class)
+          (timeline.translate == 0) ? Util.addClass(timeline.navigation[0], 'h--timeline-navigation--inactive'): Util.removeClass(timeline.navigation[0], 'h--timeline-navigation--inactive');
+          (timeline.translate == containerWidth - timeline.lineLength) ? Util.addClass(timeline.navigation[1], 'h--timeline-navigation--inactive'): Util.removeClass(timeline.navigation[1], 'h--timeline-navigation--inactive');
+        };
 
-        gsap.set(target.querySelectorAll('.split__line'), {
-            y: '100%',
-        })
-    }
+        function deaktivateNavigationButtons(timeline) {
+          var containerWidth = timeline.datesContainer.offsetWidth;
+          // deaktivate next button if container bigger then timeline lineLength
+          if (containerWidth >= timeline.lineLength) {
+            Util.addClass(timeline.navigation[0], 'h--timeline-navigation--inactive');
+            Util.addClass(timeline.navigation[1], 'h--timeline-navigation--inactive');
+          }
+        };
 
-    /*--------------------------------------------------
-        09. Contact form
-    ---------------------------------------------------*/
+        function selectNewDate(timeline, target) { // ned date has been selected -> update timeline
+          timeline.newDateIndex = Util.getIndexInArray(timeline.date, target);
+          timeline.oldDateIndex = Util.getIndexInArray(timeline.date, timeline.selectedDate);
+          Util.removeClass(timeline.selectedDate, 'h--timeline-date--selected');
+          Util.addClass(timeline.date[timeline.newDateIndex], 'h--timeline-date--selected');
+          timeline.selectedDate = timeline.date[timeline.newDateIndex];
+          updateOlderEvents(timeline);
+          updateVisibleContent(timeline);
+          updateFilling(timeline);
+        };
 
-    function contactForm() {
+        function updateOlderEvents(timeline) { // update older events style
+          for (var i = 0; i < timeline.date.length; i++) {
+            (i < timeline.newDateIndex) ? Util.addClass(timeline.date[i], 'h--timeline-date--older-event'): Util.removeClass(timeline.date[i], 'h--timeline-date--older-event');
+          }
+        };
 
-        const form = document.querySelector(".js-ajax-form");
+        function updateVisibleContent(timeline) { // show content of new selected date
+          if (timeline.newDateIndex > timeline.oldDateIndex) {
+            var classEntering = 'h--timeline-event--selected h--timeline-event--enter-right',
+              classLeaving = 'h--timeline-event--leave-left';
+          } else if (timeline.newDateIndex < timeline.oldDateIndex) {
+            var classEntering = 'h--timeline-event--selected h--timeline-event--enter-left',
+              classLeaving = 'h--timeline-event--leave-right';
+          } else {
+            var classEntering = 'h--timeline-event--selected',
+              classLeaving = '';
+          }
 
-        if (!form) {
-            return;
-        }
+          Util.addClass(timeline.content[timeline.newDateIndex], classEntering);
+          if (timeline.newDateIndex != timeline.oldDateIndex) {
+            Util.removeClass(timeline.content[timeline.oldDateIndex], 'h--timeline-event--selected');
+            Util.addClass(timeline.content[timeline.oldDateIndex], classLeaving);
+            //timeline.contentWrapper.style.height = timeline.content[timeline.newDateIndex].offsetHeight + 'px';
+          }
+        };
 
-        const formAlert = form.querySelector('.js-ajax-form-alert');
+        function resetAnimation(timeline) { // reset content classes when entering animation is over
+          //timeline.contentWrapper.style.height = null;
+          Util.removeClass(timeline.content[timeline.newDateIndex], 'h--timeline-event--enter-right h--timeline-event--enter-left');
+          Util.removeClass(timeline.content[timeline.oldDateIndex], 'h--timeline-event--leave-right h--timeline-event--leave-left');
+        };
 
-        form.addEventListener("submit", (e) => {
-            e.preventDefault();
+        function keyNavigateTimeline(timeline, direction) { // navigate the timeline using the keyboard
+          var newIndex = (direction == 'next') ? timeline.newDateIndex + 1 : timeline.newDateIndex - 1;
+          if (newIndex < 0 || newIndex >= timeline.date.length) return;
+          selectNewDate(timeline, timeline.date[newIndex]);
+          resetTimelinePosition(timeline, direction);
+        };
 
-            let validForm = true;
-            let formData = {};
-            formAlert.classList.remove('is-active');
-            formAlert.classList.remove('is-success');
-            formAlert.classList.remove('is-error');
-            const inputGroups = form.querySelectorAll('.js-input-group');
+        function resetTimelinePosition(timeline, direction) { //translate timeline according to new selected event position
+          var eventStyle = window.getComputedStyle(timeline.selectedDate, null),
+            eventLeft = Number(eventStyle.getPropertyValue('left').replace('px', '')),
+            timelineWidth = timeline.datesContainer.offsetWidth;
 
+          if ((direction == 'next' && eventLeft >= timelineWidth - timeline.translate) || (direction == 'prev' && eventLeft <= -timeline.translate)) {
+            timeline.translate = timelineWidth / 2 - eventLeft;
+            translateTimeline(timeline, false);
+          }
+        };
 
-            form.querySelectorAll('.form__error').forEach(el => {
-                el.innerHTML = '';
-                el.classList.remove('is-active');
-            });
-            form.querySelectorAll('.-error').forEach(el => {
-                el.classList.remove('-error');
-            });
+        function parseDate(timeline) { // get timestamp value for each date
+          var dateArrays = [];
+          for (var i = 0; i < timeline.date.length; i++) {
+            var singleDate = timeline.date[i].getAttribute('data-date'),
+              dateComp = singleDate.split('T');
 
-
-            for (let i = 0; i < inputGroups.length; i++) {
-                const el = inputGroups[i];
-
-                let field;
-
-                if (el.querySelector('input')) {
-                    field = el.querySelector('input');
-                } else if (el.querySelector('textarea')) {
-                    field = el.querySelector('textarea');
-                }
-
-                let fieldName = field.getAttribute('name');
-                let fieldValue = field.value;
-                let errorField = el.querySelector('.form__error');
-
-
-                if (field.hasAttribute('data-required') && !fieldValue) {
-                    field.classList.add('-error');
-                    validForm = false;
-                    errorField.classList.add('is-active');
-                    errorField.innerHTML = 'Please fill this field';
-                    continue;
-                }
-
-                if (field.getAttribute('name') === 'email') {
-                    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fieldValue)) {
-                        field.classList.add('-error');
-                        validForm = false;
-                        errorField.classList.add('is-active');
-                        errorField.innerHTML = 'Please enter correct email';
-                        continue;
-                    }
-                }
-
-                formData[fieldName] = fieldValue;
+            if (dateComp.length > 1) { //both DD/MM/YEAR and time are provided
+              var dayComp = dateComp[0].split('/'),
+                timeComp = dateComp[1].split(':');
+            } else if (dateComp[0].indexOf(':') >= 0) { //only time is provide
+              var dayComp = ["2000", "0", "0"],
+                timeComp = dateComp[0].split(':');
+            } else { //only DD/MM/YEAR
+              var dayComp = dateComp[0].split('/'),
+                timeComp = ["0", "0"];
             }
+            var newDate = new Date(dayComp[2], dayComp[1] - 1, dayComp[0], timeComp[0], timeComp[1]);
+            dateArrays.push(newDate);
+          }
+          return dateArrays;
+        };
 
+        function calcMinLapse(timeline) { // determine the minimum distance among events
+          var dateDistances = [];
+          for (var i = 1; i < timeline.dateValues.length; i++) {
+            var distance = daydiff(timeline.dateValues[i - 1], timeline.dateValues[i]);
+            if (distance > 0) dateDistances.push(distance);
+          }
 
-            if (!validForm) return;
+          return (dateDistances.length > 0) ? Math.min.apply(null, dateDistances) : 86400000;
+        };
 
-            let requestData = '';
-            let request = new XMLHttpRequest();
-            let dataArray = [];
+        function daydiff(first, second) { // time distance between events
+          return Math.round((second - first));
+        };
 
-            for (let property in formData) {
-                dataArray.push(`${property}=${formData[property]}`);
-                requestData = dataArray.join('&');
+        window.HorizontalTimeline = HorizontalTimeline;
+
+        var horizontalTimeline = document.getElementsByClassName('js-h--timeline'),
+          horizontalTimelineTimelineArray = [];
+        if (horizontalTimeline.length > 0) {
+          for (var i = 0; i < horizontalTimeline.length; i++) {
+            horizontalTimelineTimelineArray.push(new HorizontalTimeline(horizontalTimeline[i]));
+          }
+          // navigate the timeline when inside the viewport using the keyboard
+          document.addEventListener('keydown', function (event) {
+            if ((event.keyCode && event.keyCode == 39) || (event.key && event.key.toLowerCase() == 'arrowright')) {
+              updateHorizontalTimeline('next'); // move to next event
+            } else if ((event.keyCode && event.keyCode == 37) || (event.key && event.key.toLowerCase() == 'arrowleft')) {
+              updateHorizontalTimeline('prev'); // move to prev event
             }
+          });
+        };
 
-            setTimeout(() => {
-                request.onreadystatechange = function() {
-                    setTimeout(() => {
-                        if (this.readyState == 4 && this.status == 200) {
-                            formAlert.classList.add('is-active');
-                            formAlert.classList.add('is-success');
-                            formAlert.querySelector('.ajax-form-alert__content').innerHTML = form.getAttribute('data-message-success');
-                        } else {
-                            formAlert.classList.add('is-active');
-                            formAlert.classList.add('is-error');
-                            formAlert.querySelector('.ajax-form-alert__content').innerHTML = form.getAttribute('data-message-error');
-                        }
-                    }, 400);
-                };
+        function updateHorizontalTimeline(direction) {
+          for (var i = 0; i < horizontalTimelineTimelineArray.length; i++) {
+            if (elementInViewport(horizontalTimeline[i])) keyNavigateTimeline(horizontalTimelineTimelineArray[i], direction);
+          }
+        };
 
-                request.open("POST", "contact.php", true);
-                request.setRequestHeader(
-                    "Content-type",
-                    "application/x-www-form-urlencoded",
-                );
-                request.send(requestData);
-            }, 1000);
+        /*
+          How to tell if a DOM element is visible in the current viewport?
+          http://stackoverflow.com/questions/123999/how-to-tell-if-a-dom-element-is-visible-in-the-current-viewport
+        */
+        function elementInViewport(el) {
+          var top = el.offsetTop;
+          var left = el.offsetLeft;
+          var width = el.offsetWidth;
+          var height = el.offsetHeight;
+
+          while (el.offsetParent) {
+            el = el.offsetParent;
+            top += el.offsetTop;
+            left += el.offsetLeft;
+          }
+
+          return (
+            top < (window.pageYOffset + window.innerHeight) &&
+            left < (window.pageXOffset + window.innerWidth) &&
+            (top + height) > window.pageYOffset &&
+            (left + width) > window.pageXOffset
+          );
+        }
+      }());
+
+
+
+
+    },
+    // date picker
+    datePicker: function () {
+      jQuery(document).ready(function () {
+        jQuery('#datepicker').datepicker({
+          format: 'dd-mm-yyyy',
+          startDate: '+1d'
         });
+      });
+    },
+    // time picker
+    timePicker: function () {
+      $(function () {
+        $('#timepicker').timepicker({
+          //timeFormat: 'h:mm p',
+          dynamic: false,
+          dropdown: true,
+          scrollbar: true
+        });
+      });
+    },
+    // story page timeline
+    timeLineStory: function () {
+      (function () {
 
-    }
+        'use strict';
 
-    /*--------------------------------------------------
-      11. Lazy loading
-    ---------------------------------------------------*/
+        // define variables
+        var items = document.querySelectorAll(".timeline li");
 
-    function lazyLoading() {
-        if (!document.querySelector('.js-lazy')) {
-            return;
+        // check if an element is in viewport
+        // http://stackoverflow.com/questions/123999/how-to-tell-if-a-dom-element-is-visible-in-the-current-viewport
+        function isElementInViewport(el) {
+          var rect = el.getBoundingClientRect();
+          return (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+          );
         }
 
-        new LazyLoad({
-            elements_selector: ".js-lazy",
-        });
-    }
-
-    /*--------------------------------------------------
-      12. Parallax
-    ---------------------------------------------------*/
-
-    function parallaxInit() {
-        if (!document.querySelector('[data-parallax]')) {
-            return;
+        function callbackFunc() {
+          for (var i = 0; i < items.length; i++) {
+            if (isElementInViewport(items[i])) {
+              items[i].classList.add("in-view");
+            }
+          }
         }
 
-        const target = document.querySelectorAll('[data-parallax]');
+        // listen for events
+        window.addEventListener("load", callbackFunc);
+        window.addEventListener("resize", callbackFunc);
+        window.addEventListener("scroll", callbackFunc);
 
-        target.forEach(el => {
-            const value = el.getAttribute('data-parallax');
+      })();
 
-            jarallax(el, {
-                speed: value,
-                imgElement: '[data-parallax-target]',
-            });
+
+
+    },
+    // vesio activation
+    vedioActivation: function (e) {
+      $(document).ready(function(){
+        $('.popup-youtube, .popup-video').magnificPopup({
+          type: 'iframe',
+          mainClass: 'mfp-fade',
+          removalDelay: 160,
+          preloader: false,
+          fixedContentPos: false
         });
-    }
+      });
+    },
+    // search popup
+    searchOption: function () {
+      $(document).on('click', '#search', function () {
+        $(".search-input-area").addClass("show");
+        $("#anywhere-home").addClass("bgshow");
+      });
+      $(document).on('click', '#close', function () {
+        $(".search-input-area").removeClass("show");
+        $("#anywhere-home").removeClass("bgshow");
+      });
+      $(document).on('click', '#anywhere-home', function () {
+        $(".search-input-area").removeClass("show");
+        $("#anywhere-home").removeClass("bgshow");
+      });
+    },
+    // cart bar show
+    cartBarshow: function () {
+      // Cart Bar show & hide
+      $(document).on('click', '.cart-icon', function () {
+        $(".cart-bar").addClass("show");
+        $("#anywhere-home").addClass("bgshow");
+      });
+      $(document).on('click', '.close-cart', function () {
+        $(".cart-bar").removeClass("show");
+        $("#anywhere-home").removeClass("bgshow");
+      });
+      $(document).on('click', '#anywhere-home', function () {
+        $(".cart-bar").removeClass("show");
+        $("#anywhere-home").removeClass("bgshow");
+      });
 
-    /*--------------------------------------------------
-      13. To top button
-    ---------------------------------------------------*/
 
-    function backButton() {
-        const button = document.querySelector('.js-backButton');
-        if (!button) return;
 
-        const scrollElement = window.document.documentElement;
+      $(function () {
+        $(".button").on("click", function () {
+          var $button = $(this);
+          var $parent = $button.parent();
+          var oldValue = $parent.find('.input').val();
 
-        const duration = () => {
-            if (scrollElement.scrollTop < 1600) {
-                return 1;
+          if ($button.text() == "+") {
+            var newVal = parseFloat(oldValue) + 1;
+          } else {
+            // Don't allow decrementing below zero
+            if (oldValue > 1) {
+              var newVal = parseFloat(oldValue) - 1;
             } else {
-                return 2.2;
+              newVal = 1;
             }
-        }
+          }
+          $parent.find('a.add-to-cart').attr('data-quantity', newVal);
+          $parent.find('.input').val(newVal);
+        });
+      });
 
-        button.addEventListener('click', () => {
-            gsap.to(scrollElement, {
-                duration: duration(),
-                ease: 'power2.inOut',
-                scrollTo: 0,
-            });
+    },
+    // metismenu
+    metismenu: function () {
+      $('#mobile-menu-active').metisMenu();
+    },
+    // side menu desktop
+    sideMenu: function () {
+      $(document).on('click', '#menu-btn', function () {
+        $("#side-bar").addClass("show");
+        $("#anywhere-home").addClass("bgshow");
+      });
+      $(document).on('click', '.close-icon-menu', function () {
+        $("#side-bar").removeClass("show");
+        $("#anywhere-home").removeClass("bgshow");
+      });
+      $(document).on('click', '#anywhere-home', function () {
+        $("#side-bar").removeClass("show");
+        $("#anywhere-home").removeClass("bgshow");
+      });
+      $(document).on('click', '.onepage .mainmenu li a', function () {
+        $("#side-bar").removeClass("show");
+        $("#anywhere-home").removeClass("bgshow");
+      });
+    },
+
+    slideNav: function () {
+      window.slide = new SlideNav();
+    },
+
+    onePageNav: function (e) {
+      $(document).ready(function () {
+        var nav = $('#nav');
+        if (nav.length) {
+          $('#nav').onePageNav();
+        }
+      });
+    },
+
+    backToTopInit: function () {
+      $(document).ready(function () {
+        "use strict";
+
+        var progressPath = document.querySelector('.progress-wrap path');
+        var pathLength = progressPath.getTotalLength();
+        progressPath.style.transition = progressPath.style.WebkitTransition = 'none';
+        progressPath.style.strokeDasharray = pathLength + ' ' + pathLength;
+        progressPath.style.strokeDashoffset = pathLength;
+        progressPath.getBoundingClientRect();
+        progressPath.style.transition = progressPath.style.WebkitTransition = 'stroke-dashoffset 10ms linear';
+        var updateProgress = function () {
+          var scroll = $(window).scrollTop();
+          var height = $(document).height() - $(window).height();
+          var progress = pathLength - (scroll * pathLength / height);
+          progressPath.style.strokeDashoffset = progress;
+        }
+        updateProgress();
+        $(window).scroll(updateProgress);
+        var offset = 50;
+        var duration = 550;
+        jQuery(window).on('scroll', function () {
+          if (jQuery(this).scrollTop() > offset) {
+            jQuery('.progress-wrap').addClass('active-progress');
+          } else {
+            jQuery('.progress-wrap').removeClass('active-progress');
+          }
+        });
+        jQuery('.progress-wrap').on('click', function (event) {
+          event.preventDefault();
+          jQuery('html, body').animate({
+            scrollTop: 0
+          }, duration);
+          return false;
         })
 
-//   new ScrollMagic.Scene({
-//     offset: '400px',
-//   })
-//     .setClassToggle(button, 'is-visible')
-//     .addTo(App.SMcontroller);
-    }
 
-    /*--------------------------------------------------
-      14. Scroll down button
-    ---------------------------------------------------*/
+      });
 
-    function uiScrollDown() {
+    },
 
-        const target = document.querySelector('.js-ui-scroll-button');
+    filterPrice: function () {
+      var filter_price = $('.filter-price');
+      if (filter_price.length) {
+        var lowerSlider = document.querySelector('#lower');
+        var upperSlider = document.querySelector('#upper');
 
-        if (!target) return;
+        document.querySelector('#two').value = upperSlider.value;
+        document.querySelector('#one').value = lowerSlider.value;
 
-        const destination = document.querySelector('section:nth-of-type(2)');
+        var lowerVal = parseInt(lowerSlider.value);
+        var upperVal = parseInt(upperSlider.value);
 
-        target.addEventListener('click', () => {
-            gsap.to(window.document.documentElement, {
-                duration: 1,
-                ease: 'power2.inOut',
-                scrollTo: destination.offsetTop,
-            });
-        })
+        upperSlider.oninput = function () {
+          lowerVal = parseInt(lowerSlider.value);
+          upperVal = parseInt(upperSlider.value);
 
-    }
-
-    /*--------------------------------------------------
-      15. Video
-    ---------------------------------------------------*/
-
-    function videoBtn() {
-
-        GLightbox({
-            autoplayVideos: false,
-            touchNavigation: false,
-        });
-
-    }
-
-    /*--------------------------------------------------
-      16. Scroll to id
-    ---------------------------------------------------*/
-
-    function scrollToIdInit() {
-
-        const targets = document.querySelectorAll('.js-scroll-to-id');
-
-        if (!targets.length) return;
-
-        targets.forEach(el => {
-            el.addEventListener('click', (e) => {
-                e.preventDefault();
-                const id = el.getAttribute('href');
-                const destination = document.querySelector(`#${id.slice(1)}`);
-
-                // console.log(destination);
-                // console.log(destination.offsetTop);
-
-                gsap.to(window.document.documentElement, {
-                    duration: 1.2,
-                    ease: 'power2.inOut',
-                    scrollTo: destination.offsetTop,
-                });
-            })
-        });
-
-    }
-
-    /*--------------------------------------------------
-      17. PJAX
-    ---------------------------------------------------*/
-
-    const PJAX = (function() {
-        function initNewPage(data) {
-            return new Promise((resolve) => {
-                document.body.scrollTop = document.documentElement.scrollTop = 0;
-
-                App.SMcontroller.destroy(true);
-                App.SMcontroller = new ScrollMagic.Controller();
-
-                if (App.config.cursorFollower.enabled) {
-                    Cursor.leaveHandler();
-                    Cursor.clear();
-                    Cursor.update();
-                }
-
-                initComponents();
-                resolve(true);
-            });
-        }
-
-        const generalTransition = {
-            name: 'generalTransition',
-
-            leave: (data) => {
-                return new Promise((resolve) => {
-                    gsap.timeline()
-                        .add(() => {
-                            resolve(true);
-                        })
-                });
-            },
-
-            enter: (data) => {
-                return new Promise((resolve) => {
-                    initNewPage(data).then(() => resolve(true));
-                });
-            },
-
-            afterEnter: (data) => {
-                return new Promise((resolve) => {
-                    let tl = gsap.timeline();
-                    tl = PageReveal.init(tl);
-                    tl.add(() => {
-                        resolve(true);
-                    });
-                });
+          if (upperVal < lowerVal + 4) {
+            lowerSlider.value = upperVal - 4;
+            if (lowerVal == lowerSlider.min) {
+              upperSlider.value = 4;
             }
-        }
+          }
+          document.querySelector('#two').value = this.value
+        };
 
-        function init() {
-            if (!document.body.hasAttribute('data-barba')) return;
-
-            barba.init({
-                sync: true,
-                timeout: 10000,
-                prevent: ({ el }) => {
-
-                    // element doesn't has attribute
-                    if (!el.hasAttribute('data-barba')) return true;
-
-                    // element is anchor
-                    if (el.getAttribute('href').indexOf('#') > -1) return true;
-
-                    // elementor preview
-                    if (typeof elementor === 'object') return true;
-
-                },
-                transitions: [
-                    generalTransition,
-                ],
-            });
-        }
-
-        return {
-            init: init,
-        }
-    })();
-
-    /*--------------------------------------------------
-        10. Isotope grids
-    ---------------------------------------------------*/
-
-    function masonryFilterInit() {
-
-        const filterGrids = document.querySelectorAll('.section-filter');
-
-        if (!filterGrids.length) {
-            return;
-        }
-
-        for (let i = 0; i < filterGrids.length; i++) {
-            const el = filterGrids[i];
-
-            let iso = new Isotope(el.querySelector('.masonry'), {
-                itemSelector: '.masonry__item',
-                percentPosition: true,
-                // horizontalOrder: true,
-
-                layoutMode: 'packery',
-                packery: {
-                    columnWidth: '.masonry__sizer',
-                },
-            });
-
-
-            const filterButtons = el.querySelectorAll(".filter-button-group button");
-
-            for (let i = 0; i < filterButtons.length; i++) {
-                const el = filterButtons[i];
-
-                el.addEventListener("click", () => {
-
-                    let someom = iso.getItemElements();
-                    someom.forEach(el => {
-                        el.classList.remove('is-active');
-                    });
-
-                    filterButtons.forEach(button => button.classList.remove('btn-active'));
-                    el.classList.add('btn-active');
-
-                    let filterValue = el.getAttribute('data-filter');
-                    iso.arrange({ filter: filterValue });
-
-                });
+        lowerSlider.oninput = function () {
+          lowerVal = parseInt(lowerSlider.value);
+          upperVal = parseInt(upperSlider.value);
+          if (lowerVal > upperVal - 4) {
+            upperSlider.value = lowerVal + 4;
+            if (upperVal == upperSlider.max) {
+              lowerSlider.value = parseInt(upperSlider.max) - 4;
             }
-        }
+          }
+          document.querySelector('#one').value = this.value
+        };
+      }
+    },
+    preloader: function () {
 
+      var preload = $("#elevate-load");
+
+      if (preload.length) {
+        window.addEventListener('load', function () {
+          document.querySelector('#elevate-load').classList.add("loaded");
+        });
+      };
+
+    },
+    serviceHover: function () {
+      $('.single-varticle-product').hover(function () {
+        $('.single-varticle-product.active').removeClass('active');
+        $(this).addClass('active');
+      });
     }
 
+  }
 
-    function masonryGridInit() {
-
-        const grids = document.querySelectorAll('.js-masonry.js-masonry-no-filter');
-
-        if (!grids.length) {
-            return;
-        }
-
-        for (let i = 0; i < grids.length; i++) {
-            new Isotope(grids[i], {
-                itemSelector: '.masonry__item',
-                percentPosition: true,
-
-                layoutMode: 'packery',
-                packery: {
-                    columnWidth: '.masonry__sizer',
-                },
-            });
-        }
-
-    }
-
-})();
+  rtsJs.m();
+  $('.gallery-image').magnificPopup({
+		type: 'image',
+		gallery: {
+			enabled: true
+		}
+	});
+})(jQuery, window)

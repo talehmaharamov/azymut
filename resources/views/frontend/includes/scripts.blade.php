@@ -1,56 +1,91 @@
-<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-        crossorigin=""></script>
-<script src="{{ asset('frontend/js/vendors.js')}}"></script>
-<script src="{{ asset('frontend/js/main.js')}}"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script>
-    $(document).ready(function () {
-        var imageUrl = $('.page-masthead').find('.bg-image').attr('data-originalbg');
-        var aboutImageUrl = $('.section-bg-image').find('.bg-image').attr('data-originalbg');
-        setTimeout(function () {
-            $('.page-masthead .bg-image').css('background-image', 'url("' + imageUrl + '")');
-            $('.section-bg-image .bg-image').css('background-image', 'url("' + aboutImageUrl + '")');
-        }, 500);
-    });
-</script>
-
+<script src="{{ asset('frontend/js/plugins/jquery.min.js') }}"></script>
+<script src="{{ asset('frontend/js/vendor/jqueryui.js') }}"></script>
+<script src="{{ asset('frontend/js/plugins/counter-up.js') }}"></script>
+<script src="{{ asset('frontend/js/plugins/swiper.js') }}"></script>
+<script src="{{ asset('frontend/js/vendor/twinmax.js') }}"></script>
+<script src="{{ asset('frontend/js/vendor/split-text.js') }}"></script>
+<script src="{{ asset('frontend/js/plugins/text-plugins.js') }}"></script>
+<script src="{{ asset('frontend/js/plugins/metismenu.js') }}"></script>
+<script src="{{ asset('frontend/js/vendor/waypoint.js') }}"></script>
+<script src="{{ asset('frontend/js/vendor/waw.js') }}"></script>
+<script src="{{ asset('frontend/js/vendor/magnific-popup.js') }}"></script>
+<script src="{{ asset('frontend/js/plugins/aos.js') }}"></script>
+<script src="{{ asset('frontend/js/plugins/jquery-ui.js') }}"></script>
+<script src="{{ asset('frontend/js/plugins/jquery-timepicker.js') }}"></script>
+<script src="{{ asset('frontend/js/vendor/sal.min.js') }}"></script>
+<script src="{{ asset('frontend/js/plugins/bootstrap.min.js') }}"></script>
+<script src="{{ asset('frontend/js/plugins/jquery-slideNav.js') }}"></script>
+<script src="{{ asset('frontend/js/plugins/hover-revel.js') }}"></script>
+<script src="{{ asset('frontend/js/plugins/contact-form.js') }}"></script>
+<script src="{{ asset('frontend/js/main.js') }}"></script>
+<script src="{{ asset('frontend/js/plugins/swip-img.js') }}"></script>
 <script type="text/javascript">
-    var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
-    (function () {
-        var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
-        s1.async = true;
-        s1.src = 'https://embed.tawk.to/65e81bd28d261e1b5f693ac5/1ho9apbhs';
-        s1.charset = 'UTF-8';
-        s1.setAttribute('crossorigin', '*');
-        s0.parentNode.insertBefore(s1, s0);
-    })();
+    $(document).ready(function() {
+        $('.heder-two .header-two-container .header-main-wrapper .rts-header-right .bottom .nav-area ul li').hover(
+            function() {
+                // Bu, hover olunduqda
+                $(this).children('a').css('color', '#00AAFF');
+            },
+            function() {
+                // Bu, hover çıxıldıqda
+                $(this).children('a').css('color', '');
+            }
+        );
+    });
+    document.addEventListener('DOMContentLoaded', function () {
+
+        const dropdowns = document.querySelectorAll('.has-dropdown > a');
+        const mobileMenuButton = document.getElementById('menu-btn');
+        const closeSidebarButton = document.getElementById('close-sidebar-button');
+        const sidebar = document.querySelector('.mobile-menu');
+
+        // Handle dropdown toggling
+        dropdowns.forEach(dropdown => {
+            dropdown.addEventListener('click', function (event) {
+                event.preventDefault();
+
+                const parent = this.parentElement;
+
+                // Close all sibling dropdowns
+                const siblings = Array.from(parent.parentElement.children);
+                siblings.forEach(sibling => {
+                    if (sibling !== parent) {
+                        sibling.classList.remove('active');
+                        const submenu = sibling.querySelector('.submenu, .submenu-third-level');
+                        if (submenu) {
+                            submenu.style.display = 'none';
+                        }
+                    }
+                });
+
+                // Toggle the current dropdown
+                parent.classList.toggle('active');
+
+                const submenu = parent.querySelector('.submenu, .submenu-third-level');
+
+                if (submenu) {
+                    submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+                }
+            });
+        });
+
+        // Ensure sidebar is hidden on page load
+        sidebar.classList.remove('active');
+
+        // Handle sidebar toggle button
+        mobileMenuButton.addEventListener('click', function () {
+            sidebar.classList.add('active');
+        });
+
+        // Handle sidebar close button
+        closeSidebarButton.addEventListener('click', function () {
+            sidebar.classList.remove('active');
+        });
+    });
+
+
+
+
+
 </script>
 
-<script>
-    $(document).ready(function () {
-        $('.autoChange').click(function () {
-            var langCode = $(this).data('lan');
-            window.location = langCode;
-        })
-    });
-    const ssllddElements = document.querySelectorAll('.sslldd');
-
-    // Add margin-top to the first sslldd element when it becomes sticky
-    function handleSticky() {
-        const firstSslldd = ssllddElements[0];
-        if (firstSslldd.classList.contains('is-sticky')) {
-            firstSslldd.style.marginTop = '10px';
-        } else {
-            firstSslldd.style.marginTop = '0';
-        }
-    }
-
-    handleSticky();
-
-    const toggleButton = document.getElementById('toggle-button');
-    toggleButton.addEventListener('click', () => {
-        ssllddElements[0].classList.toggle('is-sticky');
-        handleSticky();
-    });
-</script>

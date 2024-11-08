@@ -1,22 +1,22 @@
-<div class="whats-float">
-    <a href="https://wa.me/{{ settings('phone') }}"
-       target="_blank">
-        <i class="fab fa-whatsapp"></i>
-        <span>
-            @lang('Whatsapp')<br>
-            <small>{{ settings('phone') }}</small>
-        </span>
-    </a>
-</div>
-<div class="whats-float1">
-    <a href="{{ settings('instagram') }}"
-       target="_blank">
-        <i class="fab fa-instagram"></i>
-        <span>@lang('Instagram')<br>
-            <small>{{ str_replace('https://www.instagram.com/','@',settings('instagram')) }}</small>
-        </span>
-    </a>
-</div>
+{{--<div class="whats-float">--}}
+{{--    <a href="https://wa.me/{{ settings('phone') }}"--}}
+{{--       target="_blank">--}}
+{{--        <i class="fab fa-whatsapp"></i>--}}
+{{--        <span>--}}
+{{--            @lang('Whatsapp')<br>--}}
+{{--            <small>{{ settings('phone') }}</small>--}}
+{{--        </span>--}}
+{{--    </a>--}}
+{{--</div>--}}
+{{--<div class="whats-float1">--}}
+{{--    <a href="{{ settings('instagram') }}"--}}
+{{--       target="_blank">--}}
+{{--        <i class="fab fa-instagram"></i>--}}
+{{--        <span>@lang('Instagram')<br>--}}
+{{--            <small>{{ str_replace('https://www.instagram.com/','@',settings('instagram')) }}</small>--}}
+{{--        </span>--}}
+{{--    </a>--}}
+{{--</div>--}}
 {{--<div class="whats-float2">--}}
 {{--    <a href="tel:{{ settings('phone') }}">--}}
 {{--        <i class="fas fa-phone"></i>--}}
@@ -25,192 +25,222 @@
 {{--        </span>--}}
 {{--    </a>--}}
 {{--</div>--}}
+<a href="https://wa.me/{{ settings('phone') }}" class="float" target="_blank">
+    <i class="fab fa-whatsapp my-float"></i>
+</a>
 
-<header class="header  js-header">
-    <div class="header__bar  js-header-bar">
-        <div class="row justify-content-between align-items-center sslldd">
-            <div class="col-auto z-5 js-header-item">
-                <div class="header__item -margin-sm">
-                    <div class="header__logo text-white js-header-logo">
-                        <a data-barba href="{{ route('frontend.index') }}">
-                            <img style="width: 120px;height: 50px;" src="{{ asset('frontend/logos/Azymut loqo5.png')}}"
-                                 alt="Azymut">
+<!-- General header -->
+<!-- General header -->
+<header class="heder-two header--sticky">
+    <div class="header-two-container">
+        <div class="row">
+            <div class="col-12">
+                <div class="header-main-wrapper">
+                    <div class="logo-area">
+                        <a href="{{ route('frontend.index') }}" class="logo">
+                            <img src="{{ asset('frontend/logos/Azymut loqo7.png') }}" style="width: 187px;height: 52px;"
+                                 alt="image-logo">
                         </a>
+                    </div>
+
+                    <div class="rts-header-right">
+                        <div class="menu-area" id="menu-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="16" viewBox="0 0 18 16"
+                                 fill="none">
+                                <rect width="18" height="2" fill="#0C0A0A"/>
+                                <rect y="7" width="18" height="2" fill="#0C0A0A"/>
+                                <rect y="14" width="18" height="2" fill="#0C0A0A"/>
+                            </svg>
+                        </div>
+                        <div class="bottom">
+                            <div class="main-nav-desk nav-area">
+                                <nav>
+                                    <ul>
+                                        <li class="menu-item">
+                                            <a class="nav-item" href="{{ route('frontend.index') }}">
+                                                @lang('backend.home-page')
+                                            </a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a class="nav-item" href="{{ route('frontend.about') }}">
+                                                @lang('backend.about')
+                                            </a>
+                                        </li>
+                                        @foreach($mainCategories as $mCat)
+                                            <li class="has-droupdown pages">
+                                                <a class="nav-link" href="#">
+                                                    {{ $mCat->translate(app()->getLocale())->name ?? '' }}
+                                                </a>
+                                                @if($mCat->subcategories->isNotEmpty())
+                                                    <ul class="submenu inner-page">
+                                                        @foreach($mCat->subcategories as $mSubCat)
+                                                            @if(!$mSubCat->subcategories->isNotEmpty())
+                                                                <li>
+                                                                    <a href="{{ route('frontend.selectedCategory',$mSubCat->slug) }}">
+                                                                        {{ $mSubCat->translate(app()->getLocale())->name ?? '' }}
+                                                                    </a>
+                                                                </li>
+                                                            @else
+                                                                <li class="sub-dropdown">
+                                                                    <a href="#" class="sub-menu-link">
+                                                                        {{ $mSubCat->translate(app()->getLocale())->name ?? '' }}
+                                                                    </a>
+                                                                    @if($mSubCat->subcategories->isNotEmpty())
+                                                                        <ul class="submenu third-lvl base">
+                                                                            @foreach($mSubCat->subcategories as $mAltCat)
+                                                                                <li>
+                                                                                    <a class="mobile-menu-link"
+                                                                                       href="{{ route('frontend.selectedCategory',$mAltCat->slug) }}">
+                                                                                        {{ $mAltCat->translate(app()->getLocale())->name ?? '' }}
+                                                                                    </a>
+                                                                                </li>
+                                                                            @endforeach
+                                                                        </ul>
+                                                                    @endif
+                                                                </li>
+                                                            @endif
+                                                        @endforeach
+                                                    </ul>
+                                                @endif
+
+                                            </li>
+
+                                        @endforeach
+                                        <li class="menu-item">
+                                            <a class="nav-item" href="{{ route('frontend.blog') }}">
+                                                @lang('backend.blogs')
+                                            </a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a class="nav-item" href="{{ route('frontend.contact-us-page') }}">
+                                                @lang('backend.cntct')
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                            <div class="right-area">
+                                <div class="icon-area">
+                                    <div class="search" id="search">
+                                        <i class="fa-regular fa-magnifying-glass"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+</header>
 
-            <div class="menu js-menu ">
-                <div class="mobile__background js-mobile-bg"></div>
+<!-- Sidebar -->
+<div id="side-bar" class="side-bar">
+    <div class="mobile-menu d-block d-xl-none">
+        <nav class="nav-main mainmenu-nav mt--30">
+            <button id="close-sidebar-button" class="close-icon-menu">
+                <i class="far fa-times"></i>
+            </button>
+            <ul class="mainmenu" id="mobile-menu-active">
+                <li>
+                    <a href="{{ route('frontend.index') }}" class="main">
+                        @lang('backend.home-page')
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('frontend.about') }}" class="main">
+                        @lang('backend.about')
+                    </a>
+                </li>
 
-                <div class="menu__container">
-                    <div class="mobile__back js-nav-list-back pointer-events-none">
-                        <a data-barba href="{{ route('frontend.index') }}">
-                            @lang('backend.home-page')
-                        </a>
-                    </div>
-
-                    <ul class="nav js-navList">
-                        <li class="text-white">
-                            <a data-barba href="{{ route('frontend.index') }}">
-                                @lang('backend.home-page')
-                            </a>
-                        </li>
-                        <li class="text-white">
-                            <a data-barba href="{{ route('frontend.about') }}">
-                                @lang('backend.about')
-                            </a>
-                        </li>
-                        @foreach($mainCategories as $mCat)
-                            <li class="text-white -has-mega-menu menu-item-has-children">
-                                <a data-barba href="#">
-                                    {{ $mCat->translate(app()->getLocale())->name ?? '' }}
-                                </a>
-                                <div class="mega">
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <ul class="mega__menu">
-                                                    @foreach($mCat->subcategories as $mSubCat)
-                                                        <li class="mega__column">
-                                                            <div class="mega__item">
-                                                                <a class="mega__title"
-                                                                   href="{{ route('frontend.selectedCategory',$mSubCat->slug) }}">
-                                                                    {{ $mSubCat->translate(app()->getLocale())->name ?? '' }}
-                                                                </a>
-                                                                @if($mSubCat->subcategories()->exists())
-                                                                    <ul class="mega__list">
-                                                                        @foreach($mSubCat->subcategories as $mAltSubCat)
-                                                                            <li>
-                                                                                <a data-barba
-                                                                                   href="{{ route('frontend.selectedCategory',$mAltSubCat->slug) }}">
-                                                                                    {{ $mAltSubCat->translate(app()->getLocale())->name ?? '' }}
-                                                                                </a>
-                                                                            </li>
-                                                                        @endforeach
-                                                                    </ul>
-                                                                @endif
-                                                            </div>
-                                                        </li>
-                                                    @endforeach
-
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <ul class="nav__submenu md:d-block d-none">
-                                    @foreach($mCat->subcategories as $subSub)
-                                        <li class="nav__submenu_item menu-item-has-children">
-                                            <a data-barba href="{{ route('frontend.selectedCategory',$subSub->slug) }}">
-                                                {{ $subSub->translate(app()->getLocale())->name ?? '' }}
+                @foreach($mainCategories as $mCat)
+                    <li class="has-dropdown">
+                        <a href="#" class="main">{{ $mCat->translate(app()->getLocale())->name ?? '' }}</a>
+                        @if($mCat->subcategories->isNotEmpty())
+                            <ul class="submenu">
+                                @foreach($mCat->subcategories as $mSubCat)
+                                    @if(!$mSubCat->subcategories->isNotEmpty())
+                                        <li>
+                                            <a class="mobile-menu-link"
+                                               href="{{ route('frontend.selectedCategory',$mSubCat->slug) }}">
+                                                {{ $mSubCat->translate(app()->getLocale())->name ?? '' }}
                                             </a>
-                                            @if($subSub->subcategories()->exists())
-                                                <ul class="nav__submenu md:d-block d-none">
-                                                    @foreach($subSub->subcategories as $subAlt)
-                                                        <li class="nav__submenu_item">
-                                                            <a data-barba
-                                                               href="{{ route('frontend.selectedCategory',$subAlt->slug) }}">
-                                                                {{ $subAlt->translate(app()->getLocale())->name ?? '' }}
+                                        </li>
+                                    @else
+                                        <li class="has-dropdown third-level">
+                                            <a class="main" href="#">
+                                                {{ $mSubCat->translate(app()->getLocale())->name ?? '' }}
+                                            </a>
+                                            @if($mSubCat->subcategories->isNotEmpty())
+                                                <ul class="submenu-third-level">
+                                                    @foreach($mSubCat->subcategories as $mAltCat)
+                                                        <li>
+                                                            <a class="mobile-menu-link"
+                                                               href="{{ route('frontend.selectedCategory',$mAltCat->slug) }}">
+                                                                {{ $mAltCat->translate(app()->getLocale())->name ?? '' }}
                                                             </a>
                                                         </li>
                                                     @endforeach
                                                 </ul>
                                             @endif
                                         </li>
-                                    @endforeach
-                                </ul>
-                            </li>
-                        @endforeach
-
-                        <li class="text-white">
-                            <a data-barba href="{{ route('frontend.contact-us-page') }}">
-                                @lang('backend.contact-us')
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="mobile__footer js-mobile-footer">
-                    <div class="mobile__socials">
-                        <a data-barba href="#">
-                            <i class="fa fa-facebook" aria-hidden="true"></i>
-                        </a>
-                        <a data-barba href="#">
-                            <i class="fa fa-twitter" aria-hidden="true"></i>
-                        </a>
-                        <a data-barba href="#">
-                            <i class="fa fa-instagram" aria-hidden="true"></i>
-                        </a>
-                        <a data-barba href="#">
-                            <i class="fa fa-linkedin" aria-hidden="true"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="col-auto z-5 sm:pos-unset js-header-item">
-                <div class="header__icons ">
-                    <div class="header__cart">
-                        <a data-barba href="#">
-                            <i class="fas fa-globe-europe"></i>
-                        </a>
-                        <div class="headerCart js-headerCart">
-                            <div class="headerCart__content">
-                                @foreach(active_langs() as $lang)
-                                    <div class="headerCart__item autoChange"
-                                         data-lan="{{ route('frontend.frontLanguage',$lang->code) }}">
-                                        <div class="headerCart__img">
-                                            <img style="height: 24px !important;width: 36px !important;"
-                                                 src="{{ asset($lang->icon) }}" alt="image">
-                                        </div>
-                                        <div class="headerCart__wrap">
-                                            <h5 class="headerCart__title">
-                                                {{ $lang->name }}
-                                            </h5>
-                                        </div>
-                                    </div>
+                                    @endif
                                 @endforeach
-                            </div>
+                            </ul>
+                        @endif
+                    </li>
+                @endforeach
+                <li>
+                    <a href="{{ route('frontend.blog') }}" class="main">
+                        @lang('backend.blogs')
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('frontend.contact-us-page') }}" class="main">
+                        @lang('backend.cntct')
+                    </a>
+                </li>
+            </ul>
+        </nav>
 
-                        </div>
-                    </div>
-
-                    <div class="header__search">
-                        <button class="js-headerSearch-open">
-                            <i class="icon text-white icon-search"></i>
-                        </button>
-                    </div>
-
-                    <div class="header__menu">
-                        <button type="button" class="nav-button-open md:d-none js-sidebar-open">
-                            <i class="icon text-white icon-menu"></i>
-                        </button>
-
-                        <button type="button" class="nav-button-open d-none md:d-block js-nav-open">
-                            <i class="icon text-white icon-menu"></i>
-                        </button>
-
-                        <button type="button"
-                                class="nav-button-close d-none md:d-block pointer-events-none js-nav-close">
-                            <i class="icon text-white icon-cross"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="headerSearch js-headerSearch">
-            <div class="headerSearch__line"></div>
-            <form action="{{ route('frontend.search') }}" method="GET">
-                <i class="headerSearch__icon icon-search"></i>
-                <input type="search" name="s" placeholder="@lang('backend.search')">
-            </form>
-            <button class="headerSearch__close js-headerSearch-close">
-                <i class="icon icon-cross text-white"></i>
-            </button>
+        <div class="social-wrapper-one">
+            <ul>
+                <li>
+                    <a href="{{ settings('facebook') }}">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ settings('instagram') }}">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://wa.me/{{ settings('phone') }}">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </li>
+            </ul>
         </div>
     </div>
-</header>
+</div>
+
+
+<form method="get" action="{{ route('frontend.search') }}">
+    <div class="search-input-area">
+        <div class="container">
+            <div class="search-input-inner">
+                <div class="input-div">
+                    <input id="searchInput1" name="s" class="search-input" type="text" placeholder="@lang('backend.search')">
+                    <button>
+                        <i class="far fa-search" style="color: white !important;"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="close" class="search-close-icon">
+            <i class="far fa-times"></i>
+        </div>
+    </div>
+</form>
+

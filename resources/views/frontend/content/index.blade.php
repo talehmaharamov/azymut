@@ -1,105 +1,136 @@
 @extends('master.frontend')
-@section('title',$category->translate(app()->getLocale())->meta_title ?? " ")
+@section('title',$category->translate(app()->getLocale())->meta_title ?? "Azymut.az")
 @section('meta')
-    <meta name="description" content="{{ $category->translate(app()->getLocale())->meta_description ?? '' }}">
+    <meta name="description" content="{{ $category->translate(app()->getLocale())->meta_description  }}">
 @endsection
 @section('front')
-    <section class="page-masthead">
-        <div data-parallax="0.6" class="page-masthead__bg">
-            <div data-parallax-target class="bg-image js-lazy"
-                 data-originalbg="{{ asset($category->photo) }}"></div>
-        </div>
+    <div class="rts-bread-crumb-area ptb--150 ptb_sm--100 bg-breadcrumb bg_image mb--50">
         <div class="container">
-            <div class="page-masthead__content">
-                <div class="row justify-content-between md:justify-content-center align-items-center">
-                    <div class="col-lg-9 col-md-10">
-                        <div data-anim="slide-up delay-1">
-                            <div class="page-masthead__subtitle">
-                                @lang('backend.service')
-                            </div>
-                            <div class="page-masthead__back_title">
-                                {{ $category->translate(app()->getLocale())->name ?? __('backend.translation-not-found') }}
-                            </div>
-                            <h1 class="page-masthead__title text-white">
-                                {{ $category->translate(app()->getLocale())->name ?? __('backend.translation-not-found') }}
-                            </h1>
-                        </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb-inner text-center">
+                        <h1 class="title">
+                            {{ $category->translate(app()->getLocale())->name ?? '' }}
+                        </h1>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-                    <div class="col-auto">
-                        <div data-anim="slide-up delay-1" class="page-masthead-bread text-white md:mt-24">
-                            <a data-barba href="{{ route('frontend.index') }}" class="page-masthead-bread__item">
-                                @lang('backend.home-page')
-                            </a>
-                            /
-                            <a data-barba class="page-masthead-bread__item ">
-                                {{ $category->translate(app()->getLocale())->name ?? __('backend.translation-not-found') }}
-                            </a>
+    <div class="rts-about-area-about vision">
+        <div class="container pb--45 plr_sm--15">
+            <div class="vision-wrapper">
+                <div class="">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="vision-main-wrapper">
+                                <div class="row align-items-center">
+                                    @if($category->photo != null)
+                                        <div class="col-lg-5 col-md-6 col-sm-12">
+                                            <div class="side-sticky">
+                                                <div class="sticky-inner">
+                                                    <div class="thumbnail-area-about">
+                                                        <img src="{{ asset($category->photo) }}"
+                                                             alt="{{ $category->translate(app()->getLocale())->name }}"
+                                                             class="main">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
+                                    <div class="col-lg-7 about-a-p-cont col-md-6">
+                                        <div class="about-inner-wrapper-inner">
+                                            <div class="title-three-left">
+                                                <h3 class="title" data-sal="slide-up" data-sal-delay="100"
+                                                    style="color:#00007DFF !important;"
+                                                    data-sal-duration="800">
+                                                    {{ $category->translate(app()->getLocale())->name ?? __('backend.translation-not-found') }}
+                                                </h3>
+                                            </div>
+                                            <div class="main-content-area-about-p">
+                                                <p class="disc" style="color:#00007DFF; !important;">
+                                                    {!! $category->translate(app()->getLocale())->description ?? '' !!}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-    <section class="layout-pt-md layout-pb-md">
+    </div>
+
+    <div class="rts-latest-project-area rts-section-gap">
         <div class="container">
-            <div class="section-filter px-16">
-                <div class="masonry -gap-32 -col-3 layout-pt-sm js-masonry js-masonry-no-filter">
-                    <div class="masonry__sizer"></div>
-                    @foreach($contents as $content)
-                        <div class="masonry__item -r-120">
-                            <a data-barba href="{{ route('frontend.selectedContent',$content->slug) }}"
-                               class="portfolioCard -type-1 ratio">
-                                <div class="portfolioCard__image">
-                                    <img class="ratio-img js-lazy" src="" data-src="{{ asset($content->photo) }}"
-                                         alt="{{ $content->translate(app()->getLocale())->alt ?? 'FOZ' }}">
-                                </div>
-                                <div class="portfolioCard__content px-30 py-30">
-                                    <h1 class="portfolioCard__title fw-600" style="font-size: 25px;">
-                                        {{ $content->translate(app()->getLocale())->name ?? __('backend.translation-not-found') }}
-                                    </h1>
-                                </div>
-                            </a>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-            <div class="row justify-content-center mt-80 md:mt-32">
-                <div class="col-auto">
-                    <div class="pagination -section">
-                        <div class="pagination__nav">
-                            @if ($contents->previousPageUrl())
-                                <a href="{{ $contents->previousPageUrl() }}" class="nav-icon -left" data-barba>
-                                    <div class="nav-icon__circle">
-                                        <i class="icon icon-left-arrow"></i>
-                                    </div>
+            <div class="row g-24">
+                @foreach($contents as $content)
+                    <div class="col-lg-4 col-md-6 col-sm-12 col-12">
+                        <div class="blog-single-two-wrapper">
+                            <div class="image-area">
+                                <a href="{{ route('frontend.selectedContent',$content->slug) }}" class="thumbnail">
+                                    <img src="{{ asset($content->photo) }}"
+                                         style="width:421px !important; height:266px !important;"
+                                         alt="{{ $content->translate(app()->getLocale())->alt ?? '' }}">
                                 </a>
-                            @endif
-                        </div>
-
-                        <div class="pagination__content">
-                            @for ($i = 1; $i <= $contents->lastPage(); $i++)
-                                <a href="{{ $contents->url($i) }}"
-                                   @if ($contents->currentPage() === $i) class="is-active"
-                                   @endif data-barba>{{ $i }}</a>
-                            @endfor
-                        </div>
-
-                        <div class="pagination__nav">
-                            @if ($contents->nextPageUrl())
-                                <a href="{{ $contents->nextPageUrl() }}" class="nav-icon -right" data-barba>
-                                    <div class="nav-icon__circle">
-                                        <i class="icon icon-right-arrow"></i>
-                                    </div>
+                            </div>
+                            <div class="inner">
+                                <a href="{{ route('frontend.selectedContent',$content->slug) }}">
+                                    <h5 class="title">
+                                        {{ $content->translate(app()->getLocale())->name ?? '' }}
+                                    </h5>
                                 </a>
-                            @endif
+                                <a href="{{ route('frontend.selectedContent',$content->slug) }}"
+                                   class="btn-read-more-blog">
+                                    @lang('backend.load-more')
+                                    <i class="fa-light fa-arrow-right"></i>
+                                </a>
+                            </div>
                         </div>
+                    </div>
+                @endforeach
+
+                <div class="row mt--30">
+                    <div class="col-lg-12">
+                        @if($contents->isNotEmpty())
+                            <div class="rts-elevate-pagination">
+                                <ul>
+                                    @if (!$contents->onFirstPage())
+                                        <li>
+                                            <button class="disabled">
+                                                <<
+                                            </button>
+                                        </li>
+                                    @endif
+                                    @for ($i = 1; $i <= $contents->lastPage(); $i++)
+                                        @if ($i == $contents->currentPage())
+                                            <li>
+                                                <button class="active">{{ $i }}</button>
+                                            </li>
+                                        @else
+                                            <li><a href="{{ $contents->url($i) }}">
+                                                    <button>{{ $i }}</button>
+                                                </a></li>
+                                        @endif
+                                    @endfor
+                                    @if ($contents->hasMorePages())
+                                        <li>
+                                            <a href="{{ $contents->nextPageUrl() }}">
+                                                <button>
+                                                    >>
+                                                </button>
+                                            </a>
+                                        </li>
+                                    @endif
+                                </ul>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
-            <p class="mt-20">
-                {!! $category->translate(app()->getLocale())->description ?? '' !!}
-            </p>
         </div>
-    </section>
+    </div>
 @endsection

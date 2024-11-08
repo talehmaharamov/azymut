@@ -32,6 +32,7 @@ class BlogController extends Controller
         try {
             $blog = new Blog();
             $blog->photo = upload('blog', $request->file('photo'));
+            $blog->slug = $request->slug;
             $blog->save();
             foreach (active_langs() as $lang) {
                 $translation = new BlogTranslation();
@@ -54,7 +55,7 @@ class BlogController extends Controller
             alert()->success(__('messages.success'));
             return redirect(route('backend.blog.index'));
         } catch (Exception $e) {
-            alert()->error(__('backend.error'));
+            alert()->error($e->getMessage());
             return redirect(route('backend.blog.index'));
         }
     }

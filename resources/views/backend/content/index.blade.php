@@ -23,6 +23,7 @@
                             <tr>
                                 <th>ID</th>
                                 <th>@lang('backend.name'):</th>
+                                <th>@lang('backend.category'):</th>
                                 <th>@lang('backend.actions'):</th>
                             </tr>
                             </thead>
@@ -31,6 +32,7 @@
                                 <tr>
                                     <td>{{ $content->id }}</td>
                                     <td>{{ $content->translate('az')->name ?? __('backend.translation-not-found') }}</td>
+                                    <td>{{ $content->category->translate('az')->name ?? __('backend.translation-not-found') }}</td>
                                     @include('backend.templates.components.dt-settings',['variable' => 'content','value' => $content])
                                 </tr>
                             @endforeach

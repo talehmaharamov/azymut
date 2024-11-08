@@ -2,6 +2,41 @@
 @section('title',__('backend.content'))
 @section('styles')
     @livewireStyles
+    <style>
+        .tree ul {
+            padding-left: 20px;
+            list-style: none;
+        }
+
+        .tree ul li {
+            padding: 5px 0;
+        }
+
+        .tree ul li .toggle {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+
+        .tree ul li ul {
+            display: none;
+        }
+
+        .tree ul li .icon {
+            margin-right: 5px;
+        }
+
+        .tree ul li .selectable {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+
+        .selected {
+            background-color: #007bff;
+            color: white;
+        }
+    </style>
 @endsection
 @section('content')
     <div class="main-content">
@@ -78,18 +113,57 @@
                                         </div>
                                         <div class="mb-3">
                                             <label>@lang('backend.categories')</label>
-                                            <select class="form-control" name="category">
-                                                @foreach($mainCategories as $ctgry)
-                                                    <optgroup
-                                                        label="{{ $ctgry->translate(app()->getLocale())->name ?? __('backend.translation-not-found') }}">
-                                                        @foreach($ctgry->subcategories as $subCat)
-                                                            <option
-                                                                value="{{ $subCat->id }}"
-                                                                @if($content->category_id == $subCat->id) selected @endif>{{ $subCat->translate(app()->getLocale())->name ?? __('backend.translation-not-found') }}</option>
-                                                        @endforeach
-                                                    </optgroup>
-                                                @endforeach
-                                            </select>
+                                            <div class="tree">
+                                                <ul>
+                                                    @foreach($mainCategories as $ctgry)
+                                                        <li>
+                                                            <span class="toggle">
+                                                                <span class="icon">📁</span>
+                                                                {{ $ctgry->translate(app()->getLocale())->name ?? __('backend.translation-not-found') }}
+                                                            </span>
+                                                            @if($ctgry->subcategories->isNotEmpty())
+                                                                <ul>
+                                                                    @foreach($ctgry->subcategories as $subCat)
+                                                                        <li>
+                                                                            @if($subCat->subcategories->isNotEmpty())
+                                                                                <span class="toggle">
+                                                                                    <span class="icon">📂</span>
+                                                                                    {{ $subCat->translate(app()->getLocale())->name ?? __('backend.translation-not-found') }}
+                                                                                </span>
+                                                                                <ul>
+                                                                                    @foreach($subCat->subcategories as $subSubCat)
+                                                                                        <li>
+                                                                                            <span class="selectable"
+                                                                                                  data-id="{{ $subSubCat->id }}">
+                                                                                                <span
+                                                                                                    class="icon">📄</span>
+                                                                                                {{ $subSubCat->translate(app()->getLocale())->name ?? __('backend.translation-not-found') }}
+                                                                                            </span>
+                                                                                        </li>
+                                                                                    @endforeach
+                                                                                </ul>
+                                                                            @else
+                                                                                <span class="selectable"
+                                                                                      data-id="{{ $subCat->id }}">
+                                                                                    <span class="icon">📄</span>
+                                                                                    {{ $subCat->translate(app()->getLocale())->name ?? __('backend.translation-not-found') }}
+                                                                                </span>
+                                                                            @endif
+                                                                        </li>
+                                                                    @endforeach
+                                                                </ul>
+                                                            @else
+                                                                <span class="selectable" data-id="{{ $ctgry->id }}">
+                                                                    <span class="icon">📄</span>
+                                                                    {{ $ctgry->translate(app()->getLocale())->name ?? __('backend.translation-not-found') }}
+                                                                </span>
+                                                            @endif
+                                                        </li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                            <input type="hidden" name="category" id="selectedCategory"
+                                                   value="{{ $content->category_id }}">
                                         </div>
                                         <div class="mb-3">
                                             <label>PDF</label>
@@ -156,6 +230,34 @@
             }
 
             $('#nameen').on('input', generateSlugFromName);
+
+            $('.tree .toggle').on('click', function () {
+                $(this).siblings('ul').toggle('fast');
+            });
+
+            $('.tree .selectable').on('click', function () {
+                var id = $(this).data('id');
+                $('#selectedCategory').val(id);
+                $('.tree .selectable').removeClass('selected');
+                $(this).addClass('selected');
+            });
+
+            // Add 'selected' class to the element with the matching data-id and expand its parents
+            var selectedCategoryId = '{{ $content->category_id }}';
+            var selectedElement = document.querySelector('.selectable[data-id="' + selectedCategoryId + '"]');
+            if (selectedElement) {
+                selectedElement.classList.add('selected');
+                var parent = selectedElement.parentElement;
+                while (parent && parent.tagName !== 'DIV') {
+                    if (parent.tagName === 'UL') {
+                        parent.style.display = 'block';
+                    }
+                    if (parent.previousElementSibling && parent.previousElementSibling.classList.contains('toggle')) {
+                        parent.previousElementSibling.classList.add('expanded');
+                    }
+                    parent = parent.parentElement;
+                }
+            }
         });
     </script>
 @endsection

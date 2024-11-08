@@ -1,19 +1,23 @@
 @extends('master.backend')
-@section('title',__('backend.blog'))
+@section('title',__('backend.news'))
+@section('styles')
+
+@endsection
 @section('content')
     <div class="main-content">
         <div class="page-content">
             <div class="container-fluid">
                 <div class="row justify-content-center">
-                    <div class="col-xl-9">
+                    <div class="col-xl-12">
                         <div class="card">
-                            <form action="{{ route('backend.blog.update',$id) }}" class="needs-validation" novalidate
+                            <form action="{{ route('backend.blog.update',$id) }}" class="needs-validation"
+                                  novalidate
                                   method="post"
                                   enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
                                 <div class="card-body">
-                                    @include('backend.templates.components.card-col-12',['variable' => 'blog'])
+                                    @include('backend.templates.components.card-col-12',['variable' => 'news'])
                                     @include('backend.templates.components.multi-lan-tab')
                                     <div class="tab-content p-3 text-muted">
                                         @foreach(active_langs() as $lan)
@@ -24,30 +28,75 @@
                                                     <div class="mb-3">
                                                         <label>@lang('backend.name') <span class="text-danger">*</span></label>
                                                         <input name="name[{{ $lan->code }}]" type="text"
+                                                               id="name{{ $lan->code }}"
                                                                class="form-control"
                                                                required=""
-                                                               value="{{ $blog->translate($lan->code)->name ?? '-' }}">
+                                                               value="{{ $blog->translate($lan->code)->name ?? __('backend.translation-not-found') }}">
                                                         {!! validation_response('backend.name') !!}
                                                     </div>
                                                     <div class="mb-3">
-                                                        <label>@lang('backend.description') <span
-                                                                class="text-danger">*</span></label>
-                                                        <textarea name="description[{{ $lan->code }}]" type="text"
-                                                                  class="form-control" id="elm{{$lan->code}}1"
-                                                                  required="">{!! $blog->translate($lan->code)->description ?? '-' !!}</textarea>
+                                                        <label>
+                                                            @lang('backend.content')
+                                                            <span class="text-danger">*</span>
+                                                        </label>
+                                                        <textarea name="description[{{ $lan->code }}]"
+                                                                  id="elm{{$lan->code}}1"
+                                                                  class="form-control"
+                                                                  required=""
+                                                                  placeholder="@lang('backend.description')">{!! $blog->translate($lan->code)->description ?? __('backend.translation-not-found') !!}</textarea>
                                                         {!! validation_response('backend.description') !!}
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label>
+                                                            @lang('backend.short-description')
+                                                            <span class="text-danger">*</span>
+                                                        </label>
+                                                        <textarea name="short_description[{{ $lan->code }}]"
+                                                                  id="elm{{$lan->code}}2"
+                                                                  class="form-control"
+                                                                  required=""
+                                                                  placeholder="@lang('backend.short-description')">{!! $blog->translate($lan->code)->short_description ?? __('backend.translation-not-found') !!}</textarea>
+                                                        {!! validation_response('backend.short-description') !!}
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label>@lang('backend.title')(Meta)</label>
+                                                        <input name="meta_title[{{ $lan->code }}]" type="text"
+                                                               class="form-control"
+                                                               value="{{ $blog->translate($lan->code)->meta_title ?? '' }}">
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label>
+                                                            @lang('backend.description')(Meta)
+                                                        </label>
+                                                        <textarea name="meta_description[{{ $lan->code }}]" type="text"
+                                                                  class="form-control" id="elm{{$lan->code}}2"
+                                                                  rows="5">{{ $blog->translate($lan->code)->meta_description ?? '' }}</textarea>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label>@lang('backend.alt')</label>
+                                                        <textarea name="alt[{{ $lan->code }}]" type="text"
+                                                                  class="form-control"
+                                                                  rows="5">{{ $blog->translate($lan->code)->alt ?? '' }}</textarea>
                                                     </div>
                                                 </div>
                                             </div>
                                         @endforeach
                                         <div class="mb-3">
-                                            <label>@lang('backend.photo') <span class="text-danger">*</span></label>
-                                            <input name="photo" type="file"
-                                                   class="form-control">
+                                            <label>@lang('backend.slug') <span class="text-danger">*</span></label>
+                                            <input name="slug" type="text" id="slug" class="form-control" required
+                                                   value="{{ $blog->slug }}">
+                                            {!! validation_response('backend.slug') !!}
+                                        </div>
+                                        <div class="mb-3">
+                                            <label>
+                                                @lang('backend.photo')
+                                            </label>
+                                            <input type="file" name="photo" class="form-control mb-3"
+                                                   id="validationCustom" accept="image/*">
                                             @if(file_exists($blog->photo))
-                                                <img src="{{ asset($blog->photo) }}" class="mt-3 w-100">
+                                                <img style="width: 100%;max-height: 500px;"
+                                                     src="{{ asset($blog->photo) }}" alt="TechFOZ">
                                             @endif
-                                            {!! validation_response('backend.photo') !!}
                                         </div>
                                         <div class="mb-3">
                                             <label>@lang('backend.photos')</label>
@@ -57,20 +106,18 @@
                                             @if($blog->photos()->exists())
                                                 <div class="d-flex"
                                                      style="min-height: 150px; overflow: hidden; margin-bottom: 10px;border: 1px solid black; flex-wrap:wrap">
-                                                    @foreach($blog->photos()->get() as $photo)
+                                                    @foreach($blog->photos as $photo)
                                                         <div style="position:relative;" class="wraper  m-3">
                                                             <img src="{{ asset($photo->photo) }}"
                                                                  style="height: 200px; width: 170px; object-fit: cover;">
                                                             <a style="position: absolute; right:5px; top:5px"
                                                                type="button" class="btn btn-danger"
-                                                               href="{{ route('backend.deletePhoto',['model' => 'Blog','id' => $photo->id]) }}">X</a>
+                                                               href="{{ route('backend.deletePhoto',['model' =>  \Illuminate\Support\Str::ucfirst('blog'),'id' => $photo->id]) }}">X</a>
                                                         </div>
                                                     @endforeach
                                                 </div>
                                             @endif
                                         </div>
-                                    </div>
-                                </div>
                                 @include('backend.templates.components.buttons')
                             </form>
                         </div>

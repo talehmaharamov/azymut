@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Content;
 use App\Models\Faq;
 use App\Models\Meta;
+use App\Models\Partner;
 use App\Models\Slider;
 use Illuminate\Support\ServiceProvider;
 
@@ -29,6 +30,7 @@ class AppServiceProvider extends ServiceProvider
                 ->where('status', 1)
                 ->groupBy('page');
         })->get()->groupBy('page');
+        $brands = Partner::all();
         view()->share([
             'generalCategories' => $generalCategories,
             'mainCategories' => $mainCategories,
@@ -37,6 +39,7 @@ class AppServiceProvider extends ServiceProvider
             'faqSchemas' => $faqSchemas,
             'sliders' => $sliders,
             'metas' => $metas,
+            'brands' => $brands
         ]);
     }
 }
