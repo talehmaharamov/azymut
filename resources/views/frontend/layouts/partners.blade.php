@@ -1,17 +1,14 @@
-<section class="layout-pt-md layout-pb-md">
+<div class="rts-brand-area pb--70" style="background-color: #f8f8f8;">
     <div class="container">
-        <div class="row y-gap-32 justify-content-between align-items-center">
-            @foreach($clients as $client)
-                <div class="col-lg-auto col-md-auto col-6">
-                    <a href="{{ $client->link }}">
-                        <div class="clients">
-                            <div class="clients__image">
-                                <img src="{{ asset($client->photo) }}" alt="{{ $client->alt }}">
-                            </div>
-                        </div>
-                    </a>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="brand-area-wrapper-4">
+                    @foreach($clients as $client)
+                        <img src="{{ asset($client->photo) }}" alt="{{ $client->alt }}">
+                    @endforeach
+
                 </div>
-            @endforeach
+            </div>
         </div>
     </div>
-</section>
+</div>

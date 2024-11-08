@@ -1,85 +1,168 @@
-<section class="layout-pt-xs" style="padding-bottom: 1.75rem !important;">
+<div class=" team-3bg pt--50 pb--50">
     <div class="container">
-        <div class="row justify-content-center md:justify-content-start">
-            <div class="col-auto">
-                <div class="sectionHeading -top-line -md text-center md:text-left">
-                    <span class="sectionHeading__subtitle">@lang('backend.azymut')</span>
-                    <h2 class="sectionHeading__title">@lang('backend.our-team')</h2>
+        <div class="row pb--30">
+            <div class="col-lg-12">
+                <div class="elecate-center-title" data-sal="slide-up" data-sal-delay="150" data-sal-duration="800">
+                    <h3 class="title">
+                        @lang('backend.our-team')
+                    </h3>
                 </div>
             </div>
         </div>
-
-
-        <div class="row layout-pt-sm">
-            <div class="sectionSlider overflow-hidden sm:px-16 js-sectionSlider" data-gap="30"
-                 data-slider-col="base-4 lg-3 md-2 sm-2" data-pagination>
-
-                <div class="swiper-wrapper">
-                    @foreach($mainPageTeams as $mPT)
-                        <div class="swiper-slide">
-                            <div class="team -hover">
-                                <div data-anim="img-right" class="team__image">
-                                    <div>
-                                        <div class="ratio ratio-3:4 bg-image js-lazy"
-                                             style="background-image: url({{ asset($mPT->photo) }})"
-                                             data-bg="{{ asset($mPT->photo) }}"></div>
+        <div class="row">
+            @foreach($mainPageTeams->chunk(3) as $chunk)
+                <div class="row @if(!$loop->first)  mt--50 @endif">
+                    @foreach($chunk as $mpt)
+                        <div class="col-lg-4 col-md-6 col-sm-12 col-12">
+                            <div class="single-team-three">
+                                <div class="thumbnail">
+                                    <img src="{{ asset($mpt->photo) }}" style="width: 376px;height: 389px;"
+                                         alt="team_area-start">
+                                    <div class="social-team-wrapper">
+                                        <ul>
+                                            @if($mpt->email != null)
+                                                <li>
+                                                    <a href="mailto:{{ $mpt->email }}">
+                                                        <i class="fas fa-mail-bulk"></i>
+                                                    </a>
+                                                </li>
+                                            @endif
+                                            @if($mpt->phone)
+                                                    <li>
+                                                        <a href="tel:{{ $mpt->phone }}">
+                                                            <i class="fas fa-phone"></i>
+                                                        </a>
+                                                    </li>
+                                            @endif
+                                            @if($mpt->facebook != null)
+                                                <li>
+                                                    <a href="{{ $mpt->facebook }}">
+                                                        <i class="fa-brands fa-facebook-f"></i>
+                                                    </a>
+                                                </li>
+                                            @endif
+                                            @if($mpt->instagram != null)
+                                                <li>
+                                                    <a href="{{ $mpt->instagram	}}">
+                                                        <i class="fab fa-instagram"></i>
+                                                    </a>
+                                                </li>
+                                            @endif
+                                        </ul>
                                     </div>
                                 </div>
-
-                                <div class="team__content">
-                                    <div class="team__socials">
-                                        @if($mPT->email !== null)
-                                            <a data-barba target="_blank" href="mailto:{{ $mPT->email }}"
-                                               class="text-white">
-                                                <i class="fas fa-envelope"></i>
-                                            </a>
-                                        @endif
-                                        @if($mPT->phone !== null)
-                                            <a data-barba href="tel:{{ $mPT->phone }}" class="text-white">
-                                                <i class="fa fa-phone" aria-hidden="true"></i>
-                                            </a>
-                                        @endif
-                                        @if($mPT->facebook !== null)
-                                            <a data-barba href="{{ settings('facebook') }}" class="text-white">
-                                                <i class="fa fa-facebook" aria-hidden="true"></i>
-                                            </a>
-                                        @endif
-                                        @if($mPT->instagram !== null)
-                                            <a data-barba href="{{ settings('instagram') }}" class="text-white">
-                                                <i class="fa fa-instagram" aria-hidden="true"></i>
-                                            </a>
-                                        @endif
-
-
-                                    </div>
-
-                                    <div class="md:d-none">
-                                        <div class="team__info">
-                                            {{ $mPT->translate(app()->getLocale())->position ?? __('backend.translation-not-found') }}
-                                        </div>
-                                        <h3 class="team__title text-white">
-                                            {{ $mPT->translate(app()->getLocale())->name ?? __('backend.translation-not-found') }}
-                                        </h3>
-                                    </div>
+                                <div class="content-area">
+                                    <span class="designation">
+                                       {{ $mpt->translate(app()->getLocale())->position ?? '' }}
+                                    </span>
+                                    <a>
+                                        <h6 class="name">
+                                            {{ $mpt->translate(app()->getLocale())->name ?? '' }}
+                                        </h6>
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     @endforeach
                 </div>
+            @endforeach
 
-                <div class="nav -slider lg:d-none">
-                    <div class="nav__item -left js-prev">
-                        <i class="icon icon-left-arrow"></i>
-                    </div>
-
-                    <div class="nav__item -right js-next">
-                        <i class="icon icon-right-arrow"></i>
-                    </div>
-                </div>
-
-                <div class="pagination -slider mt-48 js-pagination"></div>
-            </div>
         </div>
-
     </div>
-</section>
+</div>
+
+
+{{--<div class="rts-technical-expart-area pb--90">--}}
+{{--    <div class="container">--}}
+{{--        <div class="row">--}}
+{{--            <div class="col-lg-12">--}}
+{{--                <div class="elecate-center-title" data-sal="slide-up" data-sal-delay="150" data-sal-duration="800">--}}
+{{--                    <h3 class="title">--}}
+{{--                        @lang('backend.our-team')--}}
+{{--                    </h3>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--        <div class="row g-24 mt--10">--}}
+
+{{--            <div class="col-lg-12">--}}
+{{--                <div class="swiper-technical-main-wrapper">--}}
+{{--                    <div class="next-prev-btn">--}}
+{{--                        <div class="swiper-button-next"><i class="fa-regular fa-arrow-right"></i></div>--}}
+{{--                        <div class="swiper-button-prev"><i class="fa-regular fa-arrow-left"></i></div>--}}
+{{--                    </div>--}}
+{{--                    <div class="swiper mySwiper-technical">--}}
+{{--                        <div class="swiper-wrapper">--}}
+{{--                            <div class="row g-24 mt--10" data-sal="slide-up" data-sal-delay="150" data-sal-duration="800">--}}
+{{--                                @foreach($mainPageTeams as $mpt)--}}
+{{--                                    <div class="col-lg-4 col-md-6 col-sm-12 col-12">--}}
+{{--                                        <!-- single team start -->--}}
+{{--                                        <div class="team-area-start-five">--}}
+{{--                                            <a href="#" class="thumbnail">--}}
+{{--                                                <img src="{{asset($mpt->photo)}}" alt="team">--}}
+{{--                                            </a>--}}
+{{--                                            <div class="details-team">--}}
+{{--                                                <div class="name">--}}
+{{--                                                    <a href="#">--}}
+{{--                                                        Marina Dicola Mita--}}
+{{--                                                    </a>--}}
+{{--                                                </div>--}}
+{{--                                                <div class="desig">--}}
+{{--                                                    <span>Head of Marketing</span>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                        <!-- single team end-->--}}
+{{--                                    </div>--}}
+{{--                                    --}}{{--                                <div class="swiper-slide">--}}
+{{--                                    --}}{{--                                    <div class="rts-team-one-start pb--180">--}}
+{{--                                    --}}{{--                                        <div class="wrapper">--}}
+{{--                                    --}}{{--                                            <a class="thumbnail">--}}
+{{--                                    --}}{{--                                                <img src="{{ asset($mpt->photo) }}" style="height: 455px; width: 359px;"--}}
+{{--                                    --}}{{--                                                     alt="{{ $mpt->alt }}">--}}
+{{--                                    --}}{{--                                            </a>--}}
+{{--                                    --}}{{--                                            <div class="inner">--}}
+{{--                                    --}}{{--                                                <a class="name">--}}
+{{--                                    --}}{{--                                                    <h5 class="title">--}}
+{{--                                    --}}{{--                                                        {{ $mpt->translate(app()->getLocale())->name ?? '' }}--}}
+{{--                                    --}}{{--                                                    </h5>--}}
+{{--                                    --}}{{--                                                </a>--}}
+{{--                                    --}}{{--                                                <span class="desig">--}}
+{{--                                    --}}{{--                                                    {{ $mpt->translate(app()->getLocale())->position ?? '' }}--}}
+{{--                                    --}}{{--                                                </span>--}}
+{{--                                    --}}{{--                                                <div class="info-wrapper">--}}
+{{--                                    --}}{{--                                                    <div class="single">--}}
+{{--                                    --}}{{--                                                        <i class="fa-light fa-envelope"></i>--}}
+{{--                                    --}}{{--                                                        <a href="mailto:{{ $mpt->email }}">--}}
+{{--                                    --}}{{--                                                            {{ $mpt->email }}--}}
+{{--                                    --}}{{--                                                        </a>--}}
+{{--                                    --}}{{--                                                    </div>--}}
+{{--                                    --}}{{--                                                    <div class="single">--}}
+{{--                                    --}}{{--                                                        <i class="fa-regular fa-phone-volume"></i>--}}
+{{--                                    --}}{{--                                                        <a href="tel:{{ $mpt->phone }}">--}}
+{{--                                    --}}{{--                                                            {{ $mpt->phone }}--}}
+{{--                                    --}}{{--                                                        </a>--}}
+{{--                                    --}}{{--                                                    </div>--}}
+
+{{--                                    --}}{{--                                                    <div class="single">--}}
+{{--                                    --}}{{--                                                        <i class="fa-regular fa-phone-volume"></i>--}}
+{{--                                    --}}{{--                                                        <a href="tel:+4733378901">+00012345678</a>--}}
+{{--                                    --}}{{--                                                    </div>--}}
+{{--                                    --}}{{--                                                    <!-- single info -->--}}
+{{--                                    --}}{{--                                                </div>--}}
+{{--                                    --}}{{--                                            </div>--}}
+{{--                                    --}}{{--                                        </div>--}}
+{{--                                    --}}{{--                                    </div>--}}
+{{--                                    --}}{{--                                </div>--}}
+{{--                                @endforeach--}}
+{{--                            </div>--}}
+
+{{--                        </div>--}}
+{{--                        <div class="swiper-pagination"></div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+
+{{--        </div>--}}
+{{--    </div>--}}
+{{--</div>--}}

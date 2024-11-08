@@ -1,100 +1,91 @@
-<footer class="footer -type-1">
-    <div class="footer__top">
-        <div class="container">
-            <div class="row y-gap-48 justify-content-between">
-                <div class="col-lg-3 col-md-6">
-                    <div class="footer__item">
-                        <h3 class="footer__title text-white">@lang('backend.contact-information')</h3>
-                        <div class="footer__content pr-20">
-                            <div class="footer__content__item">
-                                <p style="background-color: #18130c;">
-                                    <span>
-                                        {{ substr(__('backend.phone'), 0, 1) }}:
-                                    </span>
-                                    {{ settings('phone') }}
-                                </p>
-                                <br>
-                                <p>
-                                    <span>
-                                        {{ substr(__('backend.email'), 0, 1) }}:
-                                    </span>
-                                    {{ settings('email') }}
-                                </p>
-                                <br>
-                                <p>
-                                    <span>
-                                        A:
-                                    </span>
-                                    {{ settings('address_'.app()->getLocale()) }}
-                                </p>
-                            </div>
-                        </div>
+<div class="rts-footer-two footer-8 rts-section-gap2Top">
+    <div class="container">
+        <div class="row g-0 main-ftop-wrapper">
+            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                <div class="single-fill-footer logo">
+                    <a href="#" class="thumbnail-logo">
+                        <img src="{{ asset('frontend/logos/logo9.png') }}" style="width: 187px;" alt="">
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                <div class="single-fill-footer info">
+                    <div class="icon">
+                        <i class="fa-sharp fa-solid fa-phone"></i>
+                    </div>
+                    <div class="info">
+                        <a href="tel:{{ settings('phone') }}">
+                            {{ settings('phone') }}
+                        </a>
                     </div>
                 </div>
-
-                <div class="col-lg-3 col-md-6">
-                    <div class="footer__item">
-
-                        <h3 class="footer__title text-white">
-                            @lang('backend.useful-links')
-                        </h3>
-
-                        <div class="footer__content">
-                            <div class="footer__content__item">
-                                <a data-barba href="{{ route('frontend.about') }}">
-                                    @lang('backend.about')
-                                </a>
-                            </div>
-                            <div class="footer__content__item">
-                                <a data-barba href="{{ route('frontend.contact-us-page') }}">
-                                    @lang('backend.contact-us')
-                                </a>
-                            </div>
-                            <div class="footer__content__item">
-                                <a data-barba href="{{ route('frontend.faqs') }}">
-                                    @lang('backend.faq')
-                                </a>
-                            </div>
-                            <div class="footer__content__item">
-                                <a data-barba href="{{ route('frontend.ourTeam') }}">
-                                    @lang('backend.our-team')
-                                </a>
-                            </div>
-                        </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                <div class="single-fill-footer info">
+                    <div class="icon">
+                        <i class="fa-light fa-envelope"></i>
+                    </div>
+                    <div class="info">
+                        <a href="mailto:{{ settings('email') }}">
+                            {{ settings('email') }}
+                        </a>
                     </div>
                 </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                <div class="single-fill-footer info">
+                    <div class="icon">
+                        <i class="fa-solid fa-location-arrow"></i>
+                    </div>
+                    <div class="info">
+                        <a href="#">
+                            {{ settings('address_'.app()->getLocale()) }}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="menu-row-wrapper mt--40">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="menu-wrapper-footer-row">
+                            <div class="d-flex justify-content-start footer1">
+                                <div class="single-menu" data-sal="zoom-in" data-sal-delay="150" data-sal-duration="800">
+                                    <a href="{{ route('frontend.index') }}">
+                                        @lang('backend.home-page')
+                                    </a>
+                                </div>
+                                <div class="single-menu" data-sal="zoom-in" data-sal-delay="150" data-sal-duration="800">
+                                    <a href="{{ route('frontend.about') }}">
+                                        @lang('backend.about')
+                                    </a>
+                                </div>
+                                <div class="single-menu" data-sal="zoom-in" data-sal-delay="150" data-sal-duration="800">
+                                    <a href="{{ route('frontend.contact-us-page') }}">
+                                        @lang('backend.contact-us')
+                                    </a>
+                                </div>
+                            </div>
 
 
-                <div class="col-lg-3 col-md-6">
-                    <div class="footer__item">
-                        <h3 class="footer__title text-white">
-                            @lang('backend.services')
-                        </h3>
-
-                        <div class="footer__content">
-                            <div class="footer__content">
-                                @foreach($mainCategories as $mC)
-                                    <div class="footer__content__item">
-                                        <a data-barba>
-                                            {{ $mC->translate(app()->getLocale())->name ?? __('backend.translation-not-found') }}
+                            <div class="single-menu" data-sal="zoom-in" data-sal-delay="150" data-sal-duration="800">
+                                <div class="row">
+                                    <div class="col">
+                                        <a href="{{ settings('facebook') }}" target="_blank">
+                                            <i style="color: white !important;" class="fab fa-facebook"></i>
                                         </a>
                                     </div>
-                                @endforeach
-                            </div>
-
-                            <div class="footer__socials">
-                                <h3 class="footer__title text-white">@lang('backend.follow-us')</h3>
-
-                                <div class="footer__socials_content">
-                                    <a data-barba href="{{ settings('facebook') }}" target="_blank" class="text-white">
-                                        <i class="fa fa-facebook" aria-hidden="true"></i>
-                                    </a>
-                                    <a data-barba href="{{ settings('whatsapp') }}" target="_blank" class="text-white">
-                                        <i class="fa fa-whatsapp" aria-hidden="true"></i>
-                                    </a>
-                                    <a data-barba href="{{ settings('instagram') }}" target="_blank" class="text-white">
-                                        <i class="fa fa-instagram" aria-hidden="true"></i>
-                                    </a>
+                                    <div class="col">
+                                        <a href="{{ settings('instagram') }}" target="_blank">
+                                            <i style="color: white !important;" class="fab fa-instagram"></i>
+                                        </a>
+                                    </div>
+                                    <div class="col">
+                                        <a href="https://wa.me/{{ settings('phone') }}" target="_blank">
+                                            <i style="color: white !important;" class="fab fa-whatsapp"></i>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -103,34 +94,21 @@
             </div>
         </div>
     </div>
-
-    <div class="footer__bottom">
+    <div class="copyright-area">
         <div class="container">
-            <div class="row align-items-center justify-content-between sm:justify-content-start">
-                <div class="col-auto sm:order-2">
-                    <div class="footer__bottom_text">© {{ now()->year }} Azymut. @lang('backend.all-right-reserved').
-                    </div>
-                </div>
-                <div class="col-auto sm:order-1">
-                    <div class="footer__logo">
-                        <img style="height: 40px;width: 120px;" src="{{ asset('frontend/logos/Azymut loqo5.png') }}"
-                             alt="logo">
-                    </div>
-                </div>
-                <div class="col-auto sm:d-none">
-                    <div class="footer__bottom_text">
-                        Powered by
-                        <a target="_blank" style="color: #B88768 !important" href="https://foz.az">FOZ</a>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="copyright-footer-two">
+                        <p>
+                            @lang('backend.all-right-reserved') &copy; {{ now()->year }}
+                            Powered by
+                            <a class="text-white" target="_blank" href="https://foz.az">
+                                FOZ
+                            </a>
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div data-cursor class="backButton js-backButton">
-        <div class="nav -slider">
-            <div class="nav__item -left">
-                <i class="icon icon-right-arrow"></i>
-            </div>
-        </div>
-    </div>
-</footer>
+</div>

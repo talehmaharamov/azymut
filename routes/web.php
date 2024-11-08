@@ -4,6 +4,7 @@ use App\Http\Controllers\Backend\LanguageController as LChangeLan;
 use App\Http\Controllers\Frontend\HomeController as FHome;
 use App\Http\Controllers\Frontend\AboutController as FAbout;
 use App\Http\Controllers\Frontend\ServiceController as FService;
+use App\Http\Controllers\Frontend\BlogController as FBlog;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => '/', 'as' => 'frontend.', 'middleware' => 'frontLanguage'], function () {
@@ -26,6 +27,9 @@ Route::group(['prefix' => '/', 'as' => 'frontend.', 'middleware' => 'frontLangua
 
     Route::get('project/{slug}', [FService::class, 'show'])->name('selectedProject');
     Route::get('projects', [FService::class, 'index'])->name('project');
+
+    Route::get('blog/{slug}', [FBlog::class, 'show'])->name('selectedBlog');
+    Route::get('blogs', [FBlog::class, 'index'])->name('blog');
 
     Route::get('faqs', [FHome::class, 'faqs'])->name('faqs');
     Route::get('our-team', [FHome::class, 'team'])->name('ourTeam');

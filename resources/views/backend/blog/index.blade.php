@@ -1,5 +1,5 @@
 @extends('master.backend')
-@section('title',__('backend.blog'))
+@section('title',__('backend.news'))
 @section('styles')
     @include('backend.templates.components.dt-styles')
 @endsection
@@ -11,7 +11,7 @@
                     <div class="card-body">
                         <div class="col-12">
                             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                <h4 class="mb-sm-0">@lang('backend.blog'):</h4>
+                                <h4 class="mb-sm-0">@lang('backend.news'):</h4>
                                 <a href="{{ route('backend.blog.create') }}" class="btn btn-primary mb-3"><i
                                         class="fas fa-plus"></i> &nbsp;@lang('backend.add-new')
                                 </a>
@@ -22,7 +22,7 @@
                             <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>@lang('backend.photo'):</th>
+                                <th>@lang('backend.slug'):</th>
                                 <th>@lang('backend.name'):</th>
                                 <th>@lang('backend.actions'):</th>
                             </tr>
@@ -31,8 +31,8 @@
                             @foreach($blogs as $blog)
                                 <tr>
                                     <td>{{ $blog->id }}</td>
-                                    <td><img src="{{ asset($blog->photo) }}" style="width: 120px;height: 80px;"></td>
-                                    <td>{{ $blog->translate(app()->getLocale())->name ?? '-' }}</td>
+                                    <td>{{ $blog->slug }}</td>
+                                    <td>{{ $blog->translate(app()->getLocale())->name ?? '' }}</td>
                                     @include('backend.templates.components.dt-settings',['variable' => 'blog','value' => $blog])
                                 </tr>
                             @endforeach

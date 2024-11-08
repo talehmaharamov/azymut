@@ -266,4 +266,5 @@
   'your-item-message' => 'Your item is awaiting review. Please save the item number to edit or delete the listing.',
   'your-item-number' => 'Your item number',
   'contact-with-us' => 'Contact Us',
+  'cntct' => 'Contact',
 );

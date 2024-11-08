@@ -26,20 +26,11 @@
                         </a>
                     </li>
                 @endcan
-                @can('project index')
+                @can('content index')
                     <li>
                         <a href="{{ route('backend.content.index') }}" class="waves-effect">
                             <i class="fas fa-hard-hat"></i>
-                            <span>@lang('backend.projects')</span>
-                        </a>
-                    </li>
-                @endcan
-
-                @can('service index')
-                    <li>
-                        <a href="{{ route('backend.service.index') }}" class="waves-effect">
-                            <i class="fas fa-box"></i>
-                            <span>@lang('backend.service')</span>
+                            <span>@lang('backend.content')</span>
                         </a>
                     </li>
                 @endcan
